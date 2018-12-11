@@ -1,0 +1,6 @@
+bin
+phpapps
+temp
+utils
+*.exe
+
