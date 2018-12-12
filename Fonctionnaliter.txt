@@ -8,7 +8,6 @@ index.php (page pardefaut quand non connecté)
  - Champ mdp
  - bouton connexion
 
-
 admin.php (tout faire) : herite d'aministratifs
 
 
@@ -34,6 +33,8 @@ filiereadministratif.php
 importationdesetudiant.php
 importationplanning.php
 supressionplanning.php
+enregistrerabscence.php
+
 
 Enregistrer les abscences pour un cour :
 - selectionne departement/filiere ou le prof enseigne
