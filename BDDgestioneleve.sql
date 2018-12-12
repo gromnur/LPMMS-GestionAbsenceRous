@@ -137,7 +137,7 @@ CREATE TABLE `matiere` (
 CREATE TABLE `personnel` (
   `numeropersonnel` int(11) NOT NULL,
   `identifiant` varchar(30) NOT NULL,
-  `mdp` varchar(65) DEFAULT NULL,
+  `mdp` varchar(256) DEFAULT NULL,
   `nom` varchar(30) DEFAULT NULL,
   `prenom` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
