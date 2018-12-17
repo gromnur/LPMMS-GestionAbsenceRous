@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css?family=Bungee');
+
+
+
+body{
+    background-color: darkgrey !important;
+}
+.titreNav{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: grey;
+    text-align: center;
+}
+
+.titre{
+    color: black;
+    font-family: 'Bungee', cursive;
+    font-size: 20px;
+}
+.blockmenu{
+    margin-top: -2%;
+    margin-left: -1%;
+}
+.menu {
+    padding-top:10px;
+    list-style:none;
+    width: 150px;
+    background-color: grey;
+    padding-left:25px;
+    height: 100%;
+}
+
+.liste {
+    /*padding-top: 5px;*/
+    font-size:20px;
+}
+
+.liste ul{
+    /*padding-top: 3px;*/
+    padding-left: 20px;
+    list-style: initial;
+    font-size:15px;
+
+}
+
+HR{
+    margin:10px 0 10px -25px !important;
+}
+
+.valid{
+    background-color:#265a88;
+    color:white;
+    text-align:right;
+}
+
+select{
+    width:45%;
+}
+.selection{
+    margin: 20px 0px;
+    /*text-align: center;*/
+}
+
+.ligne{
+    border-top: 1px solid gray;
+    padding: 5px 0px;
+}
+
+.btnmenu{
+    font-size:20px;
+    cursor:pointer;
+}
