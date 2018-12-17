@@ -1,6 +1,6 @@
 S<?php
 	include 'Objets/Cour.php';
-	include 'DataManagement.php';
+	//include 'DataManagement.php';
 
 	//On initialize la timezone
 	// On utilise une commande pour donner la timezone par défault, pour utiliser les DATETIME par la suite
