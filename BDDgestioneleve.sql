@@ -22,7 +22,7 @@ CREATE TABLE absence (
 CREATE TABLE administrateur (
   id_administrateur int(11) NOT NULL,
   PRIMARY KEY (id_administrateur)
-  
+
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -173,8 +173,8 @@ ALTER TABLE administratif
 
 --
 -- Contraintes pour la table anime
---  
-ALTER TABLE anime 
+--
+ALTER TABLE anime
 	ADD CONSTRAINT fk_Anime_cours FOREIGN KEY (id_cours) REFERENCES cours (id_cours) ,
 	ADD CONSTRAINT fk_Anime_professeur FOREIGN KEY (id_professeur) REFERENCES professeur (id_professeur);
 
