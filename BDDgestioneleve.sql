@@ -82,8 +82,8 @@ CREATE TABLE etudiant (
 
 CREATE TABLE filiere (
   id_filiere int(11) NOT NULL AUTO_INCREMENT,
-  id_departement int(11) NOT NULL,
-  id_administratif int(11) NOT NULL UNIQUE,
+  id_departement int(11) NOT NULL UNIQUE,
+  id_administratif int(11) NOT NULL,
   libelle varchar(100) DEFAULT NULL,
   PRIMARY KEY (id_filiere)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -137,16 +137,14 @@ CREATE TABLE professeur (
 
 CREATE TABLE salle (
   numero varchar(30) NOT NULL,
+  description varchar(264),
   PRIMARY KEY (numero)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
-
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 -- --------------------------------------------------------
-
 
 ----
 -- Contraintes pour les tables exportées
