@@ -3,6 +3,6 @@
 require('AccesBDD.php');
 
 /*
- * 
+ *
  */
  ?>

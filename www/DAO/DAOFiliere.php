@@ -8,10 +8,12 @@ require('DAODepartement.php')
  * Renvoi true si inserer, false sinon
  */
 function createFiliere($libelle, $id_departement) {
+    // TODO coder createFiliere
     // Verifier si le libelle est present
         // Si present renvoye false
 
-    // Creation d'un departement
+    // Verifie que le id_departement existe
+    // Creation d'une filiere
 
 }
 
@@ -32,7 +34,7 @@ function ajoutResponsableFiliereAdministratif($id_filiere, $id_administratif) {
 /*
  * Return la liste des filire [$id_filiere, $libelle]
  */
-function selectFiliereAvecDepartement($id_departement) {
+function selectAvecDepartementFiliere($id_departement) {
     // TODO coder selectFiliereAvecDepartement
 }
 
@@ -46,6 +48,6 @@ function libelleExisteFiliere($libelle) {
 /*
  * Return true si present, false Sinon
  */
-function idFiliereExisteFiliere($libelle) {
-    // TODO coder idFiliereExisteFiliere
+function idExisteFiliere($id_filiere) {
+    // TODO coder idExisteFiliere
 }

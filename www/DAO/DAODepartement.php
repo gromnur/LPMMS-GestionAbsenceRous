@@ -28,3 +28,10 @@ function selectDepartement () {
 function libelleExisteDepartement($libelle) {
     // TODO coder libelleExisteDepartement
 }
+
+/*
+ * Return true si present, 0 Sinon
+ */
+function idExisteDepartement($id_departement) {
+    // TODO coder libelleExisteDepartement
+}
