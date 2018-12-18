@@ -27,6 +27,6 @@ function selectCours($dateDebut,$dateFin, $id_groupe = null, $id_filiere = null,
 function dropDepartementCours($id_departement) {
     // TODO dropDepartementCours
     // Faire une grosse jointure et supprimer
-
 }
+
 ?>
