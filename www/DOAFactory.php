@@ -2,6 +2,7 @@
 
 require('DAO/DAOAbsence.php');
 require('DAO/DAOAdministratif.php'); //--
+require('DAO/DAOAnime.php');
 require('DAO/DAOCours.php');
 require('DAO/DAODepartement.php'); //--
 require('DAO/DAOEtudiant.php'); //--
