@@ -38,11 +38,15 @@ CREATE TABLE administratif (
 
 -- --------------------------------------------------------
 
+-- Structure de la table Anime
+
 CREATE TABLE anime (
 	id_cours int(11) NOT NULL,
 	id_professeur int(11) NOT NULL,
 	PRIMARY KEY (id_cours, id_professeur)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
 
 -- Structure de la table cours
 
@@ -103,6 +107,14 @@ CREATE TABLE groupe_etudiant (
 
 -- --------------------------------------------------------
 
+-- Structure de la table Localisation
+
+CREATE TABLE localisation (
+	id_cours int(11) NOT NULL,
+  numero_salle varchar(30) NOT NULL,
+	PRIMARY KEY (id_cours, numero_salle)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 -- Structure de la table matiere
 
 CREATE TABLE matiere (
@@ -138,8 +150,8 @@ CREATE TABLE professeur (
 -- Structure de la table salle
 
 CREATE TABLE salle (
-  numero varchar(30) NOT NULL,
-  PRIMARY KEY (numero)
+  numero_salle varchar(30) NOT NULL,
+  PRIMARY KEY (numero_salle)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -147,9 +159,9 @@ CREATE TABLE salle (
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 
-----
+--
 -- Contraintes pour les tables exportées
-----
+--
 
 --
 -- Contraintes pour la table absence
@@ -188,8 +200,7 @@ ALTER TABLE professeur
 --
 ALTER TABLE cours
   ADD CONSTRAINT cours_groupe_etudiant_fk FOREIGN KEY (id_groupe) REFERENCES groupe_etudiant (id_groupe),
-  ADD CONSTRAINT cours_matiere_fk FOREIGN KEY (id_matiere) REFERENCES matiere (id_matiere),
-  ADD CONSTRAINT cours_salle_fk FOREIGN KEY (numero_salle) REFERENCES salle (numero);
+  ADD CONSTRAINT cours_matiere_fk FOREIGN KEY (id_matiere) REFERENCES matiere (id_matiere);
 
 --
 -- Contraintes pour la table etudiant
@@ -202,6 +213,13 @@ ALTER TABLE etudiant
 --
 ALTER TABLE filiere
   ADD CONSTRAINT filiere_departement_fk FOREIGN KEY (id_departement) REFERENCES departement (id_departement);
+
+--
+-- Contraintes pour la table localisation
+--
+ALTER TABLE localisation
+  ADD CONSTRAINT localisation_cour_fk FOREIGN KEY (id_cours) REFERENCES cours (id_cours),
+  ADD CONSTRAINT localisation_numero_salle_fk FOREIGN KEY (numero_salle) REFERENCES salle (numero_salle);
 
 --
 -- Contraintes pour la table groupe_etudiant
