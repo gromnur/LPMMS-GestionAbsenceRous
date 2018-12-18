@@ -11,12 +11,12 @@ class DataManagement
 	private $pass = "root";
 	private $dbName = "gestioneleve";
 
-    private $tableCours = "cours";
-    private $db = null;
+  private $tableCours = "cours";
+  private $db = null;
 
-    public function DataManagement() {
-    	$this->db = new PDO('mysql:host=127.0.0.1;dbname=gestioneleve;charset=utf8', $this->user, $this->pass);
-    }
+  public function DataManagement() {
+  	$this->db = new PDO('mysql:host=127.0.0.1;dbname=gestioneleve;charset=utf8', $this->user, $this->pass);
+  }
 
 	public function insertCours($cours) {
 

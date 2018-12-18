@@ -26,16 +26,6 @@ verifconnexion.php : verifie les connexion et renvoi un code 1,2,3 pour
 selectionner la page à ouvrir
 
 
-creationadministratif.php
-creationprof.php
-creationdepartement.php
-filiereadministratif.php
-importationdesetudiant.php
-importationplanning.php
-supressionplanning.php
-enregistrerabscence.php
-
-
 Enregistrer les abscences pour un cour :
 - selectionne departement/filiere ou le prof enseigne
 - selectionner le cour combo box
