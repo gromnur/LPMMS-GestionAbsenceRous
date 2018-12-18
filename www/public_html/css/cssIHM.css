@@ -3,14 +3,23 @@
 
 
 body{
-    background-color: darkgrey !important;
+    background: linear-gradient(#34405e,#8b94a8) !important;
+    color:black !important;
+    background-attachment: fixed !important;
+}
+
+nav{
+    background-color:#354c7e;
+    z-index: 100;
 }
 .titreNav{
     padding-top: 15px;
     padding-bottom: 15px;
-    background-color: grey;
+    /*background-color: grey;*/
     text-align: center;
 }
+
+
 
 .titre{
     color: black;
@@ -19,15 +28,18 @@ body{
 }
 .blockmenu{
     margin-top: -2%;
-    margin-left: -1%;
+    margin-left: -15px;
 }
 .menu {
-    padding-top:10px;
+    padding-top:8%;
     list-style:none;
     width: 150px;
-    background-color: grey;
+    background-color: #304572cc;
     padding-left:25px;
-    height: 100%;
+    height: 155%;
+    position: fixed;
+    margin-top:-7%;
+    box-shadow: 2px 0px 11px #6e6e6e;
 }
 
 .liste {
@@ -53,8 +65,13 @@ HR{
     text-align:right;
 }
 
+.blockCombox{
+    width:80%;
+    margin-left: 15%;
+    text-align:center;
+}
 select{
-    width:45%;
+    width:55%;
 }
 .selection{
     margin: 20px 0px;
@@ -69,4 +86,30 @@ select{
 .btnmenu{
     font-size:20px;
     cursor:pointer;
+    z-index: 5;
+    transition: all 0.6s;
 }
+
+.btnmenu:hover{
+    font-size:20px;
+    cursor:pointer;
+    z-index: 5;
+    transform: rotate(360deg);
+}
+
+
+.blockTable{
+    width:66%;
+    margin-left: 20%;
+    font-size:16px;
+}
+
+.nomCol{
+    font-weight: bold;
+}
+
+/*.table-striped > tbody > tr:nth-of-type(2n+1){
+    background-color: red !important;  pour changer la couleur une fois sur 2
+}*/
+
+

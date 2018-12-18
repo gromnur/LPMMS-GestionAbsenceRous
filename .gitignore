@@ -4,3 +4,4 @@ temp
 utils
 *.exe
 
+/www/nbproject/private/
