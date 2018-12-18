@@ -3,7 +3,9 @@ SET time_zone = "+00:00";
 
 -- Base de données :  gestioneleve
 
+
 -- CREATE DATABASE gestioneleve;
+
 -- --------------------------------------------------------
 
 -- Structure de la table absence
@@ -137,7 +139,6 @@ CREATE TABLE professeur (
 
 CREATE TABLE salle (
   numero varchar(30) NOT NULL,
-  description varchar(264),
   PRIMARY KEY (numero)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
