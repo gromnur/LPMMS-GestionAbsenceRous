@@ -66,7 +66,7 @@ CREATE TABLE cours (
 
 CREATE TABLE departement (
   id_departement int(11) NOT NULL AUTO_INCREMENT,
-  libelle varchar(100) DEFAULT NULL,
+  libelle varchar(100) NOT NULL UNIQUE,
   PRIMARY KEY (id_departement)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -90,7 +90,7 @@ CREATE TABLE filiere (
   id_filiere int(11) NOT NULL AUTO_INCREMENT,
   id_departement int(11) NOT NULL UNIQUE,
   id_administratif int(11) NOT NULL,
-  libelle varchar(100) DEFAULT NULL,
+  libelle varchar(100) NOT NULL UNIQUE,
   PRIMARY KEY (id_filiere)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -101,7 +101,7 @@ CREATE TABLE filiere (
 CREATE TABLE groupe_etudiant (
   id_groupe int(11) NOT NULL AUTO_INCREMENT,
   id_filiere int(11) NOT NULL,
-  libelle varchar(100) DEFAULT NULL,
+  libelle varchar(100) NOT NULL UNIQUE,
   PRIMARY KEY (id_groupe)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -119,7 +119,7 @@ CREATE TABLE localisation (
 
 CREATE TABLE matiere (
   id_matiere int(11) NOT NULL AUTO_INCREMENT,
-  libelle varchar(100) DEFAULT NULL,
+  libelle varchar(100) NOT NULL UNIQUE,
   PRIMARY KEY (id_matiere)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
