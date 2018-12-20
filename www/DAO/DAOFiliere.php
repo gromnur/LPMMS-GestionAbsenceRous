@@ -1,6 +1,6 @@
 <?php
 
-require('DAODepartement.php');
+
 
 /*
  * Créé une filiere

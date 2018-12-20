@@ -1,7 +1,6 @@
 <?php
 
-require('AccesBDD.php');
-require('DAOFiliere.php');
+
 
 /*
  * Créés groupe d'étudiant avec le departement et la filiere

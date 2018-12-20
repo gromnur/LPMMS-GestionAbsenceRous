@@ -1,6 +1,6 @@
 <?php
 
-require('AccesBDD.php');
+
 
 /*
  * Ajoute un personnel dans la table personnel si celui-ci n'est pas present

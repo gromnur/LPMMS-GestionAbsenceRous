@@ -1,6 +1,6 @@
 <?php
 
-require('DAOFiliere.php');
+require('../DAOFactory.php');
 
 $libelle = "testFiliere2";
 $id_departement = 1;

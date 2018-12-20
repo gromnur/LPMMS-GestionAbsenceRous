@@ -1,6 +1,6 @@
 <?php
 
-require('AccesBDD.php');
+
 
 /*
  * Créé un departement
@@ -30,7 +30,7 @@ function createDepartement($libelle) {
 /*
  * Return la liste des departements [$id_departement, $libelle]
  */
-function selectDepartement () {
+function selectDepartement() {
     // récupération accés base de données
     $bd = getConnexion();
     $rqt = "SELECT id_departement, libelle FROM departement";

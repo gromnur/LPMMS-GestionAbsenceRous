@@ -1,7 +1,6 @@
 <?php
 
-require('AccesBDD.php');
-require('DAOPersonnel.php')
+
 
 /*
  * Créé un administratif

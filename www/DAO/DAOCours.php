@@ -1,9 +1,5 @@
 <?php
 
-require('AccesBDD.php');
-require('DAOGroupeEtudiant.php');
-require('DAOMatiere.php');
-
 /*
  * Créés des cours avec leur nom, prenom, idGroupe et ine
  * Return true si créé/existant, false si erreur

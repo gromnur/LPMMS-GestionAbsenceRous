@@ -1,6 +1,6 @@
 <?php
 
-require('DAODepartement.php');
+require('../DAOFactory.php');
 
 $libelle = "jeutest";
 

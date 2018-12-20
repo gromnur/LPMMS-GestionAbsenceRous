@@ -1,6 +1,5 @@
 <?php
 
-require('AccesBDD.php');
 
 /*
  *

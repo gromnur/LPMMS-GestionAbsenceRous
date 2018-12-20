@@ -1,7 +1,6 @@
 <?php
 
-require('AccesBDD.php');
-require('DAOEtudiant.php');
+
 
 /*
  * Créés des etudiant avec leur nom, prenom, idGroupe et ine
