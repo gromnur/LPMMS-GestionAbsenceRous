@@ -2,12 +2,12 @@
 
 
 /*
- * Créé un administratif
+ * Créé un professeur
  * Renvoi le numeropersonnel du professeur
  */
 function createProfesseur($numeropersonnel) {
     // verifiaction presence professeur
-    if (isAdministratif($numeropersonnel)) {
+    if (isProfesseur($numeropersonnel)) {
         return false;
     }
 

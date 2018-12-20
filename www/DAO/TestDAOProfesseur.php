@@ -2,24 +2,22 @@
 
 require('../DAOFactory.php');
 
-$numeropersonnel = 4;
-$id_administratif = 4;
-$id_filiere = 1;
+$numeropersonnel = 3;
 
 /*
- * Test création administratif test aussi libelleExiste
+ * Test création professeur test aussi libelleExiste
  */
 if (createProfesseur($numeropersonnel)!=0) {
-    echo "Create administratif reussi <br>";
+    echo "Create professeur reussi <br>";
 } else {
-    echo "Create administratif echoué <br>";
+    echo "Create professeur echoué <br>";
 }
 
 // réinsertion departement
 if (createProfesseur($numeropersonnel)==0) {
-    echo "Create administratif erreur duplicata reussi <br>";
+    echo "Create professeur erreur duplicata reussi <br>";
 } else {
-    echo "Create administratif erreur duplicata échoué <br>";
+    echo "Create professeur erreur duplicata échoué <br>";
 }
 
 /*

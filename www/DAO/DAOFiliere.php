@@ -7,7 +7,7 @@
  */
 function createFiliere($libelle, $id_departement) {
     // Verifie si le libelle n'est pas present
-    if (libelleExisteFiliere($libelle) != 0) {
+    if (libelleExisteFiliere($libelle)) {
         // Si present renvoye 0
         return 0;
     }
