@@ -33,6 +33,7 @@ CREATE TABLE administrateur (
 
 CREATE TABLE administratif (
   id_administratif int(11) NOT NULL,
+  id_filiere int(11) UNIQUE,
   PRIMARY KEY (id_administratif)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -89,7 +90,6 @@ CREATE TABLE etudiant (
 CREATE TABLE filiere (
   id_filiere int(11) NOT NULL AUTO_INCREMENT,
   id_departement int(11) NOT NULL UNIQUE,
-  id_administratif int(11) NOT NULL,
   libelle varchar(100) NOT NULL UNIQUE,
   PRIMARY KEY (id_filiere)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -180,8 +180,8 @@ ALTER TABLE administrateur
 -- Contraintes pour la table administratif
 --
 ALTER TABLE administratif
-  ADD CONSTRAINT fk_Administratif_personnel FOREIGN KEY (id_administratif) REFERENCES personnel (numeropersonnel);
-
+  ADD CONSTRAINT fk_administratif_personnel FOREIGN KEY (id_administratif) REFERENCES personnel (numeropersonnel);
+  ADD CONSTRAINT fk_administratif_filiere FOREIGN KEY (id_filiere) REFERENCES filiere (id_filiere);
 --
 -- Contraintes pour la table anime
 --

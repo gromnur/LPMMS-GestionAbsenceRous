@@ -8,7 +8,7 @@ require('AccesBDD.php');
  */
 function createDepartement($libelle) {
 
-    // Verifier si le libelle est present
+    // Verifier si le libelle n'est pas present
     if (libelleExisteDepartement($libelle) != 0) {
         // Si present renvoye 0
         return 0;
@@ -70,8 +70,24 @@ function libelleExisteDepartement($libelle) {
 }
 
 /*
- * Return true si present, 0 Sinon
+ * Return true si present, false Sinon
  */
 function idExisteDepartement($id_departement) {
-    // TODO coder libelleExisteDepartement
+    // récupération accés base de données
+    $bd = getConnexion();
+    $rqt = "SELECT id_departement FROM departement WHERE id_departement = :id_departement";
+    $stmt = $bd->prepare($rqt);
+    // ajout param
+    $stmt->bindParam(":id_departement", $id_departement);
+    // execution requette
+    $stmt->execute();
+
+    // récupération resultat
+    $listResult = $stmt->fetchAll();
+
+    if (count($listResult) == 0) {
+        return false;
+    } else {
+        return true;
+    }
 }
