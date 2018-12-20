@@ -2,7 +2,8 @@
 
 require('../DAOFactory.php');
 
-$libelle = "testFiliere2";
+$libelle = "testFiliere";
+$id_filiere = 1;
 $id_departement = 1;
 
 
@@ -34,7 +35,7 @@ if (ajoutResponsableFiliereAdministratif($id_filiere, $id_administratif)) {
 /*
  * Test Select filiere
  */
-selectAvecDepartementFiliere();
+print_r(selectAvecDepartementFiliere($id_departement));
 echo ("<br>");
 
 /*

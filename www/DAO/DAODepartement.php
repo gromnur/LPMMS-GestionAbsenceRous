@@ -1,7 +1,5 @@
 <?php
 
-
-
 /*
  * Créé un departement
  * Renvoi id_departement si inserer, 0 sinon
@@ -40,10 +38,11 @@ function selectDepartement() {
     // execution requette
     if ($stmt->execute()) {
         while ($ligne = $stmt->fetch()) {
-            $listResult[] = array($ligne['id_departement'], $ligne['libelle']);
+            $listResult[] = array('id_departement'=>$ligne['id_departement'],
+                                  'libelle' =>$ligne['libelle']);
         }
     }
-    echo json_encode($listResult);
+    return $listResult;
 }
 
 /*

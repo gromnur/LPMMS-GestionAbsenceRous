@@ -1,7 +1,5 @@
 <?php
 
-
-
 /*
  * Créé une filiere
  * Renvoi l'id_filiere si inserer, 0 si libelle deja présent,
@@ -11,13 +9,11 @@ function createFiliere($libelle, $id_departement) {
     // Verifie si le libelle n'est pas present
     if (libelleExisteFiliere($libelle) != 0) {
         // Si present renvoye 0
-        echo "libelle deja présent";
         return 0;
     }
 
     // Verifie que le id_departement existe
     if (idExisteDepartement($id_departement) == 0) {
-        echo "le depart existe";
         return -1;
     }
 
@@ -63,10 +59,12 @@ function selectAvecDepartementFiliere($id_department) {
     // execution requette
     if ($stmt->execute()) {
         while ($ligne = $stmt->fetch()) {
-            $listResult[] = array($ligne['id_filiere'], $ligne['libelle'],$ligne['id_departement']);
+            $listResult[] = array("id_filiere"=>$ligne['id_filiere'],
+                                  "libelle"=>$ligne['libelle'],
+                                  "id_departement"=>$ligne['id_departement']);
         }
     }
-    echo json_encode($listResult);
+    return $listResult;
 }
 
 /*

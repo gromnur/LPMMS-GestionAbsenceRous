@@ -98,7 +98,7 @@ CREATE TABLE etudiant (
 
 CREATE TABLE filiere (
   id_filiere int(11) NOT NULL AUTO_INCREMENT,
-  id_departement int(11) NOT NULL UNIQUE,
+  id_departement int(11) NOT NULL,
   libelle varchar(100) NOT NULL UNIQUE,
   PRIMARY KEY (id_filiere)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -138,7 +138,7 @@ CREATE TABLE matiere (
 
 CREATE TABLE personnel (
   numeropersonnel int(11) NOT NULL AUTO_INCREMENT,
-  identifiant varchar(60) NOT NULL,
+  identifiant varchar(60) NOT NULL UNIQUE,
   mdp varchar(256) DEFAULT NULL,
   nom varchar(30) DEFAULT NULL,
   prenom varchar(30) DEFAULT NULL,
