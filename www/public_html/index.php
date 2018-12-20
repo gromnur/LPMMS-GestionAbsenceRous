@@ -10,6 +10,7 @@
         <link href="css/cssIHM.css" rel="stylesheet" type="text/css"/>
         <link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        
     </head>
     <body>
         <!-- debut nav bar  -->
@@ -68,9 +69,12 @@
                     </ul>
                 </div>
                 <?php 
-                include 'index_1.php';
+                include 'vue_absence.php';
                 ?>
             </div>
         </div>
+        
+        <script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
+        <script src="js/script.js" type="text/javascript"></script>
     </body>
 </html>

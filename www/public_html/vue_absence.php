@@ -3,23 +3,23 @@
         <div class="row selection">
             <div class="col-xs-3">
                 <label>Departement : </label><br>
-                <select>
+                <select id="dept">
                     <option value="">departement</option>
                     <option value="">--Please choose an option--</option>
                     <option value="">--Please choose an option--</option>
                 </select>
             </div>
             <div class="col-xs-3">
-                <label>Departement : </label><br>
-                <select>
+                <label>Filière : </label><br>
+                <select id="filiere">
                     <option value="">filiere</option>
                     <option value="">azertyuiop</option>
                     <option value="">--Please choose an option--</option>
                 </select>
             </div>
             <div class="col-xs-3">
-                <label>Departement : </label><br>
-                <select>
+                <label>Groupe : </label><br>
+                <select id="grp">
                     <option value="">groupe</option>
                     <option value="">--Please choose an option--</option>
                     <option value="">--Please choose an option--</option>
