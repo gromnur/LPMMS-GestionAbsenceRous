@@ -7,7 +7,7 @@ require('DAODepartement.php');
  * Renvoi l'id_filiere si inserer, 0 si libelle deja présent,
  * -1 si id_departement non présent
  */
-function createFiliere($libelle, $id_departement, $id_administratif) {
+function createFiliere($libelle, $id_departement) {
     // Verifie si le libelle n'est pas present
     if (libelleExisteFiliere($libelle) != 0) {
         // Si present renvoye 0
@@ -21,20 +21,13 @@ function createFiliere($libelle, $id_departement, $id_administratif) {
         return -1;
     }
 
-    // Verifie que le id_administratif existe
-    if (idExisteDepartement($id_administratif) == 0) {
-        echo "le adminif existe";
-        return -1;
-    }
-
     // Creation d'une filiere
     // récupération accés base de données
     $bd = getConnexion();
-    $rqt = "INSERT INTO filiere(libelle,id_departement, id_administratif) VALUES (:libelle,:id_departement,:id_administratif)";
+    $rqt = "INSERT INTO filiere(libelle,id_departement) VALUES (:libelle,:id_departement)";
     $stmt = $bd->prepare($rqt);
     // ajout param
     $stmt->bindParam(":libelle", $libelle);
-    $stmt->bindParam(":id_administratif", $id_administratif);
     $stmt->bindParam(":id_departement", $id_departement);
     // execution requette
     $stmt->execute();
