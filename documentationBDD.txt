@@ -1,0 +1,2 @@
+Lors de l'ajout d'un ICS, tout les cours lier à cette filiere seront supprimé.
+Un administrateur doit créer un filiere et son departement avant de créer un responsable pour cette filiere.
