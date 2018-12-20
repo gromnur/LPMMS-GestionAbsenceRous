@@ -5,14 +5,23 @@
  * Créé un administratif
  * Renvoi le numeropersonnel du professeur
  */
-function createProfesseur($identifiant, $mdp, $nom, $prenom) {
-    // TODO appel la fonction verif personnel
-
-        // Si present ajouter a la table professeur
-
-        // Sinon appel createPersonnel
+function createProfesseur($numeropersonnel) {
+    // verifiaction presence professeur
+    if (isAdministratif($numeropersonnel)) {
+        return false;
+    }
 
     // Creation d'un professeur
+    // récupération accés base de données
+    $bd = getConnexion();
+    $rqt = "INSERT INTO professeur(id_professeur) VALUES (:numeropersonnel)";
+    $stmt = $bd->prepare($rqt);
+    // ajout param
+    $stmt->bindParam(":numeropersonnel", $numeropersonnel);
+    // execution requette
+    $stmt->execute();
+    // renvoi le libelle généré
+    return $numeropersonnel;
 
 }
 
@@ -20,7 +29,23 @@ function createProfesseur($identifiant, $mdp, $nom, $prenom) {
  * Return true si le numeros personnel est present dans la table professeur, false sinon
  */
 function isProfesseur($numeropersonnel) {
-    // TODO faire isProfesseur
+    // récupération accés base de données
+    $bd = getConnexion();
+    $rqt = "SELECT id_professeur FROM professeur WHERE id_professeur = :numeropersonnel";
+    $stmt = $bd->prepare($rqt);
+    // ajout param
+    $stmt->bindParam(":numeropersonnel", $numeropersonnel);
+    // execution requette
+    $stmt->execute();
+
+    // récupération resultat
+    $listResult = $stmt->fetchAll();
+
+    if (count($listResult) == 0) {
+        return false;
+    } else {
+        return true;
+    }
 }
 
 

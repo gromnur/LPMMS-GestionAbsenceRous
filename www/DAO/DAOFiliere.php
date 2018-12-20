@@ -32,20 +32,6 @@ function createFiliere($libelle, $id_departement) {
 }
 
 /*
- * La filiere doit etre crée à l'avance ansi que le departement
- * Ajoute un responsable filiere qui doit etre un administrtif
- * Return true ajouter false sinon.
- */
-function ajoutResponsableFiliereAdministratif($id_filiere, $id_administratif) {
-    // TODO coder ajoutResponsableFiliereAdministratif
-    // Faire un ALTER TABLE
-    // Verifie existance filiere
-        // si present ajout et return true
-
-    // sinon return false
-}
-
-/*
  * Return la liste des filire [$id_filiere, $libelle, $id_department]
  */
 function selectAvecDepartementFiliere($id_department) {
