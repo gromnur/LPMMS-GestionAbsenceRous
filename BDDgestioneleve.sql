@@ -54,7 +54,7 @@ CREATE TABLE anime (
 CREATE TABLE assiste (
 	id_cours int(11) NOT NULL,
     id_groupe int(11) NOT NULL,
-	PRIMARY KEY (id_cours, id_groupes)
+	PRIMARY KEY (id_cours, id_groupe)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -189,7 +189,7 @@ ALTER TABLE administrateur
 -- Contraintes pour la table administratif
 --
 ALTER TABLE administratif
-  ADD CONSTRAINT fk_administratif_personnel FOREIGN KEY (id_administratif) REFERENCES personnel (numeropersonnel);
+  ADD CONSTRAINT fk_administratif_personnel FOREIGN KEY (id_administratif) REFERENCES personnel (numeropersonnel),
   ADD CONSTRAINT fk_administratif_filiere FOREIGN KEY (id_filiere) REFERENCES filiere (id_filiere);
 --
 -- Contraintes pour la table anime
@@ -215,7 +215,6 @@ ALTER TABLE professeur
 -- Contraintes pour la table cours
 --
 ALTER TABLE cours
-  ADD CONSTRAINT cours_groupe_etudiant_fk FOREIGN KEY (id_groupe) REFERENCES groupe_etudiant (id_groupe),
   ADD CONSTRAINT cours_matiere_fk FOREIGN KEY (id_matiere) REFERENCES matiere (id_matiere);
 
 --
