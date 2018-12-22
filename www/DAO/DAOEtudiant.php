@@ -1,7 +1,5 @@
 <?php
 
-
-
 /*
  * Créés des etudiant avec leur nom, prenom, idGroupe et ine
  * Return true si créé/existant, false si erreur

@@ -1,8 +1,6 @@
 <?php
 
-
-
 /*
- *
+ * TODO classe absence
  */
  ?>
