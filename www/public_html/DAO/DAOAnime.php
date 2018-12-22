@@ -1,0 +1,10 @@
+<?php
+
+require('AccesBDD.php');
+
+/*
+ *
+ */
+
+
+?>

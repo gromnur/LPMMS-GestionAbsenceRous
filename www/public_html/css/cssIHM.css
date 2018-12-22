@@ -19,8 +19,6 @@ nav{
     text-align: center;
 }
 
-
-
 .titre{
     color: black;
     font-family: 'Bungee', cursive;
@@ -83,12 +81,6 @@ select{
     padding: 5px 0px;
 }
 
-.btnmenu{
-    font-size:20px;
-    cursor:pointer;
-    z-index: 5;
-    transition: all 0.6s;
-}
 
 .btnmenu:hover{
     font-size:20px;

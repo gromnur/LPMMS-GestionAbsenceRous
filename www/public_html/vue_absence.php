@@ -4,15 +4,21 @@
             <div class="col-xs-3">
                 <label>Departement : </label><br>
                 <select id="dept">
-                    <option value="">departement</option>
-                    <option value="">--Please choose an option--</option>
-                    <option value="">--Please choose an option--</option>
+                    <option value='null'>Choisir département</option>
+                    <?php
+                    include 'DAO/DAODepartement.php';
+                    $var = json_decode(selectDepartement());
+
+                    foreach ($var as $ligne) {
+                        echo'<option value=' . $ligne[0] . '>' . $ligne[1] . '</option>';
+                    }
+                    ?>
                 </select>
             </div>
             <div class="col-xs-3">
                 <label>Filière : </label><br>
                 <select id="filiere">
-                    <option value="">filiere</option>
+                    <option value="">Choisir filière</option>
                     <option value="">azertyuiop</option>
                     <option value="">--Please choose an option--</option>
                 </select>
@@ -20,7 +26,7 @@
             <div class="col-xs-3">
                 <label>Groupe : </label><br>
                 <select id="grp">
-                    <option value="">groupe</option>
+                    <option value="">Choisir groupe</option>
                     <option value="">--Please choose an option--</option>
                     <option value="">--Please choose an option--</option>
                 </select>

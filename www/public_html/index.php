@@ -1,4 +1,5 @@
-<?php session_start();
+<?php
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -10,17 +11,14 @@
         <link href="css/cssIHM.css" rel="stylesheet" type="text/css"/>
         <link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        
+
     </head>
     <body>
         <!-- debut nav bar  -->
         <nav class=" navbar navbar-light bg-light justify-content-between">
             <div class="container-fluid ">
                 <div class="row titreNav">
-                    <div class="visible-sm visible-xs col-xs-1  ">
-                        <span class="btnmenu glyphicon glyphicon-th-list"></span>
-                    </div>
-                    <div class="col-xs-9 col-md-10 titre">
+                    <div class=" col-md-10 titre">
                         Gestion des absences
                     </div>
                     <div class="col-md-2">
@@ -32,7 +30,7 @@
         <!-- fin nav bar -->
         <div class="container-fluid selection">
             <div class="row">
-                <div class="col-md-2 hidden-sm hidden-xs blockmenu">
+                <div class="col-md-2 blockmenu">
                     <ul class="menu">
                         <li class="liste">Liste : 
                             <ul>
@@ -68,12 +66,12 @@
                         </li>
                     </ul>
                 </div>
-                <?php 
+                <?php
                 include 'vue_absence.php';
                 ?>
             </div>
         </div>
-        
+
         <script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
         <script src="js/script.js" type="text/javascript"></script>
     </body>

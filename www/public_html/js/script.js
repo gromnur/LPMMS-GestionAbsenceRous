@@ -1,21 +1,14 @@
 
-var test ="test";
 
-$("#dept").click(function(){
+$('#dept').change(function () {
     $.ajax({
-
-       url : 'test.php', // La ressource ciblée
-       timeout:4000,
-       type:'GET',
-       dataType:'html',
-       data:'test=' + test,
-       
-       success: function(data_html, statut){
-           alert("ca marche coooon");
-       },
-       
-       error: function(){
-           alert("ouin ouin :(");
-       }
-    });  
+        type: 'POST',
+        dataType: "json",
+        url: "test.php",
+        data: {func: 'selectDept'},
+        success: function (data) {
+            alert(data[0]);
+            alert(data[1]);
+        }
+    })
 });
