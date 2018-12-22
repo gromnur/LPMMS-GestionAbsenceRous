@@ -1,7 +1,5 @@
 <?php
 
-require('AccesBDD.php');
-
 /*
  * Créé un departement
  * Renvoi id_departement si inserer, 0 sinon
@@ -30,7 +28,7 @@ function createDepartement($libelle) {
 /*
  * Return la liste des departements [$id_departement, $libelle]
  */
-function selectDepartement () {
+function selectDepartement() {
     // récupération accés base de données
     $bd = getConnexion();
     $rqt = "SELECT id_departement, libelle FROM departement";
@@ -40,10 +38,11 @@ function selectDepartement () {
     // execution requette
     if ($stmt->execute()) {
         while ($ligne = $stmt->fetch()) {
-            $listResult[] = array($ligne['id_departement'], $ligne['libelle']);
+            $listResult[] = array('id_departement'=>$ligne['id_departement'],
+                                  'libelle' =>$ligne['libelle']);
         }
     }
-    echo json_encode($listResult);
+    return $listResult;
 }
 
 /*
@@ -65,7 +64,7 @@ function libelleExisteDepartement($libelle) {
     if (count($listResult) == 0) {
         return 0;
     } else {
-        return $listResult[0];
+        return $listResult[0]["id_departement"];
     }
 }
 

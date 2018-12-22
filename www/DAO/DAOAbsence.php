@@ -1,8 +1,6 @@
 <?php
 
-require('AccesBDD.php');
-
 /*
- *
+ * TODO classe absence
  */
  ?>
