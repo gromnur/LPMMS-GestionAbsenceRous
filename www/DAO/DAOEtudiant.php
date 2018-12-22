@@ -4,21 +4,27 @@
  * Créés des etudiant avec leur nom, prenom, idGroupe et ine
  * Return true si créé/existant, false si erreur
  */
-function createEtudiant($ine, $nom, $prenom, $id_groupe ) {
+function createEtudiant($ine, $nom, $prenom, $id_filiere, $libelle_groupe) {
     // verifier l'identifiant
     if(ineExisteEtudiant($ine) != 0){
         return 0;
     }
 
+    // verifier le groupe
+    if(count(groupeExisteGroupeEtudiant($libelle_groupe, $id_filiere)) == 0){
+        return -1;
+    }
+
     // Création personnel
     // récupération accés base de données
     $bd = getConnexion();
-    $rqt = "INSERT INTO etudiant(ine, nom, prenom, id_groupe ) VALUES (:ine, :nom, :prenom, :id_groupe)";
+    $rqt = "INSERT INTO etudiant(ine, nom, prenom, id_filiere, libelle_groupe) VALUES (:ine, :nom, :prenom, :id_filiere, :libelle_groupe)";
 
     $stmt = $bd->prepare($rqt);
     // ajout param
     $stmt->bindParam(":ine", $ine);
-    $stmt->bindParam(":id_groupe", $id_groupe);
+    $stmt->bindParam(":id_filiere", $id_filiere);
+    $stmt->bindParam(":libelle_groupe", $libelle_groupe);
     $stmt->bindParam(":nom", $nom);
     $stmt->bindParam(":prenom", $prenom);
     // execution requette
@@ -70,7 +76,7 @@ function ineExisteEtudiant($ine) {
     if (count($listResult) == 0) {
         return 0;
     } else {
-        return $listResult[0];
+        return $listResult[0]["ine"];
     }
 }
 

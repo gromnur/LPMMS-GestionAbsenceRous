@@ -51,7 +51,6 @@ function selectAvecFiliereGroupeEtudiant($id_filiere) {
  * Return [$id_filiere, $libelle] si present, sinon une liste vide
  */
 function groupeExisteGroupeEtudiant($libelle, $id_filiere) {
-    echo "libelle : ".$libelle." id_filiere : ".$id_filiere."<br>";
     // récupération accés base de données
     $bd = getConnexion();
     $rqt = "SELECT libelle, id_filiere FROM groupe_etudiant WHERE libelle = :libelle AND id_filiere = :id_filiere";
