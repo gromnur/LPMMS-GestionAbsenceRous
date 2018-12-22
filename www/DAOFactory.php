@@ -7,7 +7,7 @@
 require('DAO/AccesBDD.php'); //--
 require('DAO/DAOAbsence.php');
 require('DAO/DAOAdministratif.php'); //--
-require('DAO/DAOCours.php');
+require('DAO/DAOCours.php'); //--
 require('DAO/DAODepartement.php'); //--
 require('DAO/DAOEtudiant.php'); //--
 require('DAO/DAOFiliere.php'); //--
