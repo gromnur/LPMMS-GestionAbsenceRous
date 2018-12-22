@@ -29,7 +29,7 @@ function createHeurFin($heur_fin) {
     // execution requette
     $stmt->execute();
     // renvoi le libelle généré
-    return heurFinExisteHeurFin($heur_fin);
+    return $heur_fin;
 
 }
 

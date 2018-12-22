@@ -1,32 +1,53 @@
 <?php
 
+
 require('../DAOFactory.php');
 
-$numeropersonnel = 3;
+$identifiant = "insertion.prof3";
+$nom = "insertion3";
+$prenom = "prof3";
+$mdp = hash('sha256',"le prof");
+
 
 /*
- * Test création professeur test aussi libelleExiste
+ * Création personnel
  */
-if (createProfesseur($numeropersonnel)!=0) {
-    echo "Create professeur reussi <br>";
+echo "Insertion nouveau personnel : ";
+$numpers = createPersonnel($identifiant, $mdp, $nom, $prenom);
+if ($numpers != 0) {
+    echo "reussi, numeropersonnel = ".$numpers."<br>";
 } else {
-    echo "Create professeur echoué <br>";
-}
-
-// réinsertion departement
-if (createProfesseur($numeropersonnel)==0) {
-    echo "Create professeur erreur duplicata reussi <br>";
-} else {
-    echo "Create professeur erreur duplicata échoué <br>";
+    echo "échoué <br>";
 }
 
 /*
- * Test id existe
+ * Test création professeur
  */
-if (isProfesseur($numeropersonnel)) {
-    echo "Test id existe reussi<br>";
+echo "Insertion nouveau professeur : ";
+$id_prof = createProfesseur($numpers);
+if ($id_prof != 0) {
+    echo "reussi, id_professeur = ".$id_prof."<br>";
 } else {
-    echo "Test id existe échoué<br>";
+    echo "échoué <br>";
+}
+
+// réinsertion professeur
+echo "Insertion meme professeur : ";
+$id_prof2 = createProfesseur($numpers);
+if ($id_prof2==0) {
+    echo "non inserer, id_professeur retrourné = ".$id_prof2."<br>";
+} else {
+    echo "erreur <br>";
+}
+
+/*
+ * Test id_professeur existe
+ */
+echo "Professeur présent : ";
+if (isProfesseur($id_prof)) {
+    echo "Oui, id_professeur = ".$id_prof."<br>";
+} else {
+    echo "Non<br>";
 }
 
 ?>

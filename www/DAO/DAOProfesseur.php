@@ -3,12 +3,17 @@
 
 /*
  * Créé un professeur
- * Renvoi le numeropersonnel du professeur
+ * Renvoi le numeropersonnel du professeur, 0 sinon
  */
 function createProfesseur($numeropersonnel) {
     // verifiaction presence professeur
     if (isProfesseur($numeropersonnel)) {
-        return false;
+        return 0;
+    }
+
+    // verifiaction presence professeur
+    if (idExistePersonnel($numeropersonnel)) {
+        return 0;
     }
 
     // Creation d'un professeur

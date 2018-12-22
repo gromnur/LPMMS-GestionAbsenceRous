@@ -23,7 +23,7 @@ function createSalle($numero_salle) {
     // execution requette
     $stmt->execute();
     // renvoi le libelle généré
-    return numeroExisteSalle($numero_salle);
+    return $numero_salle;
 
 }
 

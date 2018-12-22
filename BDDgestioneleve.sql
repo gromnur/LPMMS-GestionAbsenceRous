@@ -10,12 +10,11 @@ SET time_zone = "+00:00";
 
 -- Structure de la table absence
 
--- CREATE TABLE absence (
---  id_absence int(11) NOT NULL AUTO_INCREMENT,
---  ine varchar(13) NOT NULL,
---  id_cours int(11) NOT NULL,
---  PRIMARY KEY (id_absence)
--- ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE absence (
+ ine varchar(13) NOT NULL,
+ id_cours int(11) NOT NULL,
+ PRIMARY KEY (id_absence)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -42,14 +41,15 @@ CREATE TABLE administratif (
 -- Structure de la table cours
 
 CREATE TABLE cours (
-  id_cours int(11) NOT NULL
+  id_cours int(11) NOT NULL,
   id_matiere int(11) NOT NULL,
-  id_groupe int(11) NOT NULL,
+  id_filiere int(11) NOT NULL,
+  libelle_groupe varchar(100) NOT NULL,
   id_professeur int(11) NOT NULL,
   numero_salle varchar(30) NOT NULL,
   heur_debut time NOT NULL,
   heur_fin time NOT NULL,
-  PRIMARY KEY (id_cours,id_matiere, id_groupe, id_professeur, numero_salle, heur_debut, heur_fin)
+  PRIMARY KEY (id_matiere, id_filiere, libelle_groupe, id_professeur, numero_salle, heur_debut, heur_fin)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -68,7 +68,8 @@ CREATE TABLE departement (
 
 CREATE TABLE etudiant (
   ine varchar(13) NOT NULL,
-  id_groupe int(11) NOT NULL,
+  id_filiere int(11) NOT NULL,
+  libelle_groupe varchar(100) NOT NULL,
   nom varchar(30) DEFAULT NULL,
   prenom varchar(30) DEFAULT NULL,
   PRIMARY KEY (ine)
@@ -90,10 +91,9 @@ CREATE TABLE filiere (
 -- Structure de la table groupe_etudiant
 
 CREATE TABLE groupe_etudiant (
-  id_groupe int(11) NOT NULL AUTO_INCREMENT,
   id_filiere int(11) NOT NULL,
-  libelle varchar(100) NOT NULL UNIQUE,
-  PRIMARY KEY (id_groupe)
+  libelle varchar(100) NOT NULL,
+  PRIMARY KEY (id_filiere,libelle)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -165,9 +165,9 @@ CREATE TABLE salle (
 --
 -- Contraintes pour la table absence
 --
--- ALTER TABLE absence
---   ADD CONSTRAINT fk_absence_cours FOREIGN KEY (id_cours) REFERENCES cours (id_cours),
---   ADD CONSTRAINT fk_absence_etudiant FOREIGN KEY (ine) REFERENCES etudiant (ine);
+ALTER TABLE absence
+  ADD CONSTRAINT fk_absence_cours FOREIGN KEY (id_cours) REFERENCES cours (id_cours),
+  ADD CONSTRAINT fk_absence_etudiant FOREIGN KEY (ine) REFERENCES etudiant (ine);
 
 --
 -- Contraintes pour la table administrateur
@@ -194,7 +194,7 @@ ALTER TABLE professeur
  ALTER TABLE cours
     ADD CONSTRAINT fk_cours_matiere FOREIGN KEY (id_matiere) REFERENCES matiere (id_matiere),
     ADD CONSTRAINT fk_cours_professeur FOREIGN KEY (id_professeur) REFERENCES professeur (id_professeur),
-    ADD CONSTRAINT fk_cours_groupe FOREIGN KEY (id_groupe) REFERENCES groupe_etudiant (id_groupe),
+    ADD CONSTRAINT fk_cours_groupe FOREIGN KEY (id_filiere, libelle_groupe) REFERENCES groupe_etudiant (id_filiere, libelle),
     ADD CONSTRAINT fk_cours_numero_salle FOREIGN KEY (numero_salle) REFERENCES salle (numero_salle),
     ADD CONSTRAINT fk_cours_heur_fin FOREIGN KEY (heur_fin) REFERENCES heur_fin (heur_fin),
     ADD CONSTRAINT fk_cours_heur_debut FOREIGN KEY (heur_debut) REFERENCES heur_debut (heur_debut);
@@ -203,7 +203,7 @@ ALTER TABLE professeur
 -- Contraintes pour la table etudiant
 --
 ALTER TABLE etudiant
-  ADD CONSTRAINT fk_etudiant_groupe_etudiant FOREIGN KEY (id_groupe) REFERENCES groupe_etudiant (id_groupe);
+  ADD CONSTRAINT fk_etudiant_groupe_etudiant FOREIGN KEY (id_filiere, libelle_groupe) REFERENCES groupe_etudiant (id_filiere, libelle);
 
 --
 -- Contraintes pour la table filiere

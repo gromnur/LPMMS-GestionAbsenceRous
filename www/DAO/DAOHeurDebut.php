@@ -29,7 +29,7 @@ function createHeurDebut($heur_debut) {
     // execution requette
     $stmt->execute();
     // renvoi le libelle généré
-    return heurDebutExisteHeurDebut($heur_debut);
+    return $heur_debut;
 
 }
 

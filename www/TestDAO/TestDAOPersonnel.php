@@ -1,38 +1,54 @@
 <?php
 
+
 require('../DAOFactory.php');
 
-$nom = "// zef: ";
-$prenom = "mrfr: ";
-$identifiant = "le test";
-$mdp = hash('sha256',"ger");
+$identifiant = "michel.dupond6";
+$nom = "Michel4";
+$prenom = "Dupond4";
+$mdp = hash('sha256',"lemdp");
 
 
 /*
- * Test création personnel test
+ * Test création personnel
  */
-if (createPersonnel($identifiant, $mdp, $nom, $prenom) !=0 ) {
-    echo "Create personnel reussi <br>";
+echo "Insertion nouveau personnel : ";
+$numpers = createPersonnel($identifiant, $mdp, $nom, $prenom);
+if ($numpers != 0) {
+    echo "reussi, numeropersonnel = ".$numpers."<br>";
 } else {
-    echo "Create personnel echoué <br>";
+    echo "échoué <br>";
 }
 
-// réinsertion departement
-if (createPersonnel($identifiant, $mdp, $nom, $prenom)==0) {
-    echo "Create personnel erreur duplicata reussi <br>";
+// réinsertion personnel
+echo "Insertion meme personnel : ";
+$numpers2 = createPersonnel($identifiant, $mdp, $nom, $prenom);
+if ($numpers2==0) {
+    echo "non inserer, numeropersonnel retrourné = ".$numpers2."<br>";
 } else {
-    echo "Create personnel erreur duplicata échoué <br>";
+    echo "erreur <br>";
 }
 
 /*
- * Test id existe
+ * Test id_personnel existe
  */
-if (identifiantExistePersonnel($identifiant)) {
-    echo "Test id existe reussi<br>";
+echo "Personnel présent : ";
+$numpers3 = identifiantExistePersonnel($identifiant);
+if ($numpers3 != 0) {
+    echo "Oui, numeropersonnel = ".$numpers3."<br>";
 } else {
-    echo "Test id existe échoué<br>";
+    echo "Non<br>";
 }
 
-// TODO test verifmdp
+/*
+ * Test id_departement existe
+ */
+echo "Personnel numeropersonnel créé présent : ";
+$result = idExistePersonnel($numpers);
+if ($result) {
+    echo "Oui, numeropersonnel = ".$numpers."<br>";
+} else {
+    echo "Non<br>";
+}
 
 ?>

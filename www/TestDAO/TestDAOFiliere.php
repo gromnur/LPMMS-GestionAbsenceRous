@@ -2,49 +2,80 @@
 
 require('../DAOFactory.php');
 
-$libelle = "testFiliere";
-$id_filiere = 1;
-$id_departement = 1;
-
+$libelleFil = "filierehhef";
+$libelleFil2 = "filierefzefef";
+$libelleDep = "rhonejjd";
 
 /*
- * Test création filiere test aussi libelleExiste
+ * Création departement
  */
-if (createFiliere($libelle, $id_departement)!=0) {
-    echo "Create filiere reussi <br>";
+echo "Insertion nouveau departement : ";
+$id_dep = createDepartement($libelleDep);
+if ($id_dep != 0) {
+    echo "reussi, id_departement = ".$id_dep."<br>";
 } else {
-    echo "Create filiere echoué <br>";
-}
-
-// réinsertion departement
-if (createFiliere($libelle, $id_departement)==0) {
-    echo "Create filiere erreur duplicata reussi <br>";
-} else {
-    echo "Create filiere erreur duplicata échoué <br>";
+    echo "échoué <br>";
 }
 
 /*
- * Test ajoutResponsableFiliereAdministratif
+ * Test création filiere
  */
-if (ajoutResponsableFiliereAdministratif($id_filiere, $id_administratif)) {
-    echo "Update responsable reussi<br>";
+echo "Insertion nouvelle filiere : ";
+$id_fil = createFiliere($libelleFil, $id_dep);
+if ($id_fil != 0) {
+    echo "reussi, id_filiere = ".$id_fil."<br>";
 } else {
-    echo "Update responsable echoué<br>";
+    echo "échoué <br>";
 }
 
 /*
- * Test Select filiere
+ * Test création filiere
  */
-print_r(selectAvecDepartementFiliere($id_departement));
+echo "Insertion nouvelle filiere : ";
+$id_fil = createFiliere($libelleFil2, $id_dep);
+if ($id_fil != 0) {
+    echo "reussi, id_filiere = ".$id_fil."<br>";
+} else {
+    echo "échoué <br>";
+}
+
+// réinsertion filiere
+echo "Insertion même filiere : ";
+$id_fil2 = createFiliere($libelleFil, $id_dep);
+if ($id_fil2==0) {
+    echo "non inserer, id_filiere retrourné = ".$id_fil2."<br>";
+} else {
+    echo "erreur <br>";
+}
+
+/*
+ * Test id_filiere existe
+ */
+echo "Filiere libelle présent : ";
+$id_fil3 = libelleExisteFiliere($libelleFil);
+if ($id_fil3 != 0) {
+    echo "Oui, id_filiere = ".$id_fil3."<br>";
+} else {
+    echo "Non<br>";
+}
+
+/*
+ * Test id_filiere existe
+ */
+echo "Filiere id créé présent : ";
+$id_fil4 = idExisteFiliere($id_fil);
+if ($id_fil4) {
+    echo "Oui, id_filiere = ".$id_fil."<br>";
+} else {
+    echo "Non<br>";
+}
+
+/*
+ * Test Select département
+ */
+echo "List des Filiere avec département : ";
+var_dump(selectAvecDepartementFiliere($id_dep));
 echo ("<br>");
 
-/*
- * Test id existe
- */
-if (idExisteFiliere(1)) {
-    echo "Test id existe reussi<br>";
-} else {
-    echo "Test id existe échoué<br>";
-}
 
 ?>

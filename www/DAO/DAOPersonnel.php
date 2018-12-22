@@ -48,7 +48,30 @@ function identifiantExistePersonnel($identifiant) {
     if (count($listResult) == 0) {
         return 0;
     } else {
-        return $listResult[0];
+        return $listResult[0]["numeropersonnel"];
+    }
+}
+
+/*
+ * Return true si present, false Sinon
+ */
+function idExistePersonnel($numeropersonnel) {
+    // récupération accés base de données
+    $bd = getConnexion();
+    $rqt = "SELECT numeropersonnel FROM personnel WHERE numeropersonnel = :numeropersonnel";
+    $stmt = $bd->prepare($rqt);
+    // ajout param
+    $stmt->bindParam(":numeropersonnel", $numeropersonnel);
+    // execution requette
+    $stmt->execute();
+
+    // récupération resultat
+    $listResult = $stmt->fetchAll();
+
+    if (count($listResult) == 0) {
+        return false;
+    } else {
+        return true;
     }
 }
 

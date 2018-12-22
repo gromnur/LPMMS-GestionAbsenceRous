@@ -64,7 +64,7 @@ function libelleExisteDepartement($libelle) {
     if (count($listResult) == 0) {
         return 0;
     } else {
-        return $listResult[0];
+        return $listResult[0]["id_departement"];
     }
 }
 

@@ -17,6 +17,6 @@ require('DAO/DAOPersonnel.php'); //--
 require('DAO/DAOProfesseur.php'); //--
 require('DAO/DAOSalle.php'); //--
 require('DAO/DAOHeurDebut.php'); //--
-require('DAO/DAOHeuFin.php'); //--
+require('DAO/DAOHeurFin.php'); //--
 
 ?>

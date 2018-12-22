@@ -2,19 +2,13 @@
 
 /*
  * Créés groupe d'étudiant avec le departement et la filiere
- * Return $idgroupe si le groupe est créé, 0 si la fillere n'existe pas,
- * -1 si le libelle n'existe pas
+ * Return [$id_filiere, $libelle], sinon une liste vide si non créé.
  */
 function createGroupeEtudiant($id_filiere, $libelle) {
 
-    // Verifie existance $id_filiere
-    if (!idExisteFiliere($id_filiere)) {
-        return 0;
-    }
-
-    // Verifier presence du libelle
-    if (libelleExisteGroupeEtudiant($libelle) == 0) {
-        return -1;
+    // Verifier presence du libelle/id_filiere
+    if (count(groupeExisteGroupeEtudiant($libelle, $id_filiere)) != 0) {
+        return array();
     }
 
     // Creation d'un groupe étudiant
@@ -28,7 +22,7 @@ function createGroupeEtudiant($id_filiere, $libelle) {
     // execution requette
     $stmt->execute();
     // renvoi le libelle généré
-    return libelleExisteGroupeEtudiant($libelle);
+    return groupeExisteGroupeEtudiant($libelle, $id_filiere);
 
 }
 
@@ -46,8 +40,7 @@ function selectAvecFiliereGroupeEtudiant($id_filiere) {
     // execution requette
     if ($stmt->execute()) {
         while ($ligne = $stmt->fetch()) {
-            $listResult[] = array("id_groupe"=>$ligne['id_groupe'],
-                                  "libelle"=>$ligne['libelle'],
+            $listResult[] = array("libelle"=>$ligne['libelle'],
                                   "id_fliere"=>$ligne['id_fliere']);
         }
     }
@@ -55,15 +48,16 @@ function selectAvecFiliereGroupeEtudiant($id_filiere) {
 }
 
 /*
- * Return id_groupe_etudiant si present, 0 Sinon
+ * Return [$id_filiere, $libelle] si present, sinon une liste vide
  */
-function libelleExisteGroupeEtudiant($libelle) {
+function groupeExisteGroupeEtudiant($libelle, $id_filiere) {
     // récupération accés base de données
     $bd = getConnexion();
-    $rqt = "SELECT id_groupe, libelle FROM groupe_etudiant WHERE libelle = :libelle";
+    $rqt = "SELECT libelle, id_filiere FROM groupe_etudiant WHERE libelle = :libelle AND id_filiere = :id_filiere";
     $stmt = $bd->prepare($rqt);
     // ajout param
     $stmt->bindParam(":libelle", $libelle);
+    $stmt->bindParam(":id_filiere", $id_filiere);
     // execution requette
     $stmt->execute();
 
@@ -71,32 +65,10 @@ function libelleExisteGroupeEtudiant($libelle) {
     $listResult = $stmt->fetchAll();
 
     if (count($listResult) == 0) {
-        return 0;
+        return array();
     } else {
-        return $listResult[0];
-    }
-}
-
-/*
- * Return true si present, false Sinon
- */
-function idExisteGroupeEtudiant($id_groupe_etudiant) {
-    // récupération accés base de données
-    $bd = getConnexion();
-    $rqt = "SELECT id_groupe_etudiant FROM filiere WHERE id_groupe_etudiant = :id_groupe_etudiant";
-    $stmt = $bd->prepare($rqt);
-    // ajout param
-    $stmt->bindParam(":id_groupe_etudiant", $id_groupe_etudiant);
-    // execution requette
-    $stmt->execute();
-
-    // récupération resultat
-    $listResult = $stmt->fetchAll();
-
-    if (count($listResult) == 0) {
-        return false;
-    } else {
-        return true;
+        return array("id_filiere" => $listResult[0]["id_filiere"],
+                     "libelle" => $listResult[0]["libelle"]);
     }
 }
 
