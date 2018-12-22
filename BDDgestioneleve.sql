@@ -47,9 +47,9 @@ CREATE TABLE cours (
   libelle_groupe varchar(100) NOT NULL,
   id_professeur int(11) NOT NULL,
   numero_salle varchar(30) NOT NULL,
-  heur_debut time NOT NULL,
-  heur_fin time NOT NULL,
-  PRIMARY KEY (id_cours, id_matiere, id_filiere, libelle_groupe, id_professeur, numero_salle, heur_debut, heur_fin)
+  date_debut datetime NOT NULL,
+  date_fin datetime NOT NULL,
+  PRIMARY KEY (id_cours, id_matiere, id_filiere, libelle_groupe, id_professeur, numero_salle, date_debut, date_fin)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -97,14 +97,6 @@ CREATE TABLE groupe_etudiant (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
-
--- Structure de la table heure
-
-CREATE TABLE heure (
-	heure time NOT NULL,
-	PRIMARY KEY (heure)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 
 -- Structure de la table matiere
 
@@ -187,9 +179,7 @@ ALTER TABLE professeur
     ADD CONSTRAINT fk_cours_matiere FOREIGN KEY (id_matiere) REFERENCES matiere (id_matiere),
     ADD CONSTRAINT fk_cours_professeur FOREIGN KEY (id_professeur) REFERENCES professeur (id_professeur),
     ADD CONSTRAINT fk_cours_groupe FOREIGN KEY (id_filiere, libelle_groupe) REFERENCES groupe_etudiant (id_filiere, libelle),
-    ADD CONSTRAINT fk_cours_numero_salle FOREIGN KEY (numero_salle) REFERENCES salle (numero_salle),
-    ADD CONSTRAINT fk_cours_heur_fin FOREIGN KEY (heur_fin) REFERENCES heure (heure),
-    ADD CONSTRAINT fk_cours_heur_debut FOREIGN KEY (heur_debut) REFERENCES heure (heure);
+    ADD CONSTRAINT fk_cours_numero_salle FOREIGN KEY (numero_salle) REFERENCES salle (numero_salle);
 
 --
 -- Contraintes pour la table etudiant
