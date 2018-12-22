@@ -3,7 +3,7 @@
 
 /*
  * Créé un salle
- * Renvoi 1 si inserer, 0 sinon
+ * Renvoi id_salle si inserer, 0 sinon
  */
 function createSalle($numero_salle) {
 
