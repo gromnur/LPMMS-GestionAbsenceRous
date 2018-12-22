@@ -32,7 +32,7 @@ function createGroupeEtudiant($id_filiere, $libelle) {
 function selectAvecFiliereGroupeEtudiant($id_filiere) {
     // récupération accés base de données
     $bd = getConnexion();
-    $rqt = "SELECT id_groupe, libelle, id_fliere FROM groupe_etudiant WHERE id_filiere = :id_filiere";
+    $rqt = "SELECT libelle, id_filiere FROM groupe_etudiant WHERE id_filiere = :id_filiere";
     $stmt = $bd->prepare($rqt);
     $stmt->bindParam(":id_filiere", $id_filiere);
 
@@ -41,7 +41,7 @@ function selectAvecFiliereGroupeEtudiant($id_filiere) {
     if ($stmt->execute()) {
         while ($ligne = $stmt->fetch()) {
             $listResult[] = array("libelle"=>$ligne['libelle'],
-                                  "id_fliere"=>$ligne['id_fliere']);
+                                  "id_filiere"=>$ligne['id_filiere']);
         }
     }
     return $listResult;
@@ -51,6 +51,7 @@ function selectAvecFiliereGroupeEtudiant($id_filiere) {
  * Return [$id_filiere, $libelle] si present, sinon une liste vide
  */
 function groupeExisteGroupeEtudiant($libelle, $id_filiere) {
+    echo "libelle : ".$libelle." id_filiere : ".$id_filiere."<br>";
     // récupération accés base de données
     $bd = getConnexion();
     $rqt = "SELECT libelle, id_filiere FROM groupe_etudiant WHERE libelle = :libelle AND id_filiere = :id_filiere";
