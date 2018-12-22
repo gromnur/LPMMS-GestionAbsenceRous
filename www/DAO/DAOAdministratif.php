@@ -2,13 +2,13 @@
 
 /*
  * Créé un administratif
- * Renvoie le numeropersonnel de l'administratif
+ * Renvoie le numeropersonnel de l'administratif, 0 sinon
  */
 function createAdministratif($numeropersonnel) {
 
     // verifiaction presence administratif
     if (isAdministratif($numeropersonnel)) {
-        return false;
+        return 0;
     }
 
     // Creation d'un administratif
@@ -27,23 +27,23 @@ function createAdministratif($numeropersonnel) {
 
 /*
  * Met à jour un administratif pourqu'il devienne chef de filiere
- * Renvoi 1 si succé, renvoi 0 si l'aministrateur n'existe pas, -1 si la filiere n'existe pas
- * -2 si la filiere n'est pas unique dansla table
+ * Renvoi $id_administratif si succé, renvoi 0 si l'aministrateur n'existe pas, -1 si la filiere n'existe pas
+ * -2 si la filiere n'est pas unique dans la table.
  */
 function updateResponsableAdministratif($id_administratif, $id_filiere) {
     // verifiaction presence administratif
     if (!isAdministratif($id_administratif)) {
-        return false;
+        return 0;
     }
 
     // verifiaction presence administratif
     if (!idExisteFiliere($id_filiere)) {
-        return false;
+        return -1;
     }
 
     // verifiction id unique
     if (!isFiliereUniqueAdministratif($id_filiere)) {
-        return false;
+        return -2;
     }
 
     // Mise a jour d'un administratif
@@ -56,7 +56,7 @@ function updateResponsableAdministratif($id_administratif, $id_filiere) {
     // execution requette
     $stmt->execute();
     // renvoi le libelle généré
-    return true;
+    return $id_administratif;
 
 }
 
