@@ -2,7 +2,7 @@
 
 
 /*
- * Créé un salle
+ * Créé une heurFin
  * Renvoi 0 si inserer false sinon
  * syntaxe heur = HH:MM
  */
@@ -15,11 +15,11 @@ function createHeurFin($heur_fin) {
     }
 
     // Verification syntaxe heur_fin
-    if (preg_match("#([0-1]{1}[0-9]{1}|[2]{1}[0-3]{1}):[0-5]{1}[0-9]{1}#", $heur_fin) !== 1) {
+    if (preg_match("#([0-1]{1}[0-9]{1}|[2]{1}[0-3]{1}):[0-5]{1}[0-9]{1}#", $heur_fin) === 1) {
         return -1;
     }
 
-    // Creation d'un departement
+    // Creation d'une heur
     // récupération accés base de données
     $bd = getConnexion();
     $rqt = "INSERT INTO heur_fin(heur_fin) VALUES (:heur_fin)";
@@ -28,7 +28,7 @@ function createHeurFin($heur_fin) {
     $stmt->bindParam(":heur_fin", $heur_fin);
     // execution requette
     $stmt->execute();
-    // renvoi le libelle généré
+    // renvoi l'heur généré
     return $heur_fin;
 
 }
