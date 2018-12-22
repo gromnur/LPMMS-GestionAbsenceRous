@@ -2,35 +2,35 @@
 
 require('../DAOFactory.php');
 
-$id_heur_debut = "10:05";
+$id_heure = "10:05";
 
 /*
  * Test création heurDebut
  */
-echo "Insertion nouvelle heurDebut : ";
-$id_heurDebut = createHeurDebut($id_heur_debut);
-if (strlen($id_heurDebut) > 1) {
-    echo "reussi, id_heurDebut = ".$id_heurDebut."<br>";
+echo "Insertion nouvelle heure : ";
+$id_heure = createHeure($id_heure);
+if (strlen($id_heure) > 1) {
+    echo "reussi, id_heure = ".$id_heure."<br>";
 } else {
     echo "échoué <br>";
 }
 
 // réinsertion heurDebut
 echo "Insertion même heurDebut : ";
-$id_heurDebut2 = createHeurDebut($id_heur_debut);
-if (strlen($id_heurDebut2) > 1) {
-    echo "non inserer, id_heurDebut retrourné = ".$id_heurDebut2."<br>";
+$id_heure2 = createHeure($id_heure);
+if (strlen($id_heure2) > 1) {
+    echo "non inserer, id_heure retrourné = ".$id_heure2."<br>";
 } else {
     echo "erreur <br>";
 }
 
 /*
- * Test id_heurDebut existe
+ * Test id_heure existe
  */
-echo "HeurDebut id créé présent : ";
-$id_heurDebut4 = heurDebutExisteHeurDebut($id_heurDebut);
-if ($id_heurDebut4) {
-    echo "Oui, id_heurDebut = ".$id_heurDebut."<br>";
+echo "Heure id créé présent : ";
+$id_heure4 = isExisteHeure($id_heure);
+if ($id_heure4) {
+    echo "Oui, id_heure = ".$id_heure."<br>";
 } else {
     echo "Non<br>";
 }

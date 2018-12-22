@@ -1,47 +1,47 @@
 <?php
 /*
- * Créé une heur debut
+ * Créé une heure
  * Renvoi 0 si inserer false sinon
  * syntaxe heur = HH:MM
  */
-function createHeurDebut($heur_debut) {
+function createHeure($heure) {
 
-    // Verifier si $heur_debut est present
-    if (heurDebutExisteHeurDebut($heur_debut)) {
+    // Verifier si $heure est present
+    if (isExisteHeure($heure)) {
         // Si present renvoye 0
         return 0;
     }
 
-    // Verification syntaxe heur_debut
-    if (preg_match("#([0-1]{1}[0-9]{1}|[2]{1}[0-3]{1}):[0-5]{1}[0-9]{1}#", $heur_debut) === 1) {
+    // Verification syntaxe heure
+    if (preg_match("#([0-1]{1}[0-9]{1}|[2]{1}[0-3]{1}):[0-5]{1}[0-9]{1}#", $heure) === 1) {
         return -1;
     }
 
     // Creation d'une heur
     // récupération accés base de données
     $bd = getConnexion();
-    $rqt = "INSERT INTO heur_debut(heur_debut) VALUES (:heur_debut)";
+    $rqt = "INSERT INTO heure(heure) VALUES (:heure)";
     $stmt = $bd->prepare($rqt);
     // ajout param
-    $stmt->bindParam(":heur_debut", $heur_debut);
+    $stmt->bindParam(":heure", $heure);
     // execution requette
     $stmt->execute();
     // renvoi l'heur généré
-    return $heur_debut;
+    return $heure;
 
 }
 
 /*
  * Return true si present, false Sinon
  */
-function heurDebutExisteHeurDebut($heur_debut) {
+function isExisteHeure($heure) {
 
     // récupération accés base de données
     $bd = getConnexion();
-    $rqt = "SELECT heur_debut FROM heur_debut WHERE heur_debut = :heur_debut";
+    $rqt = "SELECT heure FROM heure WHERE heure = :heure";
     $stmt = $bd->prepare($rqt);
     // ajout param
-    $stmt->bindParam(":heur_debut", $heur_debut);
+    $stmt->bindParam(":heure", $heure);
     // execution requette
     $stmt->execute();
 

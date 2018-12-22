@@ -3,18 +3,18 @@
 
 
 /*
- * Créé un cours
+ * Créé un cours. Si la matiere, heur debut, heur fin n'existe pas elle sont créé
  * Renvoi id_cours si inserer, 0 sinon
  */
-function createCours($id_matiere,$id_groupe,$id_professeur,$numero_salle,$heur_debut,$heur_fin) {
+function createCours($id_matiere,$id_groupe,$id_professeur,$numero_salle,$heure,$heur_fin) {
 
-    // Verifier si le libelle n'est pas present
-    if (existeCours($id_matiere,$id_groupe,$id_professeur,$numero_salle,$heur_debut,$heur_fin) != 0) {
-        // Si present renvoye 0
+    // Verifier si le libelle n'est pas présent
+    if (existeCours($id_matiere,$id_groupe,$id_professeur,$numero_salle,$heure,$heur_fin) != 0) {
+        // Si present renvoie 0
         return 0;
     }
 
-    // Verifier si $id_matiere existe
+    // Verifier si $id_matiere n'existe pas.
     if (idExisteMatiere($id_matiere)) {
         return -1;
     }
@@ -34,8 +34,8 @@ function createCours($id_matiere,$id_groupe,$id_professeur,$numero_salle,$heur_d
         return -4;
     }
 
-    // Verifier si $heur_debut existe
-    
+    // Verifier si $heure existe
+
 
     // Verifier si $heur_fin existe
 

@@ -13,7 +13,7 @@ SET time_zone = "+00:00";
 CREATE TABLE absence (
  ine varchar(13) NOT NULL,
  id_cours int(11) NOT NULL,
- PRIMARY KEY (id_absence)
+ PRIMARY KEY (ine,id_cours)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -49,7 +49,7 @@ CREATE TABLE cours (
   numero_salle varchar(30) NOT NULL,
   heur_debut time NOT NULL,
   heur_fin time NOT NULL,
-  PRIMARY KEY (id_matiere, id_filiere, libelle_groupe, id_professeur, numero_salle, heur_debut, heur_fin)
+  PRIMARY KEY (id_cours, id_matiere, id_filiere, libelle_groupe, id_professeur, numero_salle, heur_debut, heur_fin)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -98,21 +98,13 @@ CREATE TABLE groupe_etudiant (
 
 -- --------------------------------------------------------
 
--- Structure de la table heur debut
+-- Structure de la table heure
 
-CREATE TABLE heur_debut (
-	heur_debut time NOT NULL,
-	PRIMARY KEY (heur_debut)
+CREATE TABLE heure (
+	heure time NOT NULL,
+	PRIMARY KEY (heure)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
--- Structure de la table Localisation
-
-CREATE TABLE heur_fin (
-	heur_fin time NOT NULL,
-	PRIMARY KEY (heur_fin)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Structure de la table matiere
 
@@ -196,8 +188,8 @@ ALTER TABLE professeur
     ADD CONSTRAINT fk_cours_professeur FOREIGN KEY (id_professeur) REFERENCES professeur (id_professeur),
     ADD CONSTRAINT fk_cours_groupe FOREIGN KEY (id_filiere, libelle_groupe) REFERENCES groupe_etudiant (id_filiere, libelle),
     ADD CONSTRAINT fk_cours_numero_salle FOREIGN KEY (numero_salle) REFERENCES salle (numero_salle),
-    ADD CONSTRAINT fk_cours_heur_fin FOREIGN KEY (heur_fin) REFERENCES heur_fin (heur_fin),
-    ADD CONSTRAINT fk_cours_heur_debut FOREIGN KEY (heur_debut) REFERENCES heur_debut (heur_debut);
+    ADD CONSTRAINT fk_cours_heur_fin FOREIGN KEY (heur_fin) REFERENCES heure (heure),
+    ADD CONSTRAINT fk_cours_heur_debut FOREIGN KEY (heur_debut) REFERENCES heure (heure);
 
 --
 -- Contraintes pour la table etudiant
