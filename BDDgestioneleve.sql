@@ -42,13 +42,14 @@ CREATE TABLE administratif (
 -- Structure de la table cours
 
 CREATE TABLE cours (
+  id_cours int(11) NOT NULL
   id_matiere int(11) NOT NULL,
   id_groupe int(11) NOT NULL,
   id_professeur int(11) NOT NULL,
   numero_salle varchar(30) NOT NULL,
   heur_debut time NOT NULL,
   heur_fin time NOT NULL,
-  PRIMARY KEY (id_matiere, id_groupe, id_professeur, numero_salle, heur_debut, heur_fin)
+  PRIMARY KEY (id_cours,id_matiere, id_groupe, id_professeur, numero_salle, heur_debut, heur_fin)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
