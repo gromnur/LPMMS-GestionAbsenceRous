@@ -11,9 +11,9 @@ function createProfesseur($numeropersonnel) {
         return 0;
     }
 
-    // verifiaction presence professeur
-    if (idExistePersonnel($numeropersonnel)) {
-        return 0;
+    // verifiaction presence personnel
+    if (!idExistePersonnel($numeropersonnel)) {
+        return -1;
     }
 
     // Creation d'un professeur

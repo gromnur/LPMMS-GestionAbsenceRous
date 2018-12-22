@@ -8,6 +8,13 @@ SET time_zone = "+00:00";
 
 -- --------------------------------------------------------
 
+-- Structure de la table sequance (sers/servira pour l'insertion des cours)
+
+CREATE TABLE sequance (
+ sequance int(11) NOT NULL AUTO_INCREMENT,
+ PRIMARY KEY (sequance)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 -- Structure de la table absence
 
 CREATE TABLE absence (
