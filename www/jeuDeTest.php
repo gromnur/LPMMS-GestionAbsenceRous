@@ -36,6 +36,11 @@ updateResponsableAdministratif($adminif_1,$fil_3);
 updateResponsableAdministratif($adminif_2,$fil_4);
 
 // création prof
+$prof_1  = createProfesseur($pers_1);
+$prof_2  = createProfesseur($pers_2);
+
+// TODO faire un csv pour les étudiants.
+
 
 
 
