@@ -1,0 +1,51 @@
+Authentifier :
+
+Page authentification : index.php
+
+index.php (page pardefaut quand non connecté)
+ - Titre de l'application
+ - Champ nom
+ - Champ mdp
+ - bouton connexion
+
+admin.php (tout faire) : herite d'aministratifs
+
+
+aministratifs.php : initialiser les variable de session
+
+- bandeau qui recapitul les informion personnel
+- menu a gauche qui affiche tout les opérations possible
+
+
+professeur.php
+-bouton enregistrer absence
+-voir le planning de la semaine (requete paramétrable)
+
+
+verifconnexion.php : verifie les connexion et renvoi un code 1,2,3 pour
+selectionner la page à ouvrir
+
+
+Enregistrer les abscences pour un cour :
+- selectionne departement/filiere ou le prof enseigne
+- selectionner le cour combo box
+- selection jour du cour
+- selection heur de debut du cour => Liste a cocheravec tout les etudiants
+- Coche tout les etudiants absent
+- Valider les abscences
+
+Administrtif :
+  justifer les absences
+
+
+Voirliste.php
+    - listeabcsenceEtudiant.php -> choisir etudiant parmis les promos à qu'il enseigne
+      Un prof peut voir les listes de tout les promos à qui il enseigne
+
+    - listeabscence -> suite de liste étudiant : choisir l'étudiant -> TODO
+
+    - Liste etudiant -> combo box : département / filiere / groupes ==> vue etudiant
+
+    - Liste matiere -> combo box choix departement / filiere => vue liste matiere
+
+    - (en plus Liste administratif,prof)
