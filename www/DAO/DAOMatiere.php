@@ -2,7 +2,7 @@
 
 /*
  * Créé un matiere
- * Renvoi true si inserer, false sinon
+ * Renvoi i si inserer, false sinon
  */
 function createMatiere($libelle) {
 
@@ -45,12 +45,12 @@ function libelleExisteMatiere($libelle) {
     if (count($listResult) == 0) {
         return 0;
     } else {
-        return $listResult[0];
+        return $listResult[0]["id_matiere"];
     }
 }
 
 /*
- * Return true si present, 0 Sinon
+ * Return true si present, false Sinon
  */
 function idExisteMatiere($id_matiere) {
     // récupération accés base de données
