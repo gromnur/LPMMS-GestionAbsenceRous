@@ -60,7 +60,9 @@ HR{
 .valid{
     background-color:#265a88;
     color:white;
-    text-align:right;
+    position: fixed;
+    top: 88%;
+    right: 22%;
 }
 
 .blockCombox{
@@ -71,6 +73,10 @@ HR{
 select{
     width:55%;
 }
+select:focus{
+    box-shadow: 0px 0px 4px white;
+}
+
 .selection{
     margin: 20px 0px;
     /*text-align: center;*/
@@ -91,17 +97,25 @@ select{
 
 
 .blockTable{
-    width:66%;
-    margin-left: 20%;
-    font-size:16px;
+    position:relative;
 }
+.scroll{
+    width: 66%;
+    height: 471px;
+    margin-left: 20%;
+    font-size: 16px;
+    overflow: auto;
+}
+
 
 .nomCol{
     font-weight: bold;
 }
 
+.sortTable{
+    cursor: pointer;
+}
 /*.table-striped > tbody > tr:nth-of-type(2n+1){
     background-color: red !important;  pour changer la couleur une fois sur 2
 }*/
-
 

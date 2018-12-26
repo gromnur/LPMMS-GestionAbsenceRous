@@ -69,7 +69,7 @@ function selectAvecDepartementFiliere($id_department) {
 }
 
 //le switch sert de "routeur" et appelle la fonction demandé par l'appel ajax 
-//en fonction du parametre passer en POST
+//en fonction du parametre passer en POST 'func'
 $func = $_POST['func'];
 
 switch ($func) {
@@ -83,8 +83,17 @@ switch ($func) {
         $test = $_POST['test'];
         libelleExisteDepartement($test);
         break;
+    case 'selectFiliereByDept':
+        $test = $_POST['param'];
+        selectAvecDepartementFiliere($test);
+        break;
     default:
         //function not found, error or something
         break;
 }
-?>
+
+
+
+function lebontestduformulaire(){
+    print_r("lebontestdelafonction");
+}
