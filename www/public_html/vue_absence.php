@@ -6,11 +6,10 @@
                 <select id="dept">
                     <option value='null'>Choisir département</option>
                     <?php
-                    include 'DAO/DAODepartement.php';
-                    $var = json_decode(selectDepartement());
+                    $var = selectDepartement();
 
                     foreach ($var as $ligne) {
-                        echo'<option value=' . $ligne[0] . '>' . $ligne[1] . '</option>';
+                        echo'<option value=' . $ligne["id_departement"] . '>' . $ligne["libelle"] . '</option>';
                     }
                     ?>
                 </select>
@@ -24,18 +23,14 @@
             </div>
             <div class="col-xs-3">
                 <label>Groupe : </label><br>
-                <select id="grp">
-                    <option value="">Choisir groupe</option>
-                    <option value="">--Please choose an option--</option>
-                    <option value="">--Please choose an option--</option>
+                <select id="groupe">
+                    <option value="null">Choisir groupe</option>
                 </select>
             </div>
             <div class="col-xs-3">
                 <label>Departement : </label><br>
                 <select>
                     <option value="">groupe</option>
-                    <option value="">--Please choose an option--</option>
-                    <option value="">--Please choose an option--</option>
                 </select>
             </div>
         </div>
@@ -83,57 +78,57 @@
                     <tbody id="tbody">
                         <?php
 //                        for ($i = 1; $i <= 50; $i++) {
-                            ?>
-                            <tr>
-                                <td>azertyui</td>
-                                <td>bqdfvr</td>
-                                <td>Date</td>
-                                <td>Matière</td>
-                                <td> <input name="test[]" type="checkbox" value="<?php // echo $i ?>" /></td>
-                            </tr>
-                            <tr>
-                                <td>qsdgerv</td>
-                                <td>prébtrsnom</td>
-                                <td>Date</td>
-                                <td>Matière</td>
-                                <td> <input name="test[]" type="checkbox" value="<?php // echo $i ?>" /></td>
-                            </tr>
-                            <tr>
-                                <td>plizvnn</td>
-                                <td>shycne</td>
-                                <td>Date</td>
-                                <td>Matière</td>
-                                <td> <input name="test[]" type="checkbox" value="<?php // echo $i ?>" /></td>
-                            </tr>
-                            <tr>
-                                <td>lebontest</td>
-                                <td>testlebon</td>
-                                <td>Date</td>
-                                <td>Matière</td>
-                                <td> <input name="test[]" type="checkbox" value="<?php // echo $i ?>" /></td>
-                            </tr>
-                            <tr>
-                                <td>ohelsef</td>
-                                <td>prénom</td>
-                                <td>Date</td>
-                                <td>Matière</td>
-                                <td> <input name="test[]" type="checkbox" value="<?php // echo $i ?>" /></td>
-                            </tr>
-                            <tr>
-                                <td>nom</td>
-                                <td>pqbzycw</td>
-                                <td>Date</td>
-                                <td>Matière</td>
-                                <td> <input name="test[]" type="checkbox" value="<?php // echo $i ?>" /></td>
-                            </tr>
-                            <tr>
-                                <td>wxzfvb</td>
-                                <td>sahh</td>
-                                <td>Date</td>
-                                <td>Matière</td>
-                                <td> <input name="test[]" type="checkbox" value="<?php // echo $i ?>" /></td>
-                            </tr>
-                        <?php // } ?>  
+                        ?>
+                        <tr>
+                            <td>azertyui</td>
+                            <td>bqdfvr</td>
+                            <td>Date</td>
+                            <td>Matière</td>
+                            <td> <input name="test[]" type="checkbox" value="<?php // echo $i  ?>" /></td>
+                        </tr>
+                        <tr>
+                            <td>qsdgerv</td>
+                            <td>prébtrsnom</td>
+                            <td>Date</td>
+                            <td>Matière</td>
+                            <td> <input name="test[]" type="checkbox" value="<?php // echo $i  ?>" /></td>
+                        </tr>
+                        <tr>
+                            <td>plizvnn</td>
+                            <td>shycne</td>
+                            <td>Date</td>
+                            <td>Matière</td>
+                            <td> <input name="test[]" type="checkbox" value="<?php // echo $i  ?>" /></td>
+                        </tr>
+                        <tr>
+                            <td>lebontest</td>
+                            <td>testlebon</td>
+                            <td>Date</td>
+                            <td>Matière</td>
+                            <td> <input name="test[]" type="checkbox" value="<?php // echo $i  ?>" /></td>
+                        </tr>
+                        <tr>
+                            <td>ohelsef</td>
+                            <td>prénom</td>
+                            <td>Date</td>
+                            <td>Matière</td>
+                            <td> <input name="test[]" type="checkbox" value="<?php // echo $i  ?>" /></td>
+                        </tr>
+                        <tr>
+                            <td>nom</td>
+                            <td>pqbzycw</td>
+                            <td>Date</td>
+                            <td>Matière</td>
+                            <td> <input name="test[]" type="checkbox" value="<?php // echo $i  ?>" /></td>
+                        </tr>
+                        <tr>
+                            <td>wxzfvb</td>
+                            <td>sahh</td>
+                            <td>Date</td>
+                            <td>Matière</td>
+                            <td> <input name="test[]" type="checkbox" value="<?php // echo $i  ?>" /></td>
+                        </tr>
+                        <?php // }  ?>  
                     </tbody>
                 </table>
                 <input type="submit" class="btn valid" value="Valider"/>

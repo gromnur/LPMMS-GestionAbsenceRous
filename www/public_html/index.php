@@ -1,5 +1,15 @@
 <?php
 session_start();
+if (isset($_SESSION['nom']) && isset($_SESSION['prenom'])) {
+    $nom = $_SESSION['nom'];
+    $prenom = $_SESSION['prenom'];
+} else {
+    header('Location: connexion.php');
+    exit();
+}
+
+
+include 'DAOFactory.php';
 ?>
 
 <!DOCTYPE html>
@@ -18,11 +28,14 @@ session_start();
         <nav class=" navbar navbar-light bg-light justify-content-between">
             <div class="container-fluid ">
                 <div class="row titreNav">
-                    <div class=" col-md-10 titre">
-                        Gestion des absences
+                    <div class="col-xs-2">
+                        <?php echo "Bonjour $nom"; ?>
                     </div>
-                    <div class="col-md-2">
-                        Utilisateur
+                    <div class=" col-xs-8 titre">
+                        <a href="index.php" class="nomSite">Gestion des absences</a>
+                    </div>
+                    <div class="col-xs-2">
+                        <a href="deco.php" class="btn btnDeco">Se déconnecter</a>
                     </div>
                 </div>
             </div>
@@ -31,46 +44,57 @@ session_start();
         <div class="container-fluid selection">
             <div class="row">
                 <div class="col-md-2 blockmenu">
-                    <ul class="menu">
-                        <li class="liste">Liste : 
-                            <ul>
-                                <li>Liste 1</li>
-                                <li>Liste 2</li>
-                                <li>Liste 3</li>
-                                <li>Liste 4</li>
-                            </ul>
-                        </li>
-                        <HR width="120%">
-                        <li class="liste">Absence : 
-                            <ul>
-                                <li>absence 1</li>
-                                <li>absence 2</li>
-                                <li>absence 3</li>
-                            </ul>
-                        </li>
-                        <HR width="120%">
-                        <li class="liste">Absence : 
-                            <ul>
-                                <li>absence 1</li>
-                                <li>absence 2</li>
-                                <li>absence 3</li>
-                            </ul>
-                        </li>                
-                        <HR width="120%">
-                        <li class="liste">Absence : 
-                            <ul>
-                                <li>absence 1</li>
-                                <li>absence 2</li>
-                                <li>absence 3</li>
-                            </ul>
-                        </li>
-                    </ul>
+
                 </div>
                 <?php
-                include 'vue_absence.php';
+                if (isset($_GET['include'])) {
+                    if ($_GET['include'] == "personnel") {
+                        include 'creation_personnel.php';
+                    }
+                    if ($_GET['include'] == "filiere") {
+                        include 'creation_filiere.php';
+                    }
+                    if ($_GET['include'] == "dept") {
+                        include 'creation_departement.php';
+                    }
+                }
                 ?>
             </div>
         </div>
+        <ul class="menu">
+            <li class="liste">Liste : 
+                <ul>
+                    <li>Liste 1</li>
+                    <li>Liste 2</li>
+                    <li>Liste 3</li>
+                    <li>Liste 4</li>
+                </ul>
+            </li>
+            <HR width="120%">
+            <li class="liste">Absence : 
+                <ul>
+                    <li>absence 1</li>
+                    <li>absence 2</li>
+                    <li>absence 3</li>
+                </ul>
+            </li>
+            <HR width="120%">
+            <li class="liste">Absence : 
+                <ul>
+                    <li>absence 1</li>
+                    <li>absence 2</li>
+                    <li>absence 3</li>
+                </ul>
+            </li>                
+            <HR width="120%">
+            <li class="liste">Créer 
+                <ul>
+                    <li><a href="index.php?include=filiere">Créer filière</a></li>
+                    <li><a href="index.php?include=dept">Créer Département</a></li>
+                    <li><a href="index.php?include=personnel">Créer Personnel</a></li>
+                </ul>
+            </li>
+        </ul>
 
         <script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
         <script src="js/script.js" type="text/javascript"></script>

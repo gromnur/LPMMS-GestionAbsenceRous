@@ -12,10 +12,65 @@ nav{
     background-color:#354c7e;
     z-index: 100;
 }
+
+.blockConnexion{
+    text-align:center;
+    margin-top:50px;
+    font-size: 20px;
+}
+.divBackground{
+    width: 40%;
+    margin: auto;
+    padding: 20px 0px;
+    background: #d5b682;
+    border: 3px solid #86753a;
+    border-radius: 10px;
+    box-shadow: 3px 3px 9px #57595b;
+}
+
+.blockConnexion span{
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+.blockConnexion form{
+    margin-top: 25px;
+}
+.blockConnexion form input{
+    margin:3px 0px 14px 0px;
+    width: 300px;
+    border-radius: 5px;
+    background: #dcdecf;
+}
+
+.btnCo{
+
+    background: #9eabcb !important;
+    width: 200px !important;
+}
+.btnDeco{
+    width: 122px;
+    background: #d5cba2;
+    background-image: none;
+    height: 31px;
+    color: #836400;
+    transition: 0.4s all;
+}
+.btnDeco:hover{
+    color: #d5cba2 !important;
+    background: #836400 !important;
+}
+
+.erreurCo{
+    position: absolute;
+    left: 41%;
+    top: 4%;
+    font-size: 17px;
+    color: #df1e1e;
+}
+
 .titreNav{
     padding-top: 15px;
     padding-bottom: 15px;
-    /*background-color: grey;*/
     text-align: center;
 }
 
@@ -23,6 +78,14 @@ nav{
     color: black;
     font-family: 'Bungee', cursive;
     font-size: 20px;
+}
+
+.nomSite{
+    color:black;
+}
+.nomSite:hover{
+    color:black;
+    text-decoration: none;
 }
 .blockmenu{
     margin-top: -2%;
@@ -38,6 +101,16 @@ nav{
     position: fixed;
     margin-top:-7%;
     box-shadow: 2px 0px 11px #6e6e6e;
+    top: 10%;
+}
+
+.menu a{
+    color:#a98102;
+    transition: 0.2s;
+}
+.menu a:hover{
+    color:#ffc200;
+    text-decoration: none;
 }
 
 .liste {
@@ -63,6 +136,11 @@ HR{
     position: fixed;
     top: 88%;
     right: 22%;
+    transition:0.2s;
+}
+.valid:hover{
+    color: white !important;
+    border-radius:10px;
 }
 
 .blockCombox{
@@ -119,3 +197,30 @@ select:focus{
     background-color: red !important;  pour changer la couleur une fois sur 2
 }*/
 
+.blockFormCrea{
+    width:65%;
+    margin:auto;
+    text-align: center;
+}
+.blockFormCrea span{
+    font-size: 20px;
+    font-weight: bold;
+}
+.blockFormCrea form{
+    margin-top:20px;
+}
+.tableCrea{
+    margin:auto;
+}
+.tableCrea tr{
+    height:40px;
+}
+.tableCrea input{
+    width:400px;
+}
+.tableCrea select{
+    width:370px;
+}
+input:focus{
+    box-shadow: 0px 0px 4px white;
+}

@@ -131,18 +131,18 @@ $('#nom, #prenom')
 $('#dept').change(function () {
     var departement = $("#dept").find("option:selected").val();  // retourne la value associée à l'option selectionnée
     if (departement != "null") {
-        // ajax fait appel a la fonction selectFiliereByDept de la page test.php avec comme paramettre l'id du departement 
+        // ajax fait appel a la fonction selectFiliereByDept de la page ajax.php avec comme paramettre l'id du departement 
         // dans data, func sert a savoir quelle fonction de la page test.php doit etre appelé
         $.ajax({
             type: 'POST',
             dataType: "json",
-            url: "test.php",
+            url: "Ajax.php",
             data: {func: 'selectFiliereByDept', param: departement},
             success: function (data) {
 //                creation d'une variable contenant les balises option du resultat de la requete obtenu et insertion dans le select voulu
                 var lesOptions = '<option value="null">Choisir filière</option>';
                 for (var laDonnee in data) {
-                    lesOptions = lesOptions + '<option value=' + data[laDonnee][0] + '>' + data[laDonnee][1] + '</option>';
+                    lesOptions = lesOptions + '<option value=' + data[laDonnee]['id_filiere'] + '>' + data[laDonnee]['libelle'] + '</option>';
                 }
                 $('#filiere').html(lesOptions);
             }
@@ -150,27 +150,66 @@ $('#dept').change(function () {
     }
 });
 //GROUPE
-// insertion dans combobox groupe des groupe correspondants a une filière choisie lors du changement de filiere
-$('#dept').change(function () {
-    var departement = $("#dept").find("option:selected").val();  // retourne la value associée à l'option selectionnée
-    if (departement != "null") {
-        // ajax fait appel a la fonction selectFiliereByDept de la page test.php avec comme paramettre l'id du departement 
-        // dans data, func sert a savoir quelle fonction de la page test.php doit etre appelé
+// insertion dans combobox groupe des groupes correspondants a une filière choisie lors du changement de filiere
+$('#filiere').change(function () {
+    var filiere = $("#filiere").find("option:selected").val();  // retourne la value associée à l'option selectionnée
+    if (filiere != "null") {
+        // ajax fait appel a la fonction selectAvecFiliereGroupeEtudiant de la page ajax.php avec comme paramettre l'id de la filiere 
+        // dans data, func sert a savoir quelle fonction de la page ajax.php doit etre appelé
         $.ajax({
             type: 'POST',
             dataType: "json",
-            url: "test.php",
-            data: {func: 'selectFiliereByDept', param: departement},
+            url: "Ajax.php",
+            data: {func: 'selectGrpByFiliere', param: filiere},
             success: function (data) {
 //                creation d'une variable contenant les balises option du resultat de la requete obtenu et insertion dans le select voulu
                 var lesOptions = '<option value="null">Choisir groupe</option>'
                 for (var laDonnee in data) {
-                    lesOptions = lesOptions + '<option value=' + data[laDonnee][0] + '>' + data[laDonnee][1] + '</option>';
+                    lesOptions = lesOptions + '<option value=' + data[laDonnee]['id_filiere'] + '>' + data[laDonnee]['libelle'] + '</option>';
                 }
-                $('#filiere').html(lesOptions);
+                $('#groupe').html(lesOptions);
             }
         });
     }
 });
+
+
+
+
+
+
+/**
+ *  gestion formulaire de connexion
+ */
+
+var formCo = document.getElementById('formCo');
+if (formCo != null) {
+    formCo.addEventListener('submit', function (e) {
+        var id = document.getElementById('idCo');
+        var mdp = document.getElementById('mdpCo');
+        if (id.value.length == 0 || mdp.value.lenght == 0) {
+            alert("Veuillez renseigner tout les champs");
+            e.preventDefault();
+        }
+    });
+}
+
+/**
+ *  gestion formulaire de création personnel
+ */
+
+var formCrea = document.getElementById('formCreaPerso');
+if (formCrea != null) {
+    formCrea.addEventListener('submit', function (e) {
+        var id = document.getElementById('idCreaPerso');
+        var mdp = document.getElementById('mdpCreaPerso');
+        var nom = document.getElementById('nomCreaPerso');
+        var prenom = document.getElementById('prenomCreaPerso');
+        if (id.value.length == 0 || mdp.value.lenght == 0 || nom.value.lenght == 0 || prenom.value.lenght == 0) {
+            alert("Veuillez renseigner tout les champs");
+            e.preventDefault();
+        }
+    });
+}
 
 

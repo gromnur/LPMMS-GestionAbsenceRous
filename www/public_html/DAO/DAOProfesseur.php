@@ -1,20 +1,32 @@
 <?php
 
-require('AccesBDD.php');
-require('DAOPersonnel.php');
 
 /*
- * Créé un administratif
- * Renvoi le numeropersonnel du professeur
+ * Créé un professeur
+ * Renvoi le numeropersonnel du professeur, 0 sinon
  */
-function createProfesseur($identifiant, $mdp, $nom, $prenom) {
-    // TODO appel la fonction verif personnel
+function createProfesseur($numeropersonnel) {
+    // verifiaction presence professeur
+    if (isProfesseur($numeropersonnel)) {
+        return 0;
+    }
 
-        // Si present ajouter a la table professeur
-
-        // Sinon appel createPersonnel
+    // verifiaction presence professeur
+    if (idExistePersonnel($numeropersonnel)) {
+        return 0;
+    }
 
     // Creation d'un professeur
+    // récupération accés base de données
+    $bd = getConnexion();
+    $rqt = "INSERT INTO professeur(id_professeur) VALUES (:numeropersonnel)";
+    $stmt = $bd->prepare($rqt);
+    // ajout param
+    $stmt->bindParam(":numeropersonnel", $numeropersonnel);
+    // execution requette
+    $stmt->execute();
+    // renvoi le libelle généré
+    return $numeropersonnel;
 
 }
 
@@ -22,7 +34,23 @@ function createProfesseur($identifiant, $mdp, $nom, $prenom) {
  * Return true si le numeros personnel est present dans la table professeur, false sinon
  */
 function isProfesseur($numeropersonnel) {
-    // TODO faire isProfesseur
+    // récupération accés base de données
+    $bd = getConnexion();
+    $rqt = "SELECT id_professeur FROM professeur WHERE id_professeur = :numeropersonnel";
+    $stmt = $bd->prepare($rqt);
+    // ajout param
+    $stmt->bindParam(":numeropersonnel", $numeropersonnel);
+    // execution requette
+    $stmt->execute();
+
+    // récupération resultat
+    $listResult = $stmt->fetchAll();
+
+    if (count($listResult) == 0) {
+        return false;
+    } else {
+        return true;
+    }
 }
 
 
