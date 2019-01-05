@@ -15,6 +15,10 @@ switch ($func) {
         $id_filiere = $_POST['param'];
         selectAvecFiliereGroupeEtudiant($id_filiere);
         break;
+    case 'selectMatiereByFiliere':
+        $id_filiere = $_POST['param'];
+        selectAvecFiliereGroupeEtudiant($id_filiere);
+        break;
     default:
         //function not found, error or something
         break;

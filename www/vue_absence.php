@@ -1,7 +1,7 @@
 <div class="col-md-10 ">
 
     <div class="blockCombox">
-        Gestion des absences des étudiants
+        <span class="titrePage">Gestion des absences des étudiants</span>
 
         <div class="row selection">
             <div class="col-xs-3">

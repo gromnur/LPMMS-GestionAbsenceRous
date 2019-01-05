@@ -149,7 +149,7 @@ $('#deptCombox').change(function () {
         });
     }
 });
-//GROUPE
+//GROUPE en fonction de filiere
 // insertion dans combobox groupe des groupes correspondants a une filière choisie lors du changement de filiere
 $('#filiereCombox').change(function () {
     var filiere = $("#filiereCombox").find("option:selected").val();  // retourne la value associée à l'option selectionnée
@@ -168,6 +168,54 @@ $('#filiereCombox').change(function () {
                     lesOptions = lesOptions + '<option value=' + data[laDonnee]['id_filiere'] + '>' + data[laDonnee]['libelle'] + '</option>';
                 }
                 $('#groupeCombox').html(lesOptions);
+            }
+        });
+    }
+});
+//MATIERE en fonction de filiere
+// insertion dans combobox groupe des groupes correspondants a une filière choisie lors du changement de filiere
+$('#filiereCombox').change(function () {
+    var filiere = $("#filiereCombox").find("option:selected").val();  // retourne la value associée à l'option selectionnée
+    if (filiere != "null") {
+        // ajax fait appel a la fonction selectAvecFiliereGroupeEtudiant de la page ajax.php avec comme paramettre l'id de la filiere 
+        // dans data, func sert a savoir quelle fonction de la page ajax.php doit etre appelé
+        $.ajax({
+            type: 'POST',
+            dataType: "json",
+            url: "Ajax.php",
+            data: {func: 'selectMatiereByFiliere', param: filiere},
+            success: function (data) {
+//                creation d'une variable contenant les balises option du resultat de la requete obtenu et insertion dans le select voulu
+                var lesOptions = '<option value="null">Choisir groupe</option>'
+                for (var laDonnee in data) {
+                    lesOptions = lesOptions + '<option value=' + data[laDonnee]['id_filiere'] + '>' + data[laDonnee]['libelle'] + '</option>';
+                }
+                $('#matiereCombox').html(lesOptions);
+            }
+        });
+    }
+});
+
+//etudiant en fonction de filiere et du groupe
+// insertion dans combobox groupe des groupes correspondants a une filière choisie lors du changement de filiere
+$('#groupeCombox').change(function () {
+    var filiere = $("#filiereCombox").find("option:selected").val();  // retourne la value associée à l'option selectionnée
+    var groupe = $("#groupeCombox").find("option:selected").val();  // retourne la value associée à l'option selectionnée
+    if (groupe != "null") {
+        // ajax fait appel a la fonction selectAvecFiliereGroupeEtudiant de la page ajax.php avec comme paramettre l'id de la filiere 
+        // dans data, func sert a savoir quelle fonction de la page ajax.php doit etre appelé
+        $.ajax({
+            type: 'POST',
+            dataType: "json",
+            url: "Ajax.php",
+            data: {func: 'selectEtudByGrpFil', paramFiliere: filiere, paramGroup: groupe},
+            success: function (data) {
+//                creation d'une variable contenant les balises option du resultat de la requete obtenu et insertion dans le select voulu
+                var lesOptions = '<option value="null">Choisir groupe</option>'
+                for (var laDonnee in data) {
+                    lesOptions = lesOptions + '<option value=' + data[laDonnee]['id_filiere'] + '>' + data[laDonnee]['libelle'] + '</option>';
+                }
+                $('#etudiantCombox').html(lesOptions);
             }
         });
     }
