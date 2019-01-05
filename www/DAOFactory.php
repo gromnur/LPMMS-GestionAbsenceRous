@@ -16,6 +16,6 @@ require('DAO/DAOMatiere.php'); //--
 require('DAO/DAOPersonnel.php'); //--
 require('DAO/DAOProfesseur.php'); //--
 require('DAO/DAOSalle.php'); //--
-require('Forms.php'); //--
+// require('Forms.php'); //--
 
 ?>

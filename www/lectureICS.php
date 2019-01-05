@@ -1,7 +1,7 @@
 <?php
 // TODO modifier pour inserer directement dans la table.
 
-include 'Objets/Cour.php';
+require 'DAOFactory.php';
 //include 'DataManagement.php';
 
 //On initialize la timezone
@@ -132,7 +132,7 @@ function icsExtractor($nomFile) {
 <body>
 <?php
  	//var_dump(icsExtractor(file_get_contents("ICS/QLIO.ics")));
-	var_dump(icsExtractor("ICS/QLIO.ics"));
+	var_dump(icsExtractor("ICS/GEA.ics"));
 ?>
 </body>
 </html>
