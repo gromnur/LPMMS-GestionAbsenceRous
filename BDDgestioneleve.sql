@@ -13,6 +13,7 @@ SET time_zone = "+00:00";
 CREATE TABLE absence (
  ine varchar(13) NOT NULL,
  id_cours int(11) NOT NULL,
+ justifier int(1) NOT NULL DEFAULT '0',
  PRIMARY KEY (ine,id_cours)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
