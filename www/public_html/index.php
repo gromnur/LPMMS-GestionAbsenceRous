@@ -8,7 +8,6 @@ if (isset($_SESSION['nom']) && isset($_SESSION['prenom'])) {
     exit();
 }
 
-
 include 'DAOFactory.php';
 ?>
 
@@ -57,6 +56,9 @@ include 'DAOFactory.php';
                     if ($_GET['include'] == "dept") {
                         include 'creation_departement.php';
                     }
+                    if ($_GET['include'] == "absenceEtudiant") {
+                        include 'vue_absence.php';
+                    }
                 }
                 ?>
             </div>
@@ -73,7 +75,7 @@ include 'DAOFactory.php';
             <HR width="120%">
             <li class="liste">Absence : 
                 <ul>
-                    <li>absence 1</li>
+                    <li><a href="index.php?include=absenceEtudiant">Absence Étudiant</a></li>
                     <li>absence 2</li>
                     <li>absence 3</li>
                 </ul>
