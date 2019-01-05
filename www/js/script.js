@@ -165,7 +165,7 @@ $('#filiereCombox').change(function () {
 //                creation d'une variable contenant les balises option du resultat de la requete obtenu et insertion dans le select voulu
                 var lesOptions = '<option value="null">Choisir groupe</option>'
                 for (var laDonnee in data) {
-                    lesOptions = lesOptions + '<option value=' + data[laDonnee]['id_filiere'] + '>' + data[laDonnee]['libelle'] + '</option>';
+                    lesOptions = lesOptions + '<option value=' + data[laDonnee]['libelle'] + '>' + data[laDonnee]['libelle'] + '</option>';
                 }
                 $('#groupeCombox').html(lesOptions);
             }
@@ -177,7 +177,7 @@ $('#filiereCombox').change(function () {
 $('#filiereCombox').change(function () {
     var filiere = $("#filiereCombox").find("option:selected").val();  // retourne la value associée à l'option selectionnée
     if (filiere != "null") {
-        // ajax fait appel a la fonction selectAvecFiliereGroupeEtudiant de la page ajax.php avec comme paramettre l'id de la filiere 
+        // ajax fait appel a la fonction selectMatiereWithFiliere de la page ajax.php avec comme paramettre l'id de la filiere 
         // dans data, func sert a savoir quelle fonction de la page ajax.php doit etre appelé
         $.ajax({
             type: 'POST',
@@ -186,9 +186,9 @@ $('#filiereCombox').change(function () {
             data: {func: 'selectMatiereByFiliere', param: filiere},
             success: function (data) {
 //                creation d'une variable contenant les balises option du resultat de la requete obtenu et insertion dans le select voulu
-                var lesOptions = '<option value="null">Choisir groupe</option>'
+                var lesOptions = '<option value="null">Choisir matière</option>'
                 for (var laDonnee in data) {
-                    lesOptions = lesOptions + '<option value=' + data[laDonnee]['id_filiere'] + '>' + data[laDonnee]['libelle'] + '</option>';
+                    lesOptions = lesOptions + '<option value=' + data[laDonnee]['id_matiere'] + '>' + data[laDonnee]['libelle'] + '</option>';
                 }
                 $('#matiereCombox').html(lesOptions);
             }
@@ -208,12 +208,12 @@ $('#groupeCombox').change(function () {
             type: 'POST',
             dataType: "json",
             url: "Ajax.php",
-            data: {func: 'selectEtudByGrpFil', paramFiliere: filiere, paramGroup: groupe},
+            data: {func: 'selectEtudByGrpFil', paramFiliere: filiere, paramGrp: groupe},
             success: function (data) {
 //                creation d'une variable contenant les balises option du resultat de la requete obtenu et insertion dans le select voulu
-                var lesOptions = '<option value="null">Choisir groupe</option>'
+                var lesOptions = '<option value="null">Choisir etudiant</option>'
                 for (var laDonnee in data) {
-                    lesOptions = lesOptions + '<option value=' + data[laDonnee]['id_filiere'] + '>' + data[laDonnee]['libelle'] + '</option>';
+                    lesOptions = lesOptions + '<option value=' + data[laDonnee]['ine'] + '>' + data[laDonnee]['nom'] + " " + data[laDonnee]['prenom'] + '</option>';
                 }
                 $('#etudiantCombox').html(lesOptions);
             }
