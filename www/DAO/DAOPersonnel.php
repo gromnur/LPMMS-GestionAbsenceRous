@@ -133,6 +133,7 @@ function verifMDP($identifiant, $mdp) {
     $listReturn = array();
     // récupération du numero personnel
     while ($ligne = $stmt->fetch()) {
+        var_dump($ligne);
         $nom = $ligne["nom"];
         $prenom = $ligne["prenom"];
         $numeropersonnel = $ligne["numeropersonnel"];
@@ -140,8 +141,8 @@ function verifMDP($identifiant, $mdp) {
     // verif is administrateur
     // TODO DAO administrateur
     // verif is administratif
-    if (isAdministratif($id_administratif) == true) {
-        return array($ligne["nom"], $ligne["prenom"], 1);
+    if (isAdministratif($numeropersonnel) == true) {
+        return array($nom, $prenom, 1);
     }
 
     // verif is professeur

@@ -29,7 +29,7 @@ if (isset($_POST['nomCreaPerso']) && isset($_POST['prenomCreaPerso']) && isset($
     $identifiantCrea = htmlspecialchars($_POST['identifiantCreaPerso']);
     $mdpCrea = htmlspecialchars($_POST['mdpCreaPerso']);
     $choixCrea = htmlspecialchars($_POST['choixCreaPerso']);
-    $mdpCreaSha = sha1($mdp);
+    $mdpCreaSha = sha1($mdpCrea);
 
 
     $resultat = createPersonnel($identifiantCrea, $mdpCreaSha, $nomCrea, $prenomCrea, $choixCrea);
