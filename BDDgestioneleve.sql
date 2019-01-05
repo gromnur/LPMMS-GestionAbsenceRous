@@ -42,7 +42,7 @@ CREATE TABLE administratif (
 -- Structure de la table cours
 
 CREATE TABLE cours (
-  id_cours int(11) NOT NULL,
+  id_cours int(11) NOT NULL AUTO_INCREMENT,
   id_matiere int(11) NOT NULL,
   id_filiere int(11) NOT NULL,
   libelle_groupe varchar(100) NOT NULL,

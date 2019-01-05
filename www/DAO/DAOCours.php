@@ -62,7 +62,7 @@ function createCours($id_matiere, $libelle_groupe, $id_filiere, $id_professeur, 
     $bd = getConnexion();
 
     // TODO table séquance pour les cours
-    $rqt = "INSERT INTO cours(id_cours ,id_matiere, id_filiere, libelle_groupe, id_professeur, numero_salle, date_debut, date_fin) VALUES (1, :id_matiere, :id_filiere, :libelle_groupe, :id_professeur, :numero_salle, :date_debut, :date_fin)";
+    $rqt = "INSERT INTO cours(id_matiere, id_filiere, libelle_groupe, id_professeur, numero_salle, date_debut, date_fin) VALUES (:id_matiere, :id_filiere, :libelle_groupe, :id_professeur, :numero_salle, :date_debut, :date_fin)";
     $stmt = $bd->prepare($rqt);
 
     echo "1, ".$id_matiere.", ".$id_filiere.", '".$libelle_groupe."', ".$id_professeur.", '".$numero_salle."', '".$date_debut."', '".$date_fin."'<br>";

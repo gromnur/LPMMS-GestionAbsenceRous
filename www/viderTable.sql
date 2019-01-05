@@ -1,8 +1,8 @@
 DELETE FROM absence WHERE 1;
 DELETE FROM cours WHERE 1;
 DELETE FROM matiere WHERE 1;
-DELETE FROM etudiant WHERE 1;
 DELETE FROM groupe_etudiant WHERE 1;
+DELETE FROM etudiant WHERE 1;
 DELETE FROM professeur WHERE 1;
 DELETE FROM administratif WHERE 1;
 DELETE FROM salle WHERE 1;
