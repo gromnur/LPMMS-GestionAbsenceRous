@@ -34,14 +34,7 @@
             <div class="col-xs-3">
                 <label>Date/Heure : </label><br>
                 <select id="dateCombox">
-                    <option value='null'>Choisir département</option>
-                    <?php
-                    $var = selectDepartement();
-
-                    foreach ($var as $ligne) {
-                        echo'<option value=' . $ligne["id_departement"] . '>' . $ligne["libelle"] . '</option>';
-                    }
-                    ?>
+                    <option value='null'>Choisir date</option>
                 </select>
             </div>
         </div>

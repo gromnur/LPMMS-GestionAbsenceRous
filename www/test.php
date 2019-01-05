@@ -97,49 +97,49 @@ require('DAO/AccesBDD.php');
 //function lebontestduformulaire(){
 //    print_r("lebontestdelafonction");
 //}
+//
+//function libelleExisteDepartement($libelle) {
+//    // récupération accés base de données
+//    $bd = getConnexion();
+//    $rqt = "SELECT id_departement, libelle FROM departement WHERE libelle = :libelle";
+//    $stmt = $bd->prepare($rqt);
+//    // ajout param
+//    $stmt->bindParam(":libelle", $libelle);
+//    // execution requette
+//    $stmt->execute();
+//
+//    // récupération resultat
+//    $listResult = $stmt->fetchAll();
+//
+//    if (count($listResult) == 0) {
+//        return 0;
+//    } else {
+//        return $listResult[0]["id_departement"];
+//    }
+//}
+//
+//function createDepartement($libelle) {
+//
+//    // Verifier si le libelle n'est pas present
+//    if (libelleExisteDepartement($libelle) != 0) {
+//        // Si present renvoye 0
+//        return 0;
+//    }
+//
+//    // Creation d'un departement
+//    // récupération accés base de données
+//    $bd = getConnexion();
+//    $rqt = "INSERT INTO departement(libelle) VALUES (:libelle)";
+//    $stmt = $bd->prepare($rqt);
+//    // ajout param
+//    $stmt->bindParam(":libelle", $libelle);
+//    // execution requette
+//    $stmt->execute();
+//    // renvoi le libelle généré
+//    return libelleExisteDepartement($libelle);
+//}
+//
+//$nomCreaDept = htmlspecialchars($_POST['nomCreaDept']);
+//
+//createDepartement($nomCreaDept);
 
-
-function libelleExisteDepartement($libelle) {
-    // récupération accés base de données
-    $bd = getConnexion();
-    $rqt = "SELECT id_departement, libelle FROM departement WHERE libelle = :libelle";
-    $stmt = $bd->prepare($rqt);
-    // ajout param
-    $stmt->bindParam(":libelle", $libelle);
-    // execution requette
-    $stmt->execute();
-
-    // récupération resultat
-    $listResult = $stmt->fetchAll();
-
-    if (count($listResult) == 0) {
-        return 0;
-    } else {
-        return $listResult[0]["id_departement"];
-    }
-}
-
-function createDepartement($libelle) {
-
-    // Verifier si le libelle n'est pas present
-    if (libelleExisteDepartement($libelle) != 0) {
-        // Si present renvoye 0
-        return 0;
-    }
-
-    // Creation d'un departement
-    // récupération accés base de données
-    $bd = getConnexion();
-    $rqt = "INSERT INTO departement(libelle) VALUES (:libelle)";
-    $stmt = $bd->prepare($rqt);
-    // ajout param
-    $stmt->bindParam(":libelle", $libelle);
-    // execution requette
-    $stmt->execute();
-    // renvoi le libelle généré
-    return libelleExisteDepartement($libelle);
-}
-
-$nomCreaDept = htmlspecialchars($_POST['nomCreaDept']);
-
-createDepartement($nomCreaDept);

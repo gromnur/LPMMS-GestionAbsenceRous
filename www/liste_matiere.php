@@ -64,60 +64,7 @@
                         <th id="matiere" class="sortTable">Matière</th>
                     </tr>
                 </thead>
-                <tbody id="tbody">
-                    <?php
-//                        for ($i = 1; $i <= 50; $i++) {
-                    ?>
-                    <tr>
-                        <td>azertyui</td>
-                        <td>bqdfvr</td>
-                        <td>Date</td>
-                        <td>Matière</td>
-                        <td> <input name="test[]" type="checkbox" value="<?php // echo $i         ?>" /></td>
-                    </tr>
-                    <tr>
-                        <td>qsdgerv</td>
-                        <td>prébtrsnom</td>
-                        <td>Date</td>
-                        <td>Matière</td>
-                        <td> <input name="test[]" type="checkbox" value="<?php // echo $i         ?>" /></td>
-                    </tr>
-                    <tr>
-                        <td>plizvnn</td>
-                        <td>shycne</td>
-                        <td>Date</td>
-                        <td>Matière</td>
-                        <td> <input name="test[]" type="checkbox" value="<?php // echo $i         ?>" /></td>
-                    </tr>
-                    <tr>
-                        <td>lebontest</td>
-                        <td>testlebon</td>
-                        <td>Date</td>
-                        <td>Matière</td>
-                        <td> <input name="test[]" type="checkbox" value="<?php // echo $i         ?>" /></td>
-                    </tr>
-                    <tr>
-                        <td>ohelsef</td>
-                        <td>prénom</td>
-                        <td>Date</td>
-                        <td>Matière</td>
-                        <td> <input name="test[]" type="checkbox" value="<?php // echo $i         ?>" /></td>
-                    </tr>
-                    <tr>
-                        <td>nom</td>
-                        <td>pqbzycw</td>
-                        <td>Date</td>
-                        <td>Matière</td>
-                        <td> <input name="test[]" type="checkbox" value="<?php // echo $i         ?>" /></td>
-                    </tr>
-                    <tr>
-                        <td>wxzfvb</td>
-                        <td>sahh</td>
-                        <td>Date</td>
-                        <td>Matière</td>
-                        <td> <input name="test[]" type="checkbox" value="<?php // echo $i         ?>" /></td>
-                    </tr>
-                    <?php // }  ?>  
+                <tbody id="tbodyMatiere">
                 </tbody>
             </table>
         </div>

@@ -163,7 +163,7 @@ $('#filiereCombox').change(function () {
             data: {func: 'selectGrpByFiliere', param: filiere},
             success: function (data) {
 //                creation d'une variable contenant les balises option du resultat de la requete obtenu et insertion dans le select voulu
-                var lesOptions = '<option value="null">Choisir groupe</option>'
+                var lesOptions = '<option value="null">Choisir groupe</option>';
                 for (var laDonnee in data) {
                     lesOptions = lesOptions + '<option value=' + data[laDonnee]['libelle'] + '>' + data[laDonnee]['libelle'] + '</option>';
                 }
@@ -186,11 +186,34 @@ $('#filiereCombox').change(function () {
             data: {func: 'selectMatiereByFiliere', param: filiere},
             success: function (data) {
 //                creation d'une variable contenant les balises option du resultat de la requete obtenu et insertion dans le select voulu
-                var lesOptions = '<option value="null">Choisir matière</option>'
+                var lesOptions = '<option value="null">Choisir matière</option>';
                 for (var laDonnee in data) {
                     lesOptions = lesOptions + '<option value=' + data[laDonnee]['id_matiere'] + '>' + data[laDonnee]['libelle'] + '</option>';
                 }
                 $('#matiereCombox').html(lesOptions);
+            }
+        });
+    }
+});
+//TABLE MATIERE en fonction de filiere
+// insertion dans combobox groupe des groupes correspondants a une filière choisie lors du changement de filiere
+$('#filiereCombox').change(function () {
+    var filiere = $("#filiereCombox").find("option:selected").val();  // retourne la value associée à l'option selectionnée
+    if (filiere != "null") {
+        // ajax fait appel a la fonction selectMatiereWithFiliere de la page ajax.php avec comme paramettre l'id de la filiere 
+        // dans data, func sert a savoir quelle fonction de la page ajax.php doit etre appelé
+        $.ajax({
+            type: 'POST',
+            dataType: "json",
+            url: "Ajax.php",
+            data: {func: 'selectMatiereByFiliere', param: filiere},
+            success: function (data) {
+//                creation d'une variable contenant les balises option du resultat de la requete obtenu et insertion dans le select voulu
+                var tbody = '';
+                for (var laDonnee in data) {
+                    tbody = tbody + '<tr><td>' + data[laDonnee]['libelle'] + '</td></tr>';
+                }
+                $('#tbodyMatiere').html(tbody);
             }
         });
     }
@@ -211,7 +234,7 @@ $('#groupeCombox').change(function () {
             data: {func: 'selectEtudByGrpFil', paramFiliere: filiere, paramGrp: groupe},
             success: function (data) {
 //                creation d'une variable contenant les balises option du resultat de la requete obtenu et insertion dans le select voulu
-                var lesOptions = '<option value="null">Choisir etudiant</option>'
+                var lesOptions = '<option value="null">Choisir etudiant</option>';
                 for (var laDonnee in data) {
                     lesOptions = lesOptions + '<option value=' + data[laDonnee]['ine'] + '>' + data[laDonnee]['nom'] + " " + data[laDonnee]['prenom'] + '</option>';
                 }
@@ -220,6 +243,7 @@ $('#groupeCombox').change(function () {
         });
     }
 });
+
 
 
 
