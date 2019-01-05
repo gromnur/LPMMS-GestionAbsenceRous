@@ -4,7 +4,7 @@
  * Créé un cours.
  * Renvoi id_cours si inserer, 0 si le cours est déja présent,
  * -1 si id_matiere n'existe pas,
- * -2 si le groupe d'étudiant n'existe ftp_pas,
+ * -2 si le groupe d'étudiant n'existe pas,
  * -3 si le id_prefesseur n'existe ftp_pas,
  * -4 si le numero de salle n'éxiste ftp_pas,
  * -5 si l'datee de debut n'existe pas pas,

@@ -90,10 +90,10 @@ CREATE TABLE filiere (
 -- Structure de la table groupe_etudiant
 
 CREATE TABLE groupe_etudiant (
-  ine varchar(13) NOT NULL,
   id_filiere int(11) NOT NULL,
-  libelle varchar(100) NOT NULL,
-  PRIMARY KEY (id_filiere,libelle)
+  libelle_groupe varchar(100) NOT NULL,
+  ine varchar(13) NOT NULL,
+  PRIMARY KEY (id_filiere,libelle_groupe,ine)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -173,15 +173,6 @@ ALTER TABLE professeur
   ADD CONSTRAINT fk_prof_personnel FOREIGN KEY (id_professeur) REFERENCES personnel (numeropersonnel);
 
 --
--- Contraintes pour la table cours
---
- ALTER TABLE cours
-    ADD CONSTRAINT fk_cours_matiere FOREIGN KEY (id_matiere) REFERENCES matiere (id_matiere),
-    ADD CONSTRAINT fk_cours_professeur FOREIGN KEY (id_professeur) REFERENCES professeur (id_professeur),
-    ADD CONSTRAINT fk_cours_groupe FOREIGN KEY (id_filiere, libelle_groupe) REFERENCES groupe_etudiant (id_filiere, libelle),
-    ADD CONSTRAINT fk_cours_numero_salle FOREIGN KEY (numero_salle) REFERENCES salle (numero_salle);
-
---
 -- Contraintes pour la table filiere
 --
 ALTER TABLE filiere
@@ -191,5 +182,13 @@ ALTER TABLE filiere
 -- Contraintes pour la table groupe_etudiant
 --
 ALTER TABLE groupe_etudiant
-  ADD CONSTRAINT fk_groupe_etudiant_ine FOREIGN KEY (ine) REFERENCES etudiant (ine),
-  ADD CONSTRAINT fk_groupe_etudiant_filiere FOREIGN KEY (id_filiere) REFERENCES filiere (id_filiere);
+  ADD CONSTRAINT fk_groupe_etudiant_filiere FOREIGN KEY (id_filiere) REFERENCES filiere (id_filiere),
+  ADD CONSTRAINT fk_groupe_etudiant_ine FOREIGN KEY (ine) REFERENCES etudiant (ine);
+--
+-- Contraintes pour la table cours
+--
+ ALTER TABLE cours
+    ADD CONSTRAINT fk_cours_matiere FOREIGN KEY (id_matiere) REFERENCES matiere (id_matiere),
+    ADD CONSTRAINT fk_cours_professeur FOREIGN KEY (id_professeur) REFERENCES professeur (id_professeur),
+    ADD CONSTRAINT fk_cours_numero_salle FOREIGN KEY (numero_salle) REFERENCES salle (numero_salle),
+    ADD CONSTRAINT fk_cours_groupe FOREIGN KEY (id_filiere, libelle_groupe) REFERENCES groupe_etudiant (id_filiere, libelle_groupe);

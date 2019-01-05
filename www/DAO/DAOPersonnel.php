@@ -111,7 +111,7 @@ function idExistePersonnel($numeropersonnel) {
  * Return une liste contenant [$nom, $prenom, $numeropersonnel], null sinon
  */
 function verifMDP($indentifiant, $mdp) {
-    $mdpSha = sha1($mdp);
+    $mdpSha = hash("sha256",$mdp);
 
     $bd = getConnexion();
 

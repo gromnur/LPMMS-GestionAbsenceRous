@@ -11,7 +11,6 @@ $fil_1 = createFiliere("MMS",$dep_1);
 $fil_2 = createFiliere("INFO1",$dep_1);
 echo "Insertion filiere terminé <br>";
 
-
 // création Etudiant
 $etud1 = createEtudiant('azertyuiop001','FR1','RE1');
 $etud2 = createEtudiant('azertyuiop002','FR2','RE2');
@@ -60,14 +59,15 @@ $prof_1  = createProfesseur($pers_1);
 $prof_2  = createProfesseur($pers_2);
 echo "Insertion prof terminé <br>";
 
-
-
 // création de cours
 $cours_1 = createCours($matiere_1, "TD01", $fil_2, $prof_1, $salle_1, "2018-12-22 10:00:00", "2018-12-22 11:00:00");
 $cours_2 = createCours($matiere_2, "TD01", $fil_1, $prof_1, $salle_2, "2018-12-22 10:00:00", "2018-12-22 12:00:00");
 $cours_3 = createCours($matiere_1, "TD01", $fil_2, $prof_2, $salle_2, "2018-12-22 11:00:00", "2018-12-22 12:00:00");
 $cours_4 = createCours($matiere_1, "TD02", $fil_2, $prof_1, $salle_1, "2018-12-22 11:00:00", "2018-12-22 12:00:00");
-echo "code retours cours : ".$cours_1."<br>";
+echo "code retours cours 1 : ".$cours_1."<br>";
+echo "code retours cours 2 : ".$cours_2."<br>";
+echo "code retours cours 3 : ".$cours_3."<br>";
+echo "code retours cours 4 : ".$cours_4."<br>";
 
 
 

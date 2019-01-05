@@ -4,7 +4,7 @@
  * Créés groupe d'étudiant avec le departement et la filiere
  * Return true si créé, sinon false.
  */
-function createGroupeEtudiant($ine, $id_filiere, $libelle) {
+function createGroupeEtudiant($ine, $id_filiere, $libelle_groupe) {
 
     // verifier l'ine
     if(ineExisteEtudiant($ine) != 0){
@@ -14,16 +14,16 @@ function createGroupeEtudiant($ine, $id_filiere, $libelle) {
     // Creation d'un groupe étudiant
     // récupération accés base de données
     $bd = getConnexion();
-    $rqt = "INSERT INTO groupe_etudiant(ine,id_filiere,libelle) VALUES (:ine,:id_filiere,:libelle)";
+    $rqt = "INSERT INTO groupe_etudiant(ine,id_filiere,libelle_groupe) VALUES (:ine,:id_filiere,:libelle_groupe)";
     $stmt = $bd->prepare($rqt);
     // ajout param
     $stmt->bindParam(":ine", $ine);
-    $stmt->bindParam(":libelle", $libelle);
+    $stmt->bindParam(":libelle_groupe", $libelle_groupe);
     $stmt->bindParam(":id_filiere", $id_filiere);
     // execution requette
     $stmt->execute();
     // renvoi le libelle généré
-    return array($libelle, $id_filiere);
+    return array($libelle_groupe, $id_filiere);
 
 }
 
@@ -75,7 +75,7 @@ function isExisteGroupeEtudiant($libelle, $id_filiere) {
 /*
  * Return [$id_filiere, $libelle] si present, sinon une liste vide
  */
-function selectAvecGroupeEtudiantEtudiant($id_groupe, $id_filiere); {
+function selectAvecGroupeEtudiantEtudiant($id_groupe, $id_filiere) {
     // récupération accés base de données
     $bd = getConnexion();
     $rqt = "SELECT ine, nom, prenom FROM groupe_etudiant G JOIN etuiant E ON G.ine = E.ine WHERE id_groupe = :id_groupe AND id_filiere = :id_filiere";
