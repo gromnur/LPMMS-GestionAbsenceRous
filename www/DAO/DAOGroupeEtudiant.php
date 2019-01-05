@@ -2,28 +2,29 @@
 
 /*
  * Créés groupe d'étudiant avec le departement et la filiere
- * Return [$id_filiere, $libelle], sinon une liste vide si non créé.
+ * Return true si créé, sinon false.
  */
 
-function createGroupeEtudiant($id_filiere, $libelle) {
-
-    // Verifier presence du libelle/id_filiere
-    if (count(groupeExisteGroupeEtudiant($libelle, $id_filiere)) != 0) {
-        return array();
+function createGroupeEtudiant($ine, $id_filiere, $libelle) {
+    // verifier l'ine
+    if (ineExisteEtudiant($ine) != 0) {
+        return false;
     }
 
     // Creation d'un groupe étudiant
     // récupération accés base de données
     $bd = getConnexion();
-    $rqt = "INSERT INTO groupe_etudiant(id_filiere,libelle) VALUES (:id_filiere,:libelle)";
+    $rqt = "INSERT INTO groupe_etudiant(ine,id_filiere,libelle) VALUES (:ine,:id_filiere,:libelle)";
     $stmt = $bd->prepare($rqt);
     // ajout param
+    $stmt->bindParam(":ine", $ine);
     $stmt->bindParam(":libelle", $libelle);
     $stmt->bindParam(":id_filiere", $id_filiere);
     // execution requette
     $stmt->execute();
     // renvoi le libelle généré
-    return groupeExisteGroupeEtudiant($libelle, $id_filiere);
+
+    return isExisteGroupeEtudiant($libelle, $id_filiere);
 }
 
 /*
@@ -46,13 +47,13 @@ function selectAvecFiliereGroupeEtudiant($id_filiere) {
         }
     }
     echo json_encode($listResult);
-}
+    }
 
-/*
- * Return [$id_filiere, $libelle] si present, sinon une liste vide
- */
+    /*
+     * Return [$id_filiere, $libelle] si present, sinon une liste vide
+     */
+    function isExisteGroupeEtudiant($libelle, $id_filiere) {
 
-function groupeExisteGroupeEtudiant($libelle, $id_filiere) {
     // récupération accés base de données
     $bd = getConnexion();
     $rqt = "SELECT libelle, id_filiere FROM groupe_etudiant WHERE libelle = :libelle AND id_filiere = :id_filiere";
@@ -67,10 +68,10 @@ function groupeExisteGroupeEtudiant($libelle, $id_filiere) {
     $listResult = $stmt->fetchAll();
 
     if (count($listResult) == 0) {
-        return array();
+        return false;
     } else {
-        return array("id_filiere" => $listResult[0]["id_filiere"],
-            "libelle" => $listResult[0]["libelle"]);
+
+        return true;
     }
 }
 

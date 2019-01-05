@@ -28,7 +28,7 @@ function createCours($id_matiere, $libelle_groupe, $id_filiere, $id_professeur, 
 
     // Verifier si $id_groupe existe
     echo "groupe existe <br>";
-    if (!groupeExisteGroupeEtudiant($libelle_groupe, $id_filiere)) {
+    if (!isExisteGroupeEtudiant($libelle_groupe, $id_filiere)) {
         return -2;
     }
 
