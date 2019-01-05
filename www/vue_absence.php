@@ -1,3 +1,6 @@
+<?php
+include 'SecureSession.php';
+?>
 <div class="col-md-10 ">
 
     <div class="blockCombox">
@@ -40,11 +43,6 @@
         </div>
     </div>
     <?php
-    /*
-     * Créé un departement
-     * Renvoi id_departement si inserer, 0 sinon
-     */
-
     function letest() {
         // Verifier si le libelle n'est pas present
         // Creation d'un departement
@@ -68,7 +66,7 @@
     ?>
     <div class='blockTable'>
         <div class='scroll'>
-            <form method="post" action="<?php letest(); ?>">
+            <form method="post" action="index.php?include=absenceEtudiant">
                 <table class='table table-striped' id="latable">
                     <thead>
                         <tr class='nomCol'>
@@ -78,51 +76,48 @@
                             <th>Absent</th>
                         </tr>
                     </thead>
-                    <tbody id="tbody">
-                        <?php
-//                        for ($i = 1; $i <= 50; $i++) {
-                        ?>
+                    <tbody id="tbodyListeEtudiants">
                         <tr>
                             <td>azertyui</td>
                             <td>bqdfvr</td>
                             <td>Date</td>
-                            <td> <input name="test[]" type="checkbox" value="<?php // echo $i       ?>" /></td>
+                            <td> <input name="absences[]" type="checkbox" value="<?php // echo $i        ?>" /></td>
                         </tr>
                         <tr>
                             <td>qsdgerv</td>
                             <td>prébtrsnom</td>
                             <td>Date</td>
-                            <td> <input name="test[]" type="checkbox" value="<?php // echo $i       ?>" /></td>
+                            <td> <input name="test[]" type="checkbox" value="<?php // echo $i        ?>" /></td>
                         </tr>
                         <tr>
                             <td>plizvnn</td>
                             <td>shycne</td>
                             <td>Date</td>
-                            <td> <input name="test[]" type="checkbox" value="<?php // echo $i       ?>" /></td>
+                            <td> <input name="test[]" type="checkbox" value="<?php // echo $i        ?>" /></td>
                         </tr>
                         <tr>
                             <td>lebontest</td>
                             <td>testlebon</td>
                             <td>Date</td>
-                            <td> <input name="test[]" type="checkbox" value="<?php // echo $i       ?>" /></td>
+                            <td> <input name="test[]" type="checkbox" value="<?php // echo $i        ?>" /></td>
                         </tr>
                         <tr>
                             <td>ohelsef</td>
                             <td>prénom</td>
                             <td>Date</td>
-                            <td> <input name="test[]" type="checkbox" value="<?php // echo $i       ?>" /></td>
+                            <td> <input name="test[]" type="checkbox" value="<?php // echo $i        ?>" /></td>
                         </tr>
                         <tr>
                             <td>nom</td>
                             <td>pqbzycw</td>
                             <td>Date</td>
-                            <td> <input name="test[]" type="checkbox" value="<?php // echo $i       ?>" /></td>
+                            <td> <input name="test[]" type="checkbox" value="<?php // echo $i        ?>" /></td>
                         </tr>
                         <tr>
                             <td>wxzfvb</td>
                             <td>sahh</td>
                             <td>Date</td>
-                            <td> <input name="test[]" type="checkbox" value="<?php // echo $i       ?>" /></td>
+                            <td> <input name="test[]" type="checkbox" value="<?php // echo $i        ?>" /></td>
                         </tr>
                         <?php // }  ?>  
                     </tbody>

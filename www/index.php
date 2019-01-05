@@ -1,13 +1,6 @@
 <?php
 session_start();
-if (isset($_SESSION['nom']) && isset($_SESSION['prenom']) && isset($_SESSION['type'])) {
-    $nom = $_SESSION['nom'];
-    $prenom = $_SESSION['prenom'];
-    $type = $_SESSION['type'];
-} else {
-    header('Location: connexion.php');
-    exit();
-}
+include 'SecureSession.php';
 
 include 'DAOFactory.php';
 ?>
@@ -66,6 +59,12 @@ include 'DAOFactory.php';
                     if ($_GET['include'] == "listeAbsEtud") {
                         include 'liste_un_etudiant.php';
                     }
+                    if ($_GET['include'] == "etudiants") {
+                        include 'liste_etudiants.php';
+                    }
+                    if ($_GET['include'] == "absences") {
+                        include 'liste_absences.php';
+                    }
                 }
                 ?>
             </div>
@@ -75,8 +74,8 @@ include 'DAOFactory.php';
                 <ul>
                     <li><a href="index.php?include=matiere">Matières</a></li>
                     <li><a href="index.php?include=listeAbsEtud">Absence d'un étudiant</a></li>
-                    <li>Liste 3</li>
-                    <li>Liste 4</li>
+                    <li><a href="index.php?include=etudiants">Etudiants</a></li>
+                    <li><a href="index.php?include=absences">Absences</a></li>
                 </ul>
             </li>
             <HR width="120%">
@@ -87,25 +86,18 @@ include 'DAOFactory.php';
                     <li>absence 3</li>
                 </ul>
             </li>
-            <HR width="120%">
-            <li class="liste">Absence : 
-                <ul>
-                    <li><a href="index.php?include=2">absence 1</a></li>
-                    <li>absence 2</li>
-                    <li>absence 3</li>
-                </ul>
-            </li>
             <?php
             if ($type != 2) {
-                echo'
-            <HR width="120%">
-            <li class="liste">Créer 
-                <ul>
-                    <li><a href="index.php?include=filiere">Créer filière</a></li>
-                    <li><a href="index.php?include=dept">Créer Département</a></li>
-                    <li><a href="index.php?include=personnel">Créer Personnel</a></li>
-                </ul>
-            </li>';
+                ?>
+                <HR width="120%">
+                <li class="liste">Créer 
+                    <ul>
+                        <li><a href="index.php?include=filiere">Créer filière</a></li>
+                        <li><a href="index.php?include=dept">Créer Département</a></li>
+                        <li><a href="index.php?include=personnel">Créer Personnel</a></li>
+                    </ul>
+                </li>
+                <?php
             }
             ?>
         </ul>

@@ -79,7 +79,7 @@ jQuery.fn.sortElements = (function () {
 })();
 
 var table = $('#latable');
-$('#nom, #prenom, #matiere')
+$('#nom, #prenom, #matiere, #ine')
         .wrapInner('<span title="sort this column"/>')
         .each(function () {
 
@@ -115,6 +115,57 @@ $('#nom, #prenom, #matiere')
 
         });
 //FIN TRI TABLE 
+
+//etudiant en fonction de filiere et du groupe
+// insertion dans la table des etudiants correspondants a une filière et un grp choisi lors du changement du groupe
+$('#groupeCombox').change(function () {
+    var filiere = $("#filiereCombox").find("option:selected").val();  // retourne la value associée à l'option selectionnée
+    var groupe = $("#groupeCombox").find("option:selected").val();  // retourne la value associée à l'option selectionnée
+    if (groupe != "null") {
+        // ajax fait appel a la fonction selectAvecFiliereGroupeEtudiant de la page ajax.php avec comme paramettre l'id de la filiere 
+        // dans data, func sert a savoir quelle fonction de la page ajax.php doit etre appelé
+        $.ajax({
+            type: 'POST',
+            dataType: "json",
+            url: "Ajax.php",
+            data: {func: 'selectEtudByGrpFil', paramFiliere: filiere, paramGrp: groupe},
+            success: function (data) {
+//                creation d'une variable contenant les balises option du resultat de la requete obtenu et insertion dans le select voulu
+                var tbody = '';
+                for (var laDonnee in data) {
+                    tbody = tbody + '<tr><td>' + data[laDonnee]['ine'] + '</td><td>' + data[laDonnee]['nom'] + '</td><td>' + data[laDonnee]['prenom'] + '</td></tr>';
+                }
+                $('#tbodyListeEtudiants').html(tbody);
+            }
+        });
+    }
+});
+// ajout absences etudiant en fonction de la matiere et de la date
+// insertion dans la table des etudiants correspondants a une filière et un grp choisi lors du changement du groupe
+$('#dateCombox').change(function () {
+    var date = $("#dateCombox").find("option:selected").val();  // retourne la value associée à l'option selectionnée
+    if (date != "null") {
+        // ajax fait appel a la fonction selectAvecFiliereGroupeEtudiant de la page ajax.php avec comme paramettre l'id de la filiere 
+        // dans data, func sert a savoir quelle fonction de la page ajax.php doit etre appelé
+        $.ajax({
+            type: 'POST',
+            dataType: "json",
+            url: "Ajax.php",
+            data: {func: 'selectEtudByDate', param: date},
+            success: function (data) {
+//                creation d'une variable contenant les balises option du resultat de la requete obtenu et insertion dans le select voulu
+                var tbody = '';
+                for (var laDonnee in data) {
+                    tbody = tbody + '<tr><td>' + data[laDonnee]['nom'] + '</td> <td>' + data[laDonnee]['prenom'] + '</td><td>'
+                            + data[laDonnee]['groupe'] + '</td><td> <input name="absences[]" type="checkbox" value="' + data[laDonnee]['ine'] + '" /></td></tr>';
+                }
+                $('#tbodyListeEtudiants').html(tbody);
+            }
+        });
+    }
+});
+
+
 
 
 /**
@@ -306,7 +357,7 @@ $('#selectCrea').change(function () {
     if (type == 0) {
         $('#comboxDeptCreaPerso').show();
         $('#comboxFilCreaPerso').show();
-    }else{
+    } else {
         $('#comboxDeptCreaPerso').hide();
         $('#comboxFilCreaPerso').hide();
     }
@@ -320,7 +371,8 @@ if (formCrea != null) {
         var mdp = document.getElementById('mdpCreaPerso');
         var nom = document.getElementById('nomCreaPerso');
         var prenom = document.getElementById('prenomCreaPerso');
-        if (id.value.length == 0 || mdp.value.lenght == 0 || nom.value.lenght == 0 || prenom.value.lenght == 0) {
+        var type = $("#comboxDeptCreaPerso").find("option:selected").val();
+        if (id.value == "" || mdp.value == "" || nom.value == "" || prenom.value == "" || type.value == "null") {
             alert("Veuillez renseigner tout les champs");
             e.preventDefault();
         }

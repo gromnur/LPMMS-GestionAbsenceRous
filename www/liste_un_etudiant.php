@@ -1,3 +1,6 @@
+<?php
+include 'SecureSession.php';
+?>
 <div class="col-md-10 ">
 
     <div class="blockCombox">

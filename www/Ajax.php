@@ -24,6 +24,10 @@ switch ($func) {
         $id_filiere = $_POST['param'];
         selectMatiereWithFiliere($id_filiere);
         break;
+    case 'selectEtudByDate':
+        $date = $_POST['param'];
+         ($date);
+        break;
     default:
         //function not found, error or something
         break;

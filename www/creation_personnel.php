@@ -1,3 +1,11 @@
+<?php
+include 'SecureSession.php';
+
+if ($_SESSION['type'] == 2) {
+    header('Location: index.php');
+}
+?>
+
 <div class="blockFormCrea">
     <span>Création d'un personnel</span>
     <form method="post" action="index.php?include=personnel" id='formCreaPerso'>
@@ -20,11 +28,20 @@
             </tr>
             <tr>
                 <td> <label>Type de personnel</label></td>
-                <td><select name='choixCreaPerso' id="selectCrea">
-                        <option value='null'>Choisir </option>
-                        <option value='1'>Professeur</option>
-                        <option value='0'>Administratif</option>
-                    </select></td>
+                <td>
+
+
+                    <select name='choixCreaPerso' id="selectCrea">
+                        <?php if ($type == 0) { ?>
+                            <option value='null'>Choisir </option>
+                            <option value='1'>Professeur</option>
+                            <option value='0'>Administratif</option>
+                        <?php } else { ?>
+                            <option value='1'>Professeur</option>
+                        <?php } ?>
+                    </select>
+
+                </td>
             </tr>
             <tr id="comboxDeptCreaPerso">
                 <td> <label>Département</label></td>
@@ -53,5 +70,19 @@
         </table>
         <input type="submit" class="btn valid" value="Créer"/>
     </form>
+    <?php
+    if (isset($resultat)) {
+        if ($resultat == 0) {
+            ?>
+            <span class="errorCrea">Échec de la création</span>
+            <?php
+        } else {
+            ?>
+            <span class="successCrea">Création réussi</span>
+
+            <?php
+        }
+    }
+    ?>
 </div>
 
