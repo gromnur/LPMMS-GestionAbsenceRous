@@ -125,6 +125,9 @@ function verifMDP($indentifiant, $mdp) {
 // execution requette
     $stmt->execute();
 
+    // init nulero prsonnel
+    $numeropersonnel = -1;
+
     $listReturn = array();
     // récupération du numero personnel
     while ($ligne = $stmt->fetch()) {
@@ -139,12 +142,12 @@ function verifMDP($indentifiant, $mdp) {
 
     // verif is administratif
     if (isAdministratif($numeropersonnel) == true) {
-        return array($ligne["nom"], $ligne["prenom"], 1);
+        return array($nom, $prenom, 1);
     }
 
     // verif is professeur
     if (isProfesseur($numeropersonnel) == true) {
-        return array($ligne["nom"], $ligne["prenom"], 2);
+        return array($nom, $prenom, 2);
     }
 
 }
