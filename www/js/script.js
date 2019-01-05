@@ -79,7 +79,7 @@ jQuery.fn.sortElements = (function () {
 })();
 
 var table = $('#latable');
-$('#nom, #prenom')
+$('#nom, #prenom, #matiere')
         .wrapInner('<span title="sort this column"/>')
         .each(function () {
 
@@ -128,8 +128,8 @@ $('#nom, #prenom')
 
 ////FILIERE
 // insertion dans combobox filiere des filieres correspondantes a un departement choisi lors du changement de departement
-$('#dept').change(function () {
-    var departement = $("#dept").find("option:selected").val();  // retourne la value associée à l'option selectionnée
+$('#deptCombox').change(function () {
+    var departement = $("#deptCombox").find("option:selected").val();  // retourne la value associée à l'option selectionnée
     if (departement != "null") {
         // ajax fait appel a la fonction selectFiliereByDept de la page ajax.php avec comme paramettre l'id du departement 
         // dans data, func sert a savoir quelle fonction de la page test.php doit etre appelé
@@ -144,15 +144,15 @@ $('#dept').change(function () {
                 for (var laDonnee in data) {
                     lesOptions = lesOptions + '<option value=' + data[laDonnee]['id_filiere'] + '>' + data[laDonnee]['libelle'] + '</option>';
                 }
-                $('#filiere').html(lesOptions);
+                $('#filiereCombox').html(lesOptions);
             }
         });
     }
 });
 //GROUPE
 // insertion dans combobox groupe des groupes correspondants a une filière choisie lors du changement de filiere
-$('#filiere').change(function () {
-    var filiere = $("#filiere").find("option:selected").val();  // retourne la value associée à l'option selectionnée
+$('#filiereCombox').change(function () {
+    var filiere = $("#filiereCombox").find("option:selected").val();  // retourne la value associée à l'option selectionnée
     if (filiere != "null") {
         // ajax fait appel a la fonction selectAvecFiliereGroupeEtudiant de la page ajax.php avec comme paramettre l'id de la filiere 
         // dans data, func sert a savoir quelle fonction de la page ajax.php doit etre appelé
@@ -167,7 +167,7 @@ $('#filiere').change(function () {
                 for (var laDonnee in data) {
                     lesOptions = lesOptions + '<option value=' + data[laDonnee]['id_filiere'] + '>' + data[laDonnee]['libelle'] + '</option>';
                 }
-                $('#groupe').html(lesOptions);
+                $('#groupeCombox').html(lesOptions);
             }
         });
     }

@@ -113,6 +113,11 @@ nav{
     text-decoration: none;
 }
 
+.titrePage{
+    font-size:20px;
+    font-weight: bold;
+}
+
 .liste {
     /*padding-top: 5px;*/
     font-size:20px;

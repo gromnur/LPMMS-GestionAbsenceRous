@@ -5,3 +5,4 @@ utils
 *.exe
 
 /www/nbproject/private/
+/nbproject/private/

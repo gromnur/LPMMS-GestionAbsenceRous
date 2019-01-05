@@ -4,36 +4,17 @@
         Gestion des absences des étudiants
 
         <div class="row selection">
-            <div class="col-xs-3">
-                <label>Departement : </label><br>
-                <select id="deptCombox">
-                    <option value='null'>Choisir département</option>
-                    <?php
-                    $var = selectDepartement();
 
-                    foreach ($var as $ligne) {
-                        echo'<option value=' . $ligne["id_departement"] . '>' . $ligne["libelle"] . '</option>';
-                    }
-                    ?>
-                </select>
-            </div>
-            <div class="col-xs-3">
-                <label>Filière : </label><br>
-                <select id="filiereCombox">
+            <div class="col-xs-4">
+                <label>Matière : </label><br>
+                <select id="filiere">
                     <option value="null">Choisir filière</option>
 
                 </select>
             </div>
-            <div class="col-xs-3">
-                <label>Matière : </label><br>
-                <select id="matiereCombox">
-                    <option value="null">Choisir matière</option>
-
-                </select>
-            </div>
-            <div class="col-xs-3">
-                <label>Date/Heure : </label><br>
-                <select id="dateCombox">
+            <div class="col-xs-4">
+                <label>Date : </label><br>
+                <select id="dept">
                     <option value='null'>Choisir département</option>
                     <?php
                     $var = selectDepartement();
@@ -42,6 +23,14 @@
                         echo'<option value=' . $ligne["id_departement"] . '>' . $ligne["libelle"] . '</option>';
                     }
                     ?>
+                </select>
+            </div>
+
+            <div class="col-xs-4">
+                <label>Heure : </label><br>
+                <select id="filiere">
+                    <option value="null">Choisir filière</option>
+
                 </select>
             </div>
         </div>

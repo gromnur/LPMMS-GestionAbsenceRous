@@ -59,6 +59,13 @@ include 'DAOFactory.php';
                     if ($_GET['include'] == "absenceEtudiant") {
                         include 'vue_absence.php';
                     }
+                    if ($_GET['include'] == "matiere") {
+                        include 'liste_matiere.php';
+                    }
+                    if ($_GET['include'] == "listeAbsEtud") {
+                        include 'liste_un_etudiant.php';
+                    }
+
                 }
                 ?>
             </div>
@@ -66,8 +73,8 @@ include 'DAOFactory.php';
         <ul class="menu">
             <li class="liste">Liste : 
                 <ul>
-                    <li>Liste 1</li>
-                    <li>Liste 2</li>
+                    <li><a href="index.php?include=matiere">Matières</a></li>
+                    <li><a href="index.php?include=listeAbsEtud">Absence d'un étudiant</a></li>
                     <li>Liste 3</li>
                     <li>Liste 4</li>
                 </ul>
@@ -83,7 +90,7 @@ include 'DAOFactory.php';
             <HR width="120%">
             <li class="liste">Absence : 
                 <ul>
-                    <li>absence 1</li>
+                    <li><a href="index.php?include=2">absence 1</a></li>
                     <li>absence 2</li>
                     <li>absence 3</li>
                 </ul>
