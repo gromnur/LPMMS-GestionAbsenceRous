@@ -33,6 +33,26 @@ function createFiliere($libelle, $id_departement) {
 }
 
 /*
+ * Return la liste des filieres
+ */
+function selectFiliere() {
+    // récupération accés base de données
+    $bd = getConnexion();
+    $rqt = "SELECT id_filiere, libelle FROM filiere";
+    $stmt = $bd->prepare($rqt);
+
+    $listResult = array();
+    // execution requette
+    if ($stmt->execute()) {
+        while ($ligne = $stmt->fetch()) {
+            $listResult[] = array('id_filiere'=>$ligne['id_filiere'],
+                                  'libelle' =>$ligne['libelle']);
+        }
+    }
+    return $listResult;
+}
+
+/*
  * Return la liste des filire [$id_filiere, $libelle, $id_department]
  */
 

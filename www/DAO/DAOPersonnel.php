@@ -9,8 +9,8 @@ function createPersonnel($identifiant, $mdp, $nom, $prenom, $choixCreaPerso = -1
 
     // verifier l'identifiant
 
-    if(identifiantExistePersonnel($identifiant) != 0){
-        
+    if (identifiantExistePersonnel($identifiant) != 0) {
+
         // Renvoie le numero personnel si rien n'est demander en plus
         if ($choixCreaPerso == -1) {
             return $numeropersonnel;
@@ -59,7 +59,6 @@ function createPersonnel($identifiant, $mdp, $nom, $prenom, $choixCreaPerso = -1
     if ($choixCreaPerso == 1) {
         return createProfesseur($numeropersonnel);
     }
-
 }
 
 /*
@@ -120,6 +119,8 @@ function verifMDP($identifiant, $mdp) {
     $mdpSha = sha1($mdp);
 
     $bd = getConnexion();
+
+    // récupération nom prénom utilisateur
     $rqt = "SELECT nom, prenom, numeropersonnel FROM personnel WHERE identifiant = :identifiant and mdp = :mdp";
     $stmt = $bd->prepare($rqt);
 // ajout param
@@ -130,11 +131,23 @@ function verifMDP($identifiant, $mdp) {
     $stmt->execute();
 
     $listReturn = array();
-    // récupération resultat
+    // récupération du numero personnel
     while ($ligne = $stmt->fetch()) {
-        $listReturn = array($ligne['nom'], $ligne['prenom'], $ligne['numeropersonnel']);
+        $nom = $ligne["nom"];
+        $prenom = $ligne["prenom"];
+        $numeropersonnel = $ligne["numeropersonnel"];
     }
-    return $listReturn;
+    // verif is administrateur
+    // TODO DAO administrateur
+    // verif is administratif
+    if (isAdministratif($id_administratif) == true) {
+        return array($ligne["nom"], $ligne["prenom"], 1);
+    }
+
+    // verif is professeur
+    if (isProfesseur($numeropersonnel) == true) {
+        return array($ligne["nom"], $ligne["prenom"], 2);
+    }
 }
 
 ?>
