@@ -8,6 +8,22 @@ function createPersonnel($identifiant, $mdp, $nom, $prenom, $choixCreaPerso = -1
 
     // verifier l'identifiant
     if(identifiantExistePersonnel($identifiant) != 0){
+        
+        // Renvoie le numero personnel si rien n'est demander en plus
+        if ($choixCreaPerso == -1) {
+            return $numeropersonnel;
+        }
+
+        // Créé un administratif avec le $numeropersonnel
+        if ($choixCreaPerso == 0) {
+            return createAdministratif($numeropersonnel);
+        }
+
+        // Créé un professeur avec le $numeropersonnel
+        if ($choixCreaPerso == 1) {
+            return createProfesseur($numeropersonnel);
+        }
+
         return 0;
     }
 
@@ -26,10 +42,22 @@ function createPersonnel($identifiant, $mdp, $nom, $prenom, $choixCreaPerso = -1
     $stmt->execute();
 
     $numeropersonnel = identifiantExistePersonnel($identifiant);
-    // Renvoie le numero personnel
+
+    // Renvoie le numero personnel si rien n'est demander en plus
     if ($choixCreaPerso == -1) {
-        return identifiantExistePersonnel($identifiant);
+        return $numeropersonnel;
     }
+
+    // Créé un administratif avec le $numeropersonnel
+    if ($choixCreaPerso == 0) {
+        return createAdministratif($numeropersonnel);
+    }
+
+    // Créé un professeur avec le $numeropersonnel
+    if ($choixCreaPerso == 1) {
+        return createProfesseur($numeropersonnel);
+    }
+
 }
 
 /*
