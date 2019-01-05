@@ -51,13 +51,13 @@ function selectAvecFiliereGroupeEtudiant($id_filiere) {
 /*
  * Return [$id_filiere, $libelle] si present, sinon une liste vide
  */
-function isExisteGroupeEtudiant($libelle, $id_filiere) {
+function isExisteGroupeEtudiant($libelle_groupe, $id_filiere) {
     // récupération accés base de données
     $bd = getConnexion();
-    $rqt = "SELECT libelle, id_filiere FROM groupe_etudiant WHERE libelle = :libelle AND id_filiere = :id_filiere";
+    $rqt = "SELECT libelle_groupe, id_filiere FROM groupe_etudiant WHERE libelle_groupe = :libelle_groupe AND id_filiere = :id_filiere";
     $stmt = $bd->prepare($rqt);
     // ajout param
-    $stmt->bindParam(":libelle", $libelle);
+    $stmt->bindParam(":libelle_groupe", $libelle_groupe);
     $stmt->bindParam(":id_filiere", $id_filiere);
     // execution requette
     $stmt->execute();
