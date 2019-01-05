@@ -37,12 +37,13 @@ function createEtudiant($ine, $nom, $prenom, $id_filiere, $libelle_groupe) {
 /*
  * Return la liste des groupeetudiant [$nom, $prenom, $ine]
  */
-function selectAvecGroupeEtudiantEtudiant($id_groupe) {
+function selectAvecGroupeEtudiantEtudiant($libelle_groupe,$id_filiere) {
     // récupération accés base de données
     $bd = getConnexion();
-    $rqt = "SELECT ine, nom, prenom, id_groupe FROM etudiant WHERE id_groupe = :id_groupe";
+    $rqt = "SELECT ine, nom, prenom FROM etudiant WHERE id_filiere = :id_filiere AND libelle_groupe = :libelle_groupe";
     $stmt = $bd->prepare($rqt);
-    $stmt->bindParam(":id_groupe", $id_groupe);
+    $stmt->bindParam(":id_filiere", $id_filiere);
+    $stmt->bindParam(":libelle_groupe", $libelle_groupe);
 
     $listResult = array();
     // execution requette
@@ -50,8 +51,7 @@ function selectAvecGroupeEtudiantEtudiant($id_groupe) {
         while ($ligne = $stmt->fetch()) {
             $listResult[] = array("ine"=>$ligne['ine'],
                                   "nom"=>$ligne['nom'],
-                                  "prenom"=>$ligne['prenom'],
-                                  "id_groupe"=>$ligne['id_groupe']);
+                                  "prenom"=>$ligne['prenom']);
         }
     }
     echo json_encode($listResult);

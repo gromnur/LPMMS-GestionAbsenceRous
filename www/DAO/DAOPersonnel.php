@@ -80,7 +80,24 @@ function idExistePersonnel($numeropersonnel) {
  * Return une liste contenant [$nom, $prenom, $numeropersonnel], null sinon
  */
 function verifMDP($indentifiant, $mdp) {
-    // TODO coder verifMDP
+    $mdpSha = sha1($mdp);
+
+    $bd = getConnexion();
+    $rqt = "SELECT nom, prenom, numeropersonnel FROM personnel WHERE identifiant = :identifiant and mdp = :mdp";
+    $stmt = $bd->prepare($rqt);
+// ajout param
+    $stmt->bindParam(":identifiant", $identifiant);
+    $stmt->bindParam(":mdp", $mdpSha);
+
+// execution requette
+    $stmt->execute();
+
+    $listReturn = array();
+    // récupération resultat
+    while ($ligne = $stmt->fetch()) {
+        $listReturn = array($ligne['nom'], $ligne['prenom'], $ligne['numeropersonnel']);
+    }
+    return $listReturn;
 }
 
 
