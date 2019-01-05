@@ -44,7 +44,7 @@ function selectFiliere() {
     // execution requette
     if ($stmt->execute()) {
         while ($ligne = $stmt->fetch()) {
-            $listResult[] = array('id_departement'=>$ligne['id_departement'],
+            $listResult[] = array('id_filiere'=>$ligne['id_filiere'],
                                   'libelle' =>$ligne['libelle']);
         }
     }

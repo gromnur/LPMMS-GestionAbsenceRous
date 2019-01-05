@@ -7,41 +7,43 @@
 function createAbsence($id_cours, $ine) {
 
     // Verifier presence du libelle/id_filiere
-    if (count(groupeExisteGroupeEtudiant($libelle, $id_filiere)) != 0) {
+    if (count(isExisteAbsence($id_cours, $ine)) != 0) {
         return array();
     }
 
     // Creation d'un groupe étudiant
     // récupération accés base de données
     $bd = getConnexion();
-    $rqt = "INSERT INTO groupe_etudiant(id_filiere,libelle) VALUES (:id_filiere,:libelle)";
+    $rqt = "INSERT INTO absence(id_cours, ine) VALUES (:id_cours, :ine)";
     $stmt = $bd->prepare($rqt);
     // ajout param
-    $stmt->bindParam(":libelle", $libelle);
-    $stmt->bindParam(":id_filiere", $id_filiere);
+    $stmt->bindParam(":id_cours", $id_cours);
+    $stmt->bindParam(":ine", $ine);
     // execution requette
     $stmt->execute();
     // renvoi le libelle généré
-    return groupeExisteGroupeEtudiant($libelle, $id_filiere);
+    return isExisteAbsence($id_cours, $ine);
 
 }
 
 /*
- * Return la liste des groupeetudiant [$id_groupe_departement, $libelle]
+ * Return la liste des absence [$id_groupe_departement, $libelle]
  */
-function selectAvecFiliereGroupeEtudiant($id_filiere) {
+function selectAvecEtudiantAbsence($ine) {
     // récupération accés base de données
     $bd = getConnexion();
-    $rqt = "SELECT libelle, id_filiere FROM groupe_etudiant WHERE id_filiere = :id_filiere";
+    $rqt = "SELECT C.id_cours, C.id_matiere, C.date_debut, C.date_fin FROM absence A JOIN cours C ON A.id_cours = C.id_cours WHERE A.ine = :ine";
     $stmt = $bd->prepare($rqt);
-    $stmt->bindParam(":id_filiere", $id_filiere);
+    $stmt->bindParam(":ine", $ine);
 
     $listResult = array();
     // execution requette
     if ($stmt->execute()) {
         while ($ligne = $stmt->fetch()) {
-            $listResult[] = array("libelle"=>$ligne['libelle'],
-                                  "id_filiere"=>$ligne['id_filiere']);
+            $listResult[] = array("id_cours"=>$ligne['id_cours'],
+                                  "id_matiere"=>$ligne['id_matiere'],
+                                  "date_debut"=>$ligne['date_debut'],
+                                  "date_fin"=>$ligne['date_fin']);
         }
     }
     echo json_encode($listResult);
@@ -50,14 +52,15 @@ function selectAvecFiliereGroupeEtudiant($id_filiere) {
 /*
  * Return [$id_filiere, $libelle] si present, sinon une liste vide
  */
-function groupeExisteGroupeEtudiant($libelle, $id_filiere) {
+function isExisteAbsence($id_cours, $ine) {
     // récupération accés base de données
     $bd = getConnexion();
-    $rqt = "SELECT libelle, id_filiere FROM groupe_etudiant WHERE libelle = :libelle AND id_filiere = :id_filiere";
+    $rqt = "SELECT id_cours, ine FROM absence WHERE id_cours = :id_cours AND ine = :ine";
     $stmt = $bd->prepare($rqt);
+
     // ajout param
-    $stmt->bindParam(":libelle", $libelle);
-    $stmt->bindParam(":id_filiere", $id_filiere);
+    $stmt->bindParam(":id_cours", $id_cours);
+    $stmt->bindParam(":ine", $ine);
     // execution requette
     $stmt->execute();
 
@@ -67,17 +70,9 @@ function groupeExisteGroupeEtudiant($libelle, $id_filiere) {
     if (count($listResult) == 0) {
         return array();
     } else {
-        return array("id_filiere" => $listResult[0]["id_filiere"],
-                     "libelle" => $listResult[0]["libelle"]);
+        return array("id_cours" => $listResult[0]["id_cours"],
+                     "ine" => $listResult[0]["ine"]);
     }
 }
 
 ?>
-
-SELECT M.libelle, C.date_debut
-FROM matiere M
-JOIN cours C ON M.id_matiere = C.id_matiere
-JOIN absence A ON A.id_cours = C.id_cours
-WHERE A.ine = "azertyuiop123";
-
- ?>
