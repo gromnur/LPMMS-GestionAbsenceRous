@@ -97,5 +97,4 @@ function selectMatiereWithFiliere($id_filiere) {
     }
     echo json_encode($listResult);
 
-
 }
