@@ -23,7 +23,7 @@ function createGroupeEtudiant($ine, $id_filiere, $libelle) {
     // execution requette
     $stmt->execute();
     // renvoi le libelle généré
-    return isExisteGroupeEtudiant($libelle, $id_filiere);
+    return array($libelle, $id_filiere);
 
 }
 
