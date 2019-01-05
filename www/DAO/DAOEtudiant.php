@@ -54,7 +54,7 @@ function selectAvecGroupeEtudiantEtudiant($id_groupe) {
                                   "id_groupe"=>$ligne['id_groupe']);
         }
     }
-    return $listResult;
+    echo json_encode($listResult);
 }
 
 /*
