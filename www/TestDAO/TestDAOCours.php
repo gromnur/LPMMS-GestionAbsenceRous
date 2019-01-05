@@ -9,7 +9,7 @@ $date_fin = "2018-05-15 12:00:00";
 /*
  * Test date valide
  */
-echo "Test date valide : "
+echo "Test date valide : ";
 if(isExistedate($date_deb)) {
     echo "Valide <br>";
 } else {
@@ -19,7 +19,7 @@ if(isExistedate($date_deb)) {
 /*
  * Test date valide
  */
-echo "Test date valide : "
+echo "Test date valide : ";
 if(isExistedate($date_fin)) {
     echo "Valide <br>";
 } else {
@@ -29,7 +29,7 @@ if(isExistedate($date_fin)) {
 /*
  * Test date invalide
  */
-echo "Test date valide : "
+echo "Test date valide : ";
 if(isExistedate($date_incorect)) {
     echo "Valide <br>";
 } else {

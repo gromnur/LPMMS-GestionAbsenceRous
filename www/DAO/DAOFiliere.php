@@ -50,7 +50,7 @@ function selectAvecDepartementFiliere($id_department) {
                                   "id_departement"=>$ligne['id_departement']);
         }
     }
-    return $listResult;
+    echo json_encode($listResult);
 }
 
 /*

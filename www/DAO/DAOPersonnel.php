@@ -4,7 +4,7 @@
  * Ajoute un personnel dans la table personnel si celui-ci n'est pas present
  * Retourne le numeropersonnel du personnel ajouté, sinon 0
  */
-function createPersonnel($identifiant, $mdp, $nom, $prenom) {
+function createPersonnel($identifiant, $mdp, $nom, $prenom, $choixCreaPerso = -1) {
 
     // verifier l'identifiant
     if(identifiantExistePersonnel($identifiant) != 0){
@@ -25,8 +25,11 @@ function createPersonnel($identifiant, $mdp, $nom, $prenom) {
     // execution requette
     $stmt->execute();
 
+    $numeropersonnel = identifiantExistePersonnel($identifiant);
     // Renvoie le numero personnel
-    return identifiantExistePersonnel($identifiant);
+    if ($choixCreaPerso == -1) {
+        return identifiantExistePersonnel($identifiant);
+    }
 }
 
 /*
@@ -80,7 +83,24 @@ function idExistePersonnel($numeropersonnel) {
  * Return une liste contenant [$nom, $prenom, $numeropersonnel], null sinon
  */
 function verifMDP($indentifiant, $mdp) {
-    // TODO coder verifMDP
+    $mdpSha = sha1($mdp);
+
+    $bd = getConnexion();
+    $rqt = "SELECT nom, prenom, numeropersonnel FROM personnel WHERE identifiant = :identifiant and mdp = :mdp";
+    $stmt = $bd->prepare($rqt);
+// ajout param
+    $stmt->bindParam(":identifiant", $identifiant);
+    $stmt->bindParam(":mdp", $mdpSha);
+
+// execution requette
+    $stmt->execute();
+
+    $listReturn = array();
+    // récupération resultat
+    while ($ligne = $stmt->fetch()) {
+        $listReturn = array($ligne['nom'], $ligne['prenom'], $ligne['numeropersonnel']);
+    }
+    return $listReturn;
 }
 
 
