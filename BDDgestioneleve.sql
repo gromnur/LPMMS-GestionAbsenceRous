@@ -191,5 +191,5 @@ ALTER TABLE filiere
 -- Contraintes pour la table groupe_etudiant
 --
 ALTER TABLE groupe_etudiant
-  ADD CONSTRAINT fk_groupe_etudiant_ine FOREIGN KEY (ine) REFERENCES etudiant (ine);
+  ADD CONSTRAINT fk_groupe_etudiant_ine FOREIGN KEY (ine) REFERENCES etudiant (ine),
   ADD CONSTRAINT fk_groupe_etudiant_filiere FOREIGN KEY (id_filiere) REFERENCES filiere (id_filiere);
