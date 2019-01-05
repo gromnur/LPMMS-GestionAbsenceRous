@@ -4,7 +4,7 @@
  * Ajoute un personnel dans la table personnel si celui-ci n'est pas present
  * Retourne le numeropersonnel du personnel ajouté, sinon 0
  */
-function createPersonnel($identifiant, $mdp, $nom, $prenom) {
+function createPersonnel($identifiant, $mdp, $nom, $prenom, $choixCreaPerso = -1) {
 
     // verifier l'identifiant
     if(identifiantExistePersonnel($identifiant) != 0){
@@ -25,8 +25,11 @@ function createPersonnel($identifiant, $mdp, $nom, $prenom) {
     // execution requette
     $stmt->execute();
 
+    $numeropersonnel = identifiantExistePersonnel($identifiant);
     // Renvoie le numero personnel
-    return identifiantExistePersonnel($identifiant);
+    if ($choixCreaPerso == -1) {
+        return identifiantExistePersonnel($identifiant);
+    }
 }
 
 /*

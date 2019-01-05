@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Créé un administratif
+ * Créé un administratif a partir d'un numero personnel
  * Renvoie le numeropersonnel de l'administratif, 0 sinon
  */
 function createAdministratif($numeropersonnel) {
