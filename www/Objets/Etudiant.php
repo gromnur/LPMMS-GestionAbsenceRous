@@ -68,7 +68,7 @@ class Etudiant
      */
     public function getPrenom()
     {
-        return $this->prenom
+        return $this->prenom;
     }
 
     /**

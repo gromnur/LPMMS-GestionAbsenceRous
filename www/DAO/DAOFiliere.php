@@ -5,6 +5,7 @@
  * Renvoi l'id_filiere si inserer, 0 si libelle deja présent,
  * -1 si id_departement non présent
  */
+
 function createFiliere($libelle, $id_departement) {
     // Verifie si le libelle n'est pas present
     if (libelleExisteFiliere($libelle)) {
@@ -34,6 +35,7 @@ function createFiliere($libelle, $id_departement) {
 /*
  * Return la liste des filire [$id_filiere, $libelle, $id_department]
  */
+
 function selectAvecDepartementFiliere($id_department) {
     // récupération accés base de données
     $bd = getConnexion();
@@ -45,17 +47,19 @@ function selectAvecDepartementFiliere($id_department) {
     // execution requette
     if ($stmt->execute()) {
         while ($ligne = $stmt->fetch()) {
-            $listResult[] = array("id_filiere"=>$ligne['id_filiere'],
-                                  "libelle"=>$ligne['libelle'],
-                                  "id_departement"=>$ligne['id_departement']);
+            $listResult[] = array("id_filiere" => $ligne['id_filiere'],
+                "libelle" => $ligne['libelle'],
+                "id_departement" => $ligne['id_departement']);
         }
     }
-    return $listResult;
+    echo json_encode($listResult);
 }
+
 
 /*
  * Return id_filiere si present, 0 Sinon
  */
+
 function libelleExisteFiliere($libelle) {
     // récupération accés base de données
     $bd = getConnexion();
@@ -79,6 +83,7 @@ function libelleExisteFiliere($libelle) {
 /*
  * Return true si present, false Sinon
  */
+
 function idExisteFiliere($id_filiere) {
     // récupération accés base de données
     $bd = getConnexion();

@@ -4,6 +4,7 @@
  * Créé un departement
  * Renvoi id_departement si inserer, 0 sinon
  */
+
 function createDepartement($libelle) {
 
     // Verifier si le libelle n'est pas present
@@ -28,6 +29,7 @@ function createDepartement($libelle) {
 /*
  * Return la liste des departements [$id_departement, $libelle]
  */
+
 function selectDepartement() {
     // récupération accés base de données
     $bd = getConnexion();
@@ -38,8 +40,8 @@ function selectDepartement() {
     // execution requette
     if ($stmt->execute()) {
         while ($ligne = $stmt->fetch()) {
-            $listResult[] = array('id_departement'=>$ligne['id_departement'],
-                                  'libelle' =>$ligne['libelle']);
+            $listResult[] = array('id_departement' => $ligne['id_departement'],
+                'libelle' => $ligne['libelle']);
         }
     }
     return $listResult;
@@ -48,6 +50,7 @@ function selectDepartement() {
 /*
  * Return id_departement si present, 0 Sinon
  */
+
 function libelleExisteDepartement($libelle) {
     // récupération accés base de données
     $bd = getConnexion();
@@ -71,6 +74,7 @@ function libelleExisteDepartement($libelle) {
 /*
  * Return true si present, false Sinon
  */
+
 function idExisteDepartement($id_departement) {
     // récupération accés base de données
     $bd = getConnexion();
