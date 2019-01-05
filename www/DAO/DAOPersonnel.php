@@ -138,7 +138,7 @@ function verifMDP($indentifiant, $mdp) {
 
 
     // verif is administratif
-    if (isAdministratif($id_administratif) == true) {
+    if (isAdministratif($numeropersonnel) == true) {
         return array($ligne["nom"], $ligne["prenom"], 1);
     }
 
