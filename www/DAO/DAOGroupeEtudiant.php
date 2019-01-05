@@ -72,6 +72,32 @@ function isExisteGroupeEtudiant($libelle, $id_filiere) {
     }
 }
 
+/*
+ * Return [$id_filiere, $libelle] si present, sinon une liste vide
+ */
+function selectAvecGroupeEtudiantEtudiant($id_groupe, $id_filiere); {
+    // récupération accés base de données
+    $bd = getConnexion();
+    $rqt = "SELECT ine, nom, prenom FROM groupe_etudiant G JOIN etuiant E ON G.ine = E.ine WHERE id_groupe = :id_groupe AND id_filiere = :id_filiere";
+    $stmt = $bd->prepare($rqt);
+    // ajout param
+    $stmt->bindParam(":id_groupe", $id_groupe);
+    $stmt->bindParam(":id_filiere", $id_filiere);
+    // execution requette
+    $stmt->execute();
+
+    // récupération resultat
+    $listResult = $stmt->fetchAll();
+
+    if ($stmt->execute()) {
+        while ($ligne = $stmt->fetch()) {
+            $listResult[] = array('ine'=>$ligne['ine'],
+                                  'nom' =>$ligne['nom'],
+                                  'prenom' =>$ligne['prenom']);
+        }
+    }
+}
+
 
 
 ?>
