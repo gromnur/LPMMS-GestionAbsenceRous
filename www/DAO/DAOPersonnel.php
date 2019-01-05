@@ -139,7 +139,6 @@ function verifMDP($indentifiant, $mdp) {
     // verif is administrateur
     // TODO DAO administrateur
 
-
     // verif is administratif
     if (isAdministratif($numeropersonnel) == true) {
         return array($nom, $prenom, 1);

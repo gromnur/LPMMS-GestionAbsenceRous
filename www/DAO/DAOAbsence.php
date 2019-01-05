@@ -27,29 +27,6 @@ function createAbsence($id_cours, $ine) {
 }
 
 /*
- * Return la liste des absence [$id_groupe_departement, $libelle]
- */
-function selectAvecEtudiantAbsence($ine) {
-    // récupération accés base de données
-    $bd = getConnexion();
-    $rqt = "SELECT C.id_cours, C.id_matiere, C.date_debut, C.date_fin FROM absence A JOIN cours C ON A.id_cours = C.id_cours WHERE A.ine = :ine";
-    $stmt = $bd->prepare($rqt);
-    $stmt->bindParam(":ine", $ine);
-
-    $listResult = array();
-    // execution requette
-    if ($stmt->execute()) {
-        while ($ligne = $stmt->fetch()) {
-            $listResult[] = array("id_cours"=>$ligne['id_cours'],
-                                  "id_matiere"=>$ligne['id_matiere'],
-                                  "date_debut"=>$ligne['date_debut'],
-                                  "date_fin"=>$ligne['date_fin']);
-        }
-    }
-    echo json_encode($listResult);
-}
-
-/*
  * Return [$id_filiere, $libelle] si present, sinon une liste vide
  */
 function isExisteAbsence($id_cours, $ine) {
@@ -74,5 +51,32 @@ function isExisteAbsence($id_cours, $ine) {
                      "ine" => $listResult[0]["ine"]);
     }
 }
+
+
+/*
+ * Return la liste des absence [id_cours, id_matiere, date_debut, date_fin]
+ */
+function selectAvecEtudiantAbsence($ine) {
+    // récupération accés base de données
+    $bd = getConnexion();
+    $rqt = "SELECT C.id_cours, C.id_matiere, C.date_debut, C.date_fin FROM absence A JOIN cours C ON A.id_cours = C.id_cours WHERE A.ine = :ine";
+    $stmt = $bd->prepare($rqt);
+    $stmt->bindParam(":ine", $ine);
+
+    $listResult = array();
+    // execution requette
+    if ($stmt->execute()) {
+        while ($ligne = $stmt->fetch()) {
+            $listResult[] = array("id_cours"=>$ligne['id_cours'],
+                                  "id_matiere"=>$ligne['id_matiere'],
+                                  "date_debut"=>$ligne['date_debut'],
+                                  "date_fin"=>$ligne['date_fin']);
+        }
+    }
+    echo json_encode($listResult);
+}
+
+// TODO faire les vue absence pour un groupe d'etudiant
+
 
 ?>
