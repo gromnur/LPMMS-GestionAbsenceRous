@@ -45,6 +45,7 @@ function selectAvecFiliereGroupeEtudiant($id_filiere) {
         }
     }
     echo json_encode($listResult);
+    //le commentaire
 }
 
 /*
