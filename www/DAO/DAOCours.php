@@ -9,7 +9,7 @@
  * -4 si le numero de salle n'éxiste ftp_pas,
  * -5 si l'datee de debut n'existe pas pas,
  * -6 si l'date de fin n'existe pas pas
- * TODO insere quand plusieur prof, plusieur groupe, 1 salle
+ * TODO insere quand plusieur prof
  */
 function createCours($id_matiere, $libelle_groupe, $id_filiere, $id_professeur, $numero_salle, $date_debut, $date_fin) {
 

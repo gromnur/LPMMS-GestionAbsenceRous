@@ -4,6 +4,7 @@
  * Créés groupe d'étudiant avec le departement et la filiere
  * Return [$id_filiere, $libelle], sinon une liste vide si non créé.
  */
+
 function createGroupeEtudiant($id_filiere, $libelle) {
 
     // Verifier presence du libelle/id_filiere
@@ -23,12 +24,12 @@ function createGroupeEtudiant($id_filiere, $libelle) {
     $stmt->execute();
     // renvoi le libelle généré
     return groupeExisteGroupeEtudiant($libelle, $id_filiere);
-
 }
 
 /*
  * Return la liste des groupeetudiant [$id_groupe_departement, $libelle]
  */
+
 function selectAvecFiliereGroupeEtudiant($id_filiere) {
     // récupération accés base de données
     $bd = getConnexion();
@@ -40,17 +41,17 @@ function selectAvecFiliereGroupeEtudiant($id_filiere) {
     // execution requette
     if ($stmt->execute()) {
         while ($ligne = $stmt->fetch()) {
-            $listResult[] = array("libelle"=>$ligne['libelle'],
-                                  "id_filiere"=>$ligne['id_filiere']);
+            $listResult[] = array("libelle" => $ligne['libelle'],
+                "id_filiere" => $ligne['id_filiere']);
         }
     }
     echo json_encode($listResult);
-    //le commentaire
 }
 
 /*
  * Return [$id_filiere, $libelle] si present, sinon une liste vide
  */
+
 function groupeExisteGroupeEtudiant($libelle, $id_filiere) {
     // récupération accés base de données
     $bd = getConnexion();
@@ -69,7 +70,7 @@ function groupeExisteGroupeEtudiant($libelle, $id_filiere) {
         return array();
     } else {
         return array("id_filiere" => $listResult[0]["id_filiere"],
-                     "libelle" => $listResult[0]["libelle"]);
+            "libelle" => $listResult[0]["libelle"]);
     }
 }
 
