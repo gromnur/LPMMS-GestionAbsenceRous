@@ -1,8 +1,9 @@
 <?php
 session_start();
-if (isset($_SESSION['nom']) && isset($_SESSION['prenom'])) {
+if (isset($_SESSION['nom']) && isset($_SESSION['prenom']) && isset($_SESSION['type'])) {
     $nom = $_SESSION['nom'];
     $prenom = $_SESSION['prenom'];
+    $type = $_SESSION['type'];
 } else {
     header('Location: connexion.php');
     exit();
@@ -65,7 +66,6 @@ include 'DAOFactory.php';
                     if ($_GET['include'] == "listeAbsEtud") {
                         include 'liste_un_etudiant.php';
                     }
-
                 }
                 ?>
             </div>
@@ -94,7 +94,10 @@ include 'DAOFactory.php';
                     <li>absence 2</li>
                     <li>absence 3</li>
                 </ul>
-            </li>                
+            </li>
+            <?php
+            if ($type != 2) {
+                echo'
             <HR width="120%">
             <li class="liste">Créer 
                 <ul>
@@ -102,7 +105,9 @@ include 'DAOFactory.php';
                     <li><a href="index.php?include=dept">Créer Département</a></li>
                     <li><a href="index.php?include=personnel">Créer Personnel</a></li>
                 </ul>
-            </li>
+            </li>';
+            }
+            ?>
         </ul>
 
         <script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>

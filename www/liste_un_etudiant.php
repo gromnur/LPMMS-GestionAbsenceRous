@@ -89,6 +89,7 @@
                 <thead>
                     <tr class='nomCol'>
                         <th id="matiere" class="sortTable">Matière</th>
+                        <!--ajout d'une colonne justification si administratif-->
                     </tr>
                 </thead>
                 <tbody id="tbody">

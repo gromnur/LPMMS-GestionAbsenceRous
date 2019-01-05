@@ -29,7 +29,6 @@ function createPersonnel($identifiant, $mdp, $nom, $prenom, $choixCreaPerso = -1
         return 0;
     }
 
-    $mdp = sha1($mdp);
     // Création personnel
     // récupération accés base de données
     $bd = getConnexion();

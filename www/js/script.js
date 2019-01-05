@@ -270,6 +270,49 @@ if (formCo != null) {
  *  gestion formulaire de création personnel
  */
 
+$('#comboxDeptCreaPerso').hide();
+$('#comboxFilCreaPerso').hide();
+
+
+////FILIERE
+// insertion dans combobox filiere des filieres correspondantes a un departement choisi lors du changement de departement
+$('#comboxDeptCreaPerso').change(function () {
+    var departement = $("#comboxDeptCreaPerso").find("option:selected").val();  // retourne la value associée à l'option selectionnée
+    if (departement != "null") {
+        // ajax fait appel a la fonction selectFiliereByDept de la page ajax.php avec comme paramettre l'id du departement 
+        // dans data, func sert a savoir quelle fonction de la page test.php doit etre appelé
+        $.ajax({
+            type: 'POST',
+            dataType: "json",
+            url: "Ajax.php",
+            data: {func: 'selectFiliereByDept', param: departement},
+            success: function (data) {
+//                creation d'une variable contenant les balises option du resultat de la requete obtenu et insertion dans le select voulu
+                var lesOptions = '<option value="null"></option>';
+                for (var laDonnee in data) {
+                    lesOptions = lesOptions + '<option value=' + data[laDonnee]['id_filiere'] + '>' + data[laDonnee]['libelle'] + '</option>';
+                }
+                $('#filiereComboxCreaPerso').html(lesOptions);
+            }
+        });
+    }
+});
+
+
+
+
+$('#selectCrea').change(function () {
+    var type = $("#selectCrea").find("option:selected").val();
+    if (type == 0) {
+        $('#comboxDeptCreaPerso').show();
+        $('#comboxFilCreaPerso').show();
+    }else{
+        $('#comboxDeptCreaPerso').hide();
+        $('#comboxFilCreaPerso').hide();
+    }
+})
+
+
 var formCrea = document.getElementById('formCreaPerso');
 if (formCrea != null) {
     formCrea.addEventListener('submit', function (e) {

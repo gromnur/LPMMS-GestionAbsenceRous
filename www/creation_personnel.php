@@ -22,9 +22,33 @@
                 <td> <label>Type de personnel</label></td>
                 <td><select name='choixCreaPerso' id="selectCrea">
                         <option value='null'>Choisir </option>
-                        <option value='professeur'>Professeur</option>
-                        <option value='administratif'>Administratif</option>
+                        <option value='1'>Professeur</option>
+                        <option value='0'>Administratif</option>
                     </select></td>
+            </tr>
+            <tr id="comboxDeptCreaPerso">
+                <td> <label>Département</label></td>
+                <td>
+                    <select>
+                        <option value='null'></option>
+                        <?php
+                        $var = selectDepartement();
+
+                        foreach ($var as $ligne) {
+                            echo'<option value=' . $ligne["id_departement"] . '>' . $ligne["libelle"] . '</option>';
+                        }
+                        ?>
+                    </select>
+                </td>
+            </tr>
+            <tr id="comboxFilCreaPerso">
+                <td> <label>Filière</label></td>
+                <td>
+                    <select id="filiereComboxCreaPerso" name="filiereCreaPerso">
+                        <option value="null"></option>
+
+                    </select>
+                </td>
             </tr>
         </table>
         <input type="submit" class="btn valid" value="Créer"/>

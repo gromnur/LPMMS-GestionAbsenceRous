@@ -27,7 +27,7 @@ include 'DAOFactory.php';
             } else {
                 $_SESSION['nom'] = $result[0];
                 $_SESSION['prenom'] = $result[1];
-                $_SESSION['numeropersonnel'] = $result[2];
+                $_SESSION['type'] = $result[2];
                 header('Location: http://127.0.0.1/index.php');
             }
         }

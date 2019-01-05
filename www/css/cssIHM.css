@@ -198,9 +198,11 @@ select:focus{
 .sortTable{
     cursor: pointer;
 }
-/*.table-striped > tbody > tr:nth-of-type(2n+1){
-    background-color: red !important;  pour changer la couleur une fois sur 2
-}*/
+
+/*pour changer la couleur une fois sur 2*/
+.table-striped > tbody > tr:nth-of-type(2n){
+    background-color: #b3b3b3 !important; 
+}
 
 .blockFormCrea{
     width:65%;
