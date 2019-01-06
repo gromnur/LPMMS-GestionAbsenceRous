@@ -150,10 +150,10 @@ function createCours($id_matiere, $tab_libelle_groupe, $tab_id_filiere, $tab_id_
             $stmt->bindParam(":id_cours", $id_cours);
         }
         $stmt->bindParam(":id_matiere", $id_matiere);
-        $stmt->bindParam(":id_filiere", $id_filiere);
-        $stmt->bindParam(":libelle_groupe", $libelle_groupe);
-        $stmt->bindParam(":id_professeur", $id_professeur);
-        $stmt->bindParam(":numero_salle", $numero_salle);
+        $stmt->bindParam(":id_filiere", $tab_id_filiere[$i]);
+        $stmt->bindParam(":libelle_groupe", $tab_libelle_groupe[$i]);
+        $stmt->bindParam(":id_professeur", $tab_id_professeur[$i]);
+        $stmt->bindParam(":numero_salle", $tab_numero_salle[$i]);
         $stmt->bindParam(":date_debut", $date_debut);
         $stmt->bindParam(":date_fin", $date_fin);
 
