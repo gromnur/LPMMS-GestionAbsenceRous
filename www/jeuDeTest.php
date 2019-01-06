@@ -46,11 +46,11 @@ $matiere_2 = createMatiere("html");
 echo "Insertion matiere terminé <br>";
 
 // création personne
-$pers_1 = createPersonnel("profinfo1", hash("sha256","profinfo"), "profinfo1", "profinfo1");
+$pers_1 = createPersonnel("prof", hash("sha256","prof"), "prof", "prof");
 $pers_2 = createPersonnel("profinfo2", hash("sha256","profinfo2"), "profinfo2", "profinfo2");
 $pers_3 = createPersonnel("administratifinfo", hash("sha256","administratifinfo"), "administratifinfo","administratifinfo");
 $pers_4 = createPersonnel("administratifinfo2", hash("sha256","administratifinfo2"), "administratifinfo2","administratifinfo2");
-$pers_5 = createPersonnel("administrateur", hash("sha256","administrateur"), "administrateur","administrateur");
+$pers_5 = createPersonnel("admin", hash("sha256","admin"), "admin","admin", 0);
 echo "Insertion personnel terminé <br>";
 
 // création adminif
@@ -64,6 +64,10 @@ echo "Insertion administratif terminé <br>";
 $prof_1  = createProfesseur($pers_1);
 $prof_2  = createProfesseur($pers_2);
 echo "Insertion prof terminé <br>";
+
+// insertion administrateur
+$admin_1 = createAdministrateur($pers_5);
+echo "Insertion administrateur terminé <br>";
 
 // création de cours
 $cours_1 = createCours($matiere_1, array("TD01"), array($fil_1), array($prof_1), array($salle_1), "2018-12-22 10:00:00", "2018-12-22 11:00:00");
