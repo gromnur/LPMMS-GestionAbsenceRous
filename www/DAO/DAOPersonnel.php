@@ -66,9 +66,6 @@ function createPersonnel($identifiant, $mdp, $nom, $prenom, $choixCreaPerso = -1
 
 }
 
-/*
- * Return 0 si indentifiant non present, sinon numeropersonnel
- */
 /**
  * Verifie si l'identifiant du personnel existe
  * @param  integer $identifiant L'identifiant du personnel
@@ -119,16 +116,13 @@ function idExistePersonnel($numeropersonnel) {
     }
 }
 
-/*
- * Le mot de passe doit etre crypté avec le sha256
- * Return une liste contenant [$nom, $prenom, $numeropersonnel], null sinon
- */
 /**
- *
+ * Verifie la combinaison mot de passe identifian
  * Le mot de passe doit etre crypté avec le sha256
  * @param  string $indentifiant L'identifiant du personnel
  * @param  string $mdp          Le mot de passe du personnel
- * @return array                [$nom, $prenom, $numeropersonnel]
+ * @return array                [$nom, $prenom, $choixCreaPerso]
+ * $choixCreaPerso :  0 = administrateur, 1 = administratif, 2 = professeur
  */
 function verifMDP($indentifiant, $mdp) {
 
@@ -137,11 +131,11 @@ function verifMDP($indentifiant, $mdp) {
     // récupération nom prénom utilisateur
     $rqt = "SELECT nom, prenom, numeropersonnel FROM personnel WHERE identifiant = :identifiant and mdp = :mdp";
     $stmt = $bd->prepare($rqt);
-// ajout param
+    // ajout param
     $stmt->bindParam(":identifiant", $identifiant);
     $stmt->bindParam(":mdp", $mdpSha);
 
-// execution requette
+    // execution requette
     $stmt->execute();
 
     // init nulero prsonnel

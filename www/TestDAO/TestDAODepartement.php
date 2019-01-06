@@ -2,6 +2,8 @@
 
 require('../DAOFactory.php');
 
+razBDD();
+
 $libelleDep = "departement";
 
 /*
@@ -53,5 +55,6 @@ echo "List des département : ";
 var_dump(selectDepartement());
 echo ("<br>");
 
+razBDD();
 
 ?>

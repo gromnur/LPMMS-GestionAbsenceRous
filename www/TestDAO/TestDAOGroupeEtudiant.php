@@ -2,9 +2,9 @@
 
 require('../DAOFactory.php');
 
-$libelleGrEtud = "4efz44";
-$libelleFil = "FFF14z14f45";
-$libelleDep = "aors1441zf34215";
+$libelleGrEtud = "TD01";
+$libelleFil = "info";
+$libelleDep = "departement";
 
 /*
  * Création departement

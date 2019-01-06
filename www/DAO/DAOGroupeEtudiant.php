@@ -1,14 +1,17 @@
 <?php
 
-/*
- * Créés groupe d'étudiant avec le departement et la filiere
- * Return true si créé, sinon false.
+/**
+ * Créés groupe d'étudiant avec le departement et la filiere et l'ine d'un étudiant
+ * @param  integer $ine            Numero ine de l'étudiant
+ * @param  integer $id_filiere     L'id de la filiere
+ * @param  string $libelle_groupe  Le libelle du groupe
+ * @return array                  [$libelle_groupe, $id_filiere]
  */
 function createGroupeEtudiant($ine, $id_filiere, $libelle_groupe) {
 
     // verifier l'ine
     if(ineExisteEtudiant($ine) != 0){
-        return false;
+        return array();
     }
 
     // Creation d'un groupe étudiant
@@ -27,8 +30,10 @@ function createGroupeEtudiant($ine, $id_filiere, $libelle_groupe) {
 
 }
 
-/*
- * Return la liste des groupeetudiant [$id_groupe_departement, $libelle]
+/**
+ * La liste des groupeEtudiant d'une filiere
+ * @param  integer $id_filiere l'id de la filiere
+ * @return JSON                Un Json de la liste des groupeetudiant [$id_groupe_departement, $libelle]
  */
 function selectAvecFiliereGroupeEtudiant($id_filiere) {
     // récupération accés base de données
@@ -48,8 +53,11 @@ function selectAvecFiliereGroupeEtudiant($id_filiere) {
     echo json_encode($listResult);
 }
 
-/*
- * Return [$id_filiere, $libelle] si present, sinon une liste vide
+/**
+ * Verifie si le $libelle_groupe et le $id_filiere est déja dans la Table filiere.
+ * @param  string  $libelle_groupe Le libelle du groupe
+ * @param  integer  $id_filiere    L'id de la filiere
+ * @return boolean                 True si present false sinon
  */
 function isExisteGroupeEtudiant($libelle_groupe, $id_filiere) {
     // récupération accés base de données
@@ -72,16 +80,19 @@ function isExisteGroupeEtudiant($libelle_groupe, $id_filiere) {
     }
 }
 
-/*
- * Return [$id_filiere, $libelle] si present, sinon une liste vide
+/**
+ * Sélectionne les etudiant d'un groupe d'etudiant
+ * @param  string $libelle_groupes Le libelle du groupe
+ * @param  integer $id_filiere     L'id de la filiere
+ * @return JSON                    Un JSON contenant [ine, nom, prenom]
  */
-function selectAvecGroupeEtudiantEtudiant($id_groupe, $id_filiere) {
+function selectAvecGroupeEtudiantEtudiant($libelle_groupe, $id_filiere) {
     // récupération accés base de données
     $bd = getConnexion();
-    $rqt = "SELECT ine, nom, prenom FROM groupe_etudiant G JOIN etuiant E ON G.ine = E.ine WHERE id_groupe = :id_groupe AND id_filiere = :id_filiere";
+    $rqt = "SELECT ine, nom, prenom FROM groupe_etudiant G JOIN etuiant E ON G.ine = E.ine WHERE G.id_filiere = :id_filiere AND libelle_groupe = :libelle_groupe";
     $stmt = $bd->prepare($rqt);
     // ajout param
-    $stmt->bindParam(":id_groupe", $id_groupe);
+    $stmt->bindParam(":libelle_groupe", $libelle_groupe);
     $stmt->bindParam(":id_filiere", $id_filiere);
     // execution requette
     $stmt->execute();
@@ -96,8 +107,8 @@ function selectAvecGroupeEtudiantEtudiant($id_groupe, $id_filiere) {
                                   'prenom' =>$ligne['prenom']);
         }
     }
+
+    echo json_encode($listResult);
 }
-
-
 
 ?>

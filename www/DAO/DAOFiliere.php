@@ -1,8 +1,10 @@
 <?php
 
-/*
+/**
  * Créé une filiere
- * Renvoi l'id_filiere si inserer, 0 si libelle deja présent,
+ * @param  string $libelle         Le libelle de la filiere
+ * @param  integer $id_departement L'id du département
+ * @return integer                 L'id_filiere si inserer, 0 si libelle deja présent,
  * -1 si id_departement non présent
  */
 function createFiliere($libelle, $id_departement) {
@@ -31,8 +33,9 @@ function createFiliere($libelle, $id_departement) {
     return libelleExisteFiliere($libelle);
 }
 
-/*
- * Return la liste des filieres
+/**
+ * La liste des filiere
+ * @return array La liste des filieres [$id_filiere, $libelle, $id_department]
  */
 function selectFiliere() {
     // récupération accés base de données
@@ -51,8 +54,10 @@ function selectFiliere() {
     return $listResult;
 }
 
-/*
- * Return la liste des filire [$id_filiere, $libelle, $id_department]
+/**
+ * La liste des filiere d'un département
+ * @param  integer $id_department L'id du département
+ * @return JSON                   Un Json de la liste des filiere
  */
 function selectAvecDepartementFiliere($id_department) {
     // récupération accés base de données
@@ -73,8 +78,10 @@ function selectAvecDepartementFiliere($id_department) {
     echo json_encode($listResult);
 }
 
-/*
- * Return id_filiere si present, 0 Sinon
+/**
+ * Verifie si le $libelle est déja dans la Table filiere.
+ * @param  string $libelle Le libelle de la filiere
+ * @return integer         id_filiere si present, 0 Sinon
  */
 function libelleExisteFiliere($libelle) {
     // récupération accés base de données
@@ -96,8 +103,10 @@ function libelleExisteFiliere($libelle) {
     }
 }
 
-/*
- * Return true si present, false Sinon
+/**
+ * Verifie si le $id_filiere est déja dans la Table filiere
+ * @param  integer $id_filiere L'id de la filiere
+ * @return boolean             True si présent, false sinon
  */
 function idExisteFiliere($id_filiere) {
     // récupération accés base de données
