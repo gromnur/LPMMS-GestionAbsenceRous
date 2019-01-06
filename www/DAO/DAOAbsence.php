@@ -1,8 +1,10 @@
 <?php
 
-/*
+/**
  * Créés une abscence avec le id_cours et le ine
- * Return [$id_cours, $ine], sinon une liste vide si non créé.
+ * @param  integer $id_cours  id du cours
+ * @param  string  $ine       numero ine de l'etudiant
+ * @return array              [$id_cours, $ine], sinon une liste vide si non créé.
  */
 function createAbsence($id_cours, $ine) {
 
@@ -26,9 +28,11 @@ function createAbsence($id_cours, $ine) {
 
 }
 
-/*
- * supprime une abscence avec le id_cours et le ine
- * Return liste vide , sinon [$id_cours, $ine]
+/**
+ * supprime une abscence
+ * @param  integer $id_cours l'id du cours
+ * @param  string  $ine      [description]
+ * @return array             liste vide , sinon [$id_cours, $ine]
  */
 function deleteAbsence($id_cours, $ine) {
 
@@ -52,8 +56,11 @@ function deleteAbsence($id_cours, $ine) {
 
 }
 
-/*
- * Return [$id_cours, $ine] si present, sinon une liste vide
+/**
+ * Verifie que l'absence existe
+ * @param  integer  $id_cours id du cours
+ * @param  string   $ine      numero ine de l'etudant
+ * @return array              [$id_cours, $ine] si present, sinon une liste vide
  */
 function isExisteAbsence($id_cours, $ine) {
     // récupération accés base de données
@@ -78,9 +85,12 @@ function isExisteAbsence($id_cours, $ine) {
     }
 }
 
-/*
- * supprime groupe d'étudiant avec le departement et la filiere
- * Return true si reussi, false sinon;
+/**
+ * Met à jour la justification d'une absence
+ * @param  integer $id_cours   id du cours
+ * @param  string  $ine         numero de l'étudiant
+ * @param  integer $justifier  justifiacation de l'absence : 0 (non) ou 1 (oui)
+ * @return boolean             true si reussi, false sinon;
  */
 function updateAbsence($id_cours, $ine, $justifier) {
 
@@ -105,8 +115,10 @@ function updateAbsence($id_cours, $ine, $justifier) {
 
 }
 
-/*
- * Return la liste des absence [id_cours, id_matiere, date_debut, date_fin]
+/**
+ * Renvoie la liste des absence d'un étudiant en JSON
+ * @param  string $ine Numero ine de l'étudiant
+ * @return JSON        Un JSON des absence d'un étudiant [id_cours, id_matiere, date_debut, date_fin]
  */
 function selectAvecEtudiantAbsence($ine) {
     // récupération accés base de données
@@ -130,6 +142,13 @@ function selectAvecEtudiantAbsence($ine) {
 
 /*
  * Return la liste des absence [id_cours, id_matiere, date_debut, date_fin]
+ */
+/**
+ * Renvoie la liste des absence d'un groupe d'étudiant en JSON
+ * @param  integer $id_filiere     id de la filiere
+ * @param  string  $libelle_groupe libelle du groupe
+ * @return JSON                    Un JSON contenant la liste des absence
+ *  [ine, nom, prenom, libelle, date_debut, date_fin, justifier]
  */
 function selectWithGroupeEtudiantAbsence($id_filiere, $libelle_groupe) {
     // récupération accés base de données

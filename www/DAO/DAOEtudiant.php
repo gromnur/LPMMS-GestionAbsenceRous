@@ -1,9 +1,5 @@
 <?php
 
-/*
- * Créés des etudiant avec leur nom, prenom, idGroupe et ine
- * Return true si créé/existant, false si erreur
- */
 /**
  * Créés des etudiant
  * @param  string $ine    Numero ine de l'étudiant
@@ -35,11 +31,9 @@ function createEtudiant($ine, $nom, $prenom) {
     return ineExisteEtudiant($ine);
 }
 
-/*
- * Return true si present, false Sinon
- */
+
 /**
- * [ineExisteEtudiant description]
+ * Verifie si un étudiant existe
  * @param  string $ine  Numero ine de l'étudiant
  * @return boolean      true si present, false Sinon
  */

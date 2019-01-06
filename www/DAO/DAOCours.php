@@ -79,19 +79,16 @@ function createCours($id_matiere, $tab_libelle_groupe, $tab_id_filiere, $tab_id_
     // verifiction des champs stables : $id_matiere, $date_debut, $date_fin
 
     // Verifier si $id_matiere existe.
-    echo "matiere existe <br>";
     if (!idExisteMatiere($id_matiere)) {
         return -1;
     }
 
     // Verifier si $date_debut valide
-    echo "date deb existe <br>";
     if (!isExistedate($date_debut)) {
         return -5;
     }
 
     // Verifier si $date_fin valide
-    echo "date fin existe <br>";
     if (!isExistedate($date_fin)) {
         return -6;
     }

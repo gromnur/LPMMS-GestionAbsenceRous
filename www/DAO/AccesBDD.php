@@ -24,6 +24,7 @@ function getConnexion() {
 
 /**
  * Vide la base de donné
+ * @return [type] [description]
  */
 function razBDD() {
 

@@ -87,13 +87,11 @@ function isExisteGroupeEtudiant($libelle_groupe, $id_filiere) {
 function selectAvecGroupeEtudiantEtudiant($libelle_groupe, $id_filiere) {
     // récupération accés base de données
     $bd = getConnexion();
-    $rqt = "SELECT ine, nom, prenom FROM groupe_etudiant G JOIN etudiant E ON G.ine = E.ine WHERE G.id_filiere = :id_filiere AND G.libelle_groupe = :libelle_groupe";
+    $rqt = "SELECT E.ine, E.nom, E.prenom FROM groupe_etudiant G JOIN etudiant E ON G.ine = E.ine WHERE G.id_filiere = :id_filiere AND G.libelle_groupe = :libelle_groupe";
     $stmt = $bd->prepare($rqt);
     // ajout param
     $stmt->bindParam(":libelle_groupe", $libelle_groupe);
     $stmt->bindParam(":id_filiere", $id_filiere);
-    // execution requette
-    $stmt->execute();
 
     // récupération resultat
     $listResult = $stmt->fetchAll();
