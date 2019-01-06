@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * Créé un cours. l'index $tab_libelle_groupe doit correspondre à l'index $tab_id_filiere
  * $tab_libelle_groupe et $tab_id_filiere doivent avoir le meme nombre de donné sinon erreur -2.
  * Renvoi id_cours si inserer, 0 si le cours est déja présent,
@@ -10,7 +10,6 @@
  * -4 si le numero de salle n'éxiste ftp_pas,
  * -5 si l'datee de debut n'existe pas pas,
  * -6 si l'date de fin n'existe pas pas
-
  */
 function createCours($id_matiere, $tab_libelle_groupe, $tab_id_filiere, $tab_id_professeur, $tab_numero_salle, $date_debut, $date_fin) {
 
@@ -77,8 +76,6 @@ function createCours($id_matiere, $tab_libelle_groupe, $tab_id_filiere, $tab_id_
         $count_tab_numero_salle += 1;
     }
 
-    //  Insertion 1
-
     // verifiction des champs stables : $id_matiere, $date_debut, $date_fin
 
     // Verifier si $id_matiere existe.
@@ -99,68 +96,83 @@ function createCours($id_matiere, $tab_libelle_groupe, $tab_id_filiere, $tab_id_
         return -6;
     }
 
-    // Nombre d'insertion a faire -1
-    for ($i = 1; $i < $max_count; $i++) {
-        var_dump($i);
-    }
+    // liste des resultat
+    $listResult = array();
 
-    // Verifier si le cours n'est pas présent
-    echo "verif cours existe <br>";
-    $id_cours = coursExisteCours($id_matiere, $tab_libelle_groupe[0], $tab_id_filiere[0], $tab_id_professeur[0], $tab_numero_salle[0], $date_debut, $date_fin);
-    if ($id_cours > 1) {
-        return 0;
-    }
+    // id_cours du premier cours inserer
+    $id_cours = -1;
 
-    // Verifier si $id_matiere existe.
-    echo "matiere existe <br>";
-    if (!idExisteMatiere($id_matiere)) {
-        return -1;
-    }
-
-    // Verifier si $id_groupe existe
-    echo "groupe existe <br>";
-    if (!isExisteGroupeEtudiant($libelle_groupe, $id_filiere)) {
-        return -2;
-    }
-
-    // Verifier si $id_professeur existe
-    echo "prof existe <br>";
-    if (!isProfesseur($id_professeur)) {
-        return -3;
-    }
-
-    // Verifier si $numero_salle existe
-    echo "salle existe <br>";
-    if (!numeroExisteSalle($numero_salle)) {
-        return -4;
-    }
-
-    echo "création cours existe <br>";
-    // Creation d'un cours
-    // récupération accés base de données
+    // récuperation accé BDD
     $bd = getConnexion();
 
-    // TODO table séquance pour les cours
-    $rqt = "INSERT INTO cours(id_matiere, id_filiere, libelle_groupe, id_professeur, numero_salle, date_debut, date_fin) VALUES (:id_matiere, :id_filiere, :libelle_groupe, :id_professeur, :numero_salle, :date_debut, :date_fin)";
-    $stmt = $bd->prepare($rqt);
+    // Nombre d'insertion à faire
+    for ($i = 0; $i < $max_count; $i++) {
+        // Verifier si le cours n'est pas présent
+        echo "verif cours existe ".$i."<br>";
+        if (coursExisteCours($id_matiere, $tab_libelle_groupe[$i], $tab_id_filiere[$i], $tab_id_professeur[$i], $tab_numero_salle[$i], $date_debut, $date_fin) > 0)  {
+            $listResult[] = 0;
+            continue;
+        }
 
-    echo $id_matiere.", ".$id_filiere.", '".$libelle_groupe."', ".$id_professeur.", '".$numero_salle."', '".$date_debut."', '".$date_fin."'<br>";
-    // ajout param
-    $stmt->bindParam(":id_matiere", $id_matiere);
-    $stmt->bindParam(":id_filiere", $id_filiere);
-    $stmt->bindParam(":libelle_groupe", $libelle_groupe);
-    $stmt->bindParam(":id_professeur", $id_professeur);
-    $stmt->bindParam(":numero_salle", $numero_salle);
-    $stmt->bindParam(":date_debut", $date_debut);
-    $stmt->bindParam(":date_fin", $date_fin);
+        // vérification des champs restant
 
+        // Verifier si $id_groupe existe
+        if (!isExisteGroupeEtudiant($tab_libelle_groupe[$i], $tab_id_filiere[$i])) {
+            $listResult[] = -2;
+            continue;
+        }
 
-    // Recupération de l'id cours
+        // Verifier si $id_professeur existe
+        if (!isProfesseur($tab_id_professeur[$i])) {
+            $listResult[] = -3;
+            continue;
+        }
 
-    // execution requette
-    $stmt->execute();
-    // renvoi le libelle généré
-    return coursExisteCours($id_matiere, $libelle_groupe, $id_filiere, $id_professeur, $numero_salle, $date_debut, $date_fin);
+        // Verifier si $numero_salle existe
+        if (!numeroExisteSalle($tab_numero_salle[$i])) {
+            $listResult[] = -4;
+            continue;
+        }
+
+        $rqt = "";
+        if ($i == 0) {
+            // si premier passage
+            $rqt = "INSERT INTO cours(id_matiere, id_filiere, libelle_groupe, id_professeur, numero_salle, date_debut, date_fin) VALUES (:id_matiere, :id_filiere, :libelle_groupe, :id_professeur, :numero_salle, :date_debut, :date_fin)";
+        } else {
+            // si un autre passge
+            $rqt = "INSERT INTO cours(id_cours, id_matiere, id_filiere, libelle_groupe, id_professeur, numero_salle, date_debut, date_fin) VALUES (:id_cours, :id_matiere, :id_filiere, :libelle_groupe, :id_professeur, :numero_salle, :date_debut, :date_fin)";
+        }
+
+        // Préparation de la rqt
+        $stmt = $bd->prepare($rqt);
+
+        if ($i != 0) {
+            $stmt->bindParam(":id_cours", $id_cours);
+        }
+        $stmt->bindParam(":id_matiere", $id_matiere);
+        $stmt->bindParam(":id_filiere", $id_filiere);
+        $stmt->bindParam(":libelle_groupe", $libelle_groupe);
+        $stmt->bindParam(":id_professeur", $id_professeur);
+        $stmt->bindParam(":numero_salle", $numero_salle);
+        $stmt->bindParam(":date_debut", $date_debut);
+        $stmt->bindParam(":date_fin", $date_fin);
+
+        // création du cours
+        $stmt->execute();
+
+        // récupération id_cours du premier cours insérer
+        if ($i == 0) {
+            $id_cours = coursExisteCours($id_matiere, $tab_libelle_groupe[$i], $tab_id_filiere[$i], $tab_id_professeur[$i], $tab_numero_salle[$i], $date_debut, $date_fin);
+        }
+
+        // on ajoute l'id du cour créé
+        $listResult[] = $id_cours;
+
+    } // fin boucle
+
+    // le resultat
+    var_dump($listResult);
+
 }
 
 /*
