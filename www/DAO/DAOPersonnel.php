@@ -15,7 +15,7 @@ function createPersonnel($identifiant, $mdp, $nom, $prenom, $choixCreaPerso = -1
     // verifier l'identifiant
     if(identifiantExistePersonnel($identifiant) != 0){
 
-        $numeropersonnel = identifiantExistePersonnel($identifiant)
+        $numeropersonnel = identifiantExistePersonnel($identifiant);
         // Renvoie le numero personnel si rien n'est demander en plus
         if ($choixCreaPerso == -1) {
             return identifiantExistePersonnel($identifiant);

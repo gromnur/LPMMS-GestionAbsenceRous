@@ -71,18 +71,18 @@ $cours_2 = createCours($matiere_2, array("TD02"), array($fil_1), array($prof_2),
 $cours_3 = createCours($matiere_1, array("TD01"), array($fil_2), array($prof_2), array($salle_2), "2018-12-22 11:00:00", "2018-12-22 12:00:00");
 $cours_4 = createCours($matiere_1, array("TD02"), array($fil_2), array($prof_1), array($salle_1), "2018-12-22 11:00:00", "2018-12-22 12:00:00");
 $cours_5 = createCours($matiere_2, array("CM01"), array($fil_2), array($prof_2), array($salle_1), "2018-12-22 14:00:00", "2018-12-22 16:00:00");
-echo "code retours cours 1 : ".$cours_1."<br>";
-echo "code retours cours 2 : ".$cours_2."<br>";
-echo "code retours cours 3 : ".$cours_3."<br>";
-echo "code retours cours 4 : ".$cours_4."<br>";
-echo "code retours cours 5 : ".$cours_5."<br>";
+var_dump($cours_1);
+var_dump($cours_2);
+var_dump($cours_3);
+var_dump($cours_4);
+var_dump($cours_5);
 
 // création d'abscence
-createAbsence($cours_1, $etud1);
-createAbsence($cours_5, $etud1);
-createAbsence($cours_3, $etud2);
+createAbsence($cours_1[0], $etud1);
+createAbsence($cours_5[0], $etud1);
+createAbsence($cours_3[0], $etud2);
 
-var_dump(updateAbsence($cours_3, $etud2,"1"));
+var_dump(updateAbsence($cours_3[0], $etud2,"1"));
 echo "Insertion absence terminé <br>";
 
  ?>
