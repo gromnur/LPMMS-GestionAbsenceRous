@@ -20,12 +20,16 @@ $etud5 = createEtudiant('azertyuiop005','FR5','RE5');
 echo "Insertion étudiant terminé <br>";
 
 // création groupe etudiant
-$gr_1 = createGroupeEtudiant($etud1, $fil_1,"TD01");
-$gr_1 = createGroupeEtudiant($etud5, $fil_1,"TD01");
-$gr_2 = createGroupeEtudiant($etud1, $fil_1,"TD02");
-$gr_3 = createGroupeEtudiant($etud2, $fil_2 ,"TD01");
-$gr_3 = createGroupeEtudiant($etud3, $fil_2 ,"TD01");
-$gr_4 = createGroupeEtudiant($etud4, $fil_2 ,"TD02");
+createGroupeEtudiant($etud1, $fil_1,"TD01");
+createGroupeEtudiant($etud5, $fil_1,"TD02");
+createGroupeEtudiant($etud5, $fil_1,"CM01");
+createGroupeEtudiant($etud1, $fil_1,"CM01");
+createGroupeEtudiant($etud2, $fil_2 ,"TD01");
+createGroupeEtudiant($etud3, $fil_2 ,"TD01");
+createGroupeEtudiant($etud4, $fil_2 ,"TD02");
+createGroupeEtudiant($etud2, $fil_2 ,"CM01");
+createGroupeEtudiant($etud3, $fil_2 ,"CM01");
+createGroupeEtudiant($etud4, $fil_2 ,"CM01");
 echo "Insertion groupe terminé <br>";
 
 // création salle
@@ -60,15 +64,23 @@ $prof_2  = createProfesseur($pers_2);
 echo "Insertion prof terminé <br>";
 
 // création de cours
-$cours_1 = createCours($matiere_1, "TD01", $fil_2, $prof_1, $salle_1, "2018-12-22 10:00:00", "2018-12-22 11:00:00");
-$cours_2 = createCours($matiere_2, "TD01", $fil_1, $prof_1, $salle_2, "2018-12-22 10:00:00", "2018-12-22 12:00:00");
+$cours_1 = createCours($matiere_1, "TD01", $fil_1, $prof_1, $salle_1, "2018-12-22 10:00:00", "2018-12-22 11:00:00");
+$cours_2 = createCours($matiere_2, "TD02", $fil_1, $prof_2, $salle_2, "2018-12-22 10:00:00", "2018-12-22 11:00:00");
 $cours_3 = createCours($matiere_1, "TD01", $fil_2, $prof_2, $salle_2, "2018-12-22 11:00:00", "2018-12-22 12:00:00");
 $cours_4 = createCours($matiere_1, "TD02", $fil_2, $prof_1, $salle_1, "2018-12-22 11:00:00", "2018-12-22 12:00:00");
+$cours_5 = createCours($matiere_2, "CM01", $fil_2, $prof_2, $salle_1, "2018-12-22 14:00:00", "2018-12-22 16:00:00");
 echo "code retours cours 1 : ".$cours_1."<br>";
 echo "code retours cours 2 : ".$cours_2."<br>";
 echo "code retours cours 3 : ".$cours_3."<br>";
 echo "code retours cours 4 : ".$cours_4."<br>";
+echo "code retours cours 5 : ".$cours_5."<br>";
 
+// création d'abscence
+createAbsence($cours_1, $etud1);
+createAbsence($cours_5, $etud1);
+createAbsence($cours_3, $etud2);
 
+var_dump(updateAbsence($cours_3, $etud2,"1"));
+echo "Insertion absence terminé <br>";
 
  ?>

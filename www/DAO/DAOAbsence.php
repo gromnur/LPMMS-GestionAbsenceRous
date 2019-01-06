@@ -85,7 +85,7 @@ function isExisteAbsence($id_cours, $ine) {
 function updateAbsence($id_cours, $ine, $justifier) {
 
     // Verifier presence du libelle/id_filiere
-    if (count(isExisteAbsence($id_cours, $ine)) != 0) {
+    if (count(isExisteAbsence($id_cours, $ine)) == 0) {
         return false;
     }
 
@@ -111,7 +111,7 @@ function updateAbsence($id_cours, $ine, $justifier) {
 function selectAvecEtudiantAbsence($ine) {
     // récupération accés base de données
     $bd = getConnexion();
-    $rqt = "SELECT C.id_cours, C.id_matiere, C.date_debut, C.date_fin FROM absence A JOIN cours C ON A.id_cours = C.id_cours WHERE A.ine = :ine";
+    $rqt = "SELECT M.libelle, C.date_debut, C.date_fin, A.justifier FROM absence A JOIN cours C ON A.id_cours = C.id_cours JOIN matiere M ON C.id_matiere = M.id_matiere WHERE A.ine = :ine";
     $stmt = $bd->prepare($rqt);
     $stmt->bindParam(":ine", $ine);
 
@@ -119,34 +119,37 @@ function selectAvecEtudiantAbsence($ine) {
     // execution requette
     if ($stmt->execute()) {
         while ($ligne = $stmt->fetch()) {
-            $listResult[] = array("id_cours"=>$ligne['id_cours'],
-                                  "id_matiere"=>$ligne['id_matiere'],
+            $listResult[] = array("libelle"=>$ligne['libelle'],
                                   "date_debut"=>$ligne['date_debut'],
-                                  "date_fin"=>$ligne['date_fin']);
+                                  "date_fin"=>$ligne['date_fin'],
+                                  "justifier"=>$ligne['justifier']);
         }
     }
     echo json_encode($listResult);
 }
 
-// TODO faire les vue absence pour un groupe d'etudiant
 /*
  * Return la liste des absence [id_cours, id_matiere, date_debut, date_fin]
  */
-function selectAbsenceWithFiliereGroupe($ine) {
+function selectWithGroupeEtudiantAbsence($id_filiere, $libelle_groupe) {
     // récupération accés base de données
     $bd = getConnexion();
-    $rqt = "SELECT C.id_cours, C.id_matiere, C.date_debut, C.date_fin FROM absence A JOIN cours C ON A.id_cours = C.id_cours WHERE A.ine = :ine";
+    $rqt = "SELECT A.ine, E.nom, E.prenom, M.libelle, C.date_debut, C.date_fin, A.justifier FROM etudiant E JOIN absence A ON A.ine = E.ine JOIN cours C ON A.id_cours = C.id_cours JOIN matiere M ON C.id_matiere = M.id_matiere WHERE G.id_filiere = :id_filiere AND G.libelle_groupe = :libelle_groupe";
     $stmt = $bd->prepare($rqt);
-    $stmt->bindParam(":ine", $ine);
+    $stmt->bindParam(":id_filiere", $id_filiere);
+    $stmt->bindParam(":libelle_groupe", $libelle_groupe);
 
     $listResult = array();
     // execution requette
     if ($stmt->execute()) {
         while ($ligne = $stmt->fetch()) {
-            $listResult[] = array("id_cours"=>$ligne['id_cours'],
-                                  "id_matiere"=>$ligne['id_matiere'],
+            $listResult[] = array("ine"=>$ligne['ine'],
+                                  "nom"=>$ligne['nom'],
+                                  "prenom"=>$ligne['prenom'],
+                                  "libelle"=>$ligne['libelle'],
                                   "date_debut"=>$ligne['date_debut'],
-                                  "date_fin"=>$ligne['date_fin']);
+                                  "date_fin"=>$ligne['date_fin'],
+                                  "justifier"=>$ligne['justifier']);
         }
     }
     echo json_encode($listResult);
