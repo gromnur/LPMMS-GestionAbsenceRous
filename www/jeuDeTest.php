@@ -37,7 +37,7 @@ echo "Insertion groupe terminé <br>";
 // création salle
 $salle_1 = createSalle("A300");
 $salle_2 = createSalle("A301");
-$salle_3 = createSalle("A301 A302");
+$salle_3 = createSalle("A302");
 echo "Insertion salle terminé <br>";
 
 // création matiere
