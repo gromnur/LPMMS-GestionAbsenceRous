@@ -108,7 +108,13 @@ function createCours($id_matiere, $tab_libelle_groupe, $tab_id_filiere, $tab_id_
     // Nombre d'insertion à faire
     for ($i = 0; $i < $max_count; $i++) {
         // Verifier si le cours n'est pas présent
-        echo "verif cours existe ".$i."<br>";
+        echo "verif cours existe ".$i." id_cours : ".$id_cours."<br>";
+
+        // cas ou on à pas pu recuperer le id_cours car cours deja inserer
+        if ($i > 0 && $id_cours == -1) {
+            $id_cours = coursExisteCours($id_matiere, $tab_libelle_groupe[$i-1], $tab_id_filiere[$i-1], $tab_id_professeur[$i-1], $tab_numero_salle[$i-1], $date_debut, $date_fin);
+        }
+
         if (coursExisteCours($id_matiere, $tab_libelle_groupe[$i], $tab_id_filiere[$i], $tab_id_professeur[$i], $tab_numero_salle[$i], $date_debut, $date_fin) > 0)  {
             $listResult[] = 0;
             continue;
@@ -171,7 +177,7 @@ function createCours($id_matiere, $tab_libelle_groupe, $tab_id_filiere, $tab_id_
     } // fin boucle
 
     // le resultat
-    var_dump($listResult);
+    return $listResult;
 
 }
 
@@ -225,5 +231,7 @@ function coursExisteCours($id_matiere,$libelle_groupe, $id_filiere, $id_professe
         return $listResult[0]["id_cours"];
     }
 }
+
+// TODO voir planning des cours de la semaine.
 
 ?>
