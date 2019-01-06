@@ -1,8 +1,8 @@
 <?php
 
-/*
+/**
  * Permet de se connecter à la BDD. Via un user, mdp et BDD.
- * Return : Object PDO de d'accé a la BDD
+ * @return PDO Object PDO de d'accé a la BDD
  */
 function getConnexion() {
 
@@ -22,6 +22,9 @@ function getConnexion() {
     }
 }
 
+/**
+ * Vide la base de donné
+ */
 function razBDD() {
 
     // récupération accés base de données

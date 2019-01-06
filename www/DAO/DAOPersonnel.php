@@ -1,8 +1,14 @@
 <?php
 
-/*
+/**
  * Ajoute un personnel dans la table personnel si celui-ci n'est pas present
- * Retourne le numeropersonnel du personnel ajouté, sinon 0
+ * @param  string  $identifiant    Identifiant de l'utilisateur du personnel
+ * @param  string  $mdp            Mot de passe du personnel
+ * @param  string  $nom            Nom du personnel
+ * @param  string  $prenom         Prenom du personnel
+ * @param  integer $choixCreaPerso Information sur le type de personnel que l'on
+ * souhaite créé par la suite: 0 = administratif , 1 = professeur
+ * @return integer                 Le numeropersonnel du personnel ajouté, sinon 0
  */
 function createPersonnel($identifiant, $mdp, $nom, $prenom, $choixCreaPerso = -1) {
 
@@ -63,6 +69,11 @@ function createPersonnel($identifiant, $mdp, $nom, $prenom, $choixCreaPerso = -1
 /*
  * Return 0 si indentifiant non present, sinon numeropersonnel
  */
+/**
+ * Verifie si l'identifiant du personnel existe
+ * @param  integer $identifiant L'identifiant du personnel
+ * @return integer              0 si indentifiant non présent, sinon numeropersonnel
+ */
 function identifiantExistePersonnel($identifiant) {
     // récupération accés base de données
     $bd = getConnexion();
@@ -83,8 +94,10 @@ function identifiantExistePersonnel($identifiant) {
     }
 }
 
-/*
- * Return true si present, false Sinon
+/**
+ * Verifie si le numero personnel existe
+ * @param  integer $numeropersonnel Le numeropersonnel du personnel
+ * @return boolean                  true si present, false sinon
  */
 function idExistePersonnel($numeropersonnel) {
     // récupération accés base de données
@@ -110,8 +123,14 @@ function idExistePersonnel($numeropersonnel) {
  * Le mot de passe doit etre crypté avec le sha256
  * Return une liste contenant [$nom, $prenom, $numeropersonnel], null sinon
  */
+/**
+ *
+ * Le mot de passe doit etre crypté avec le sha256
+ * @param  string $indentifiant L'identifiant du personnel
+ * @param  string $mdp          Le mot de passe du personnel
+ * @return array                [$nom, $prenom, $numeropersonnel]
+ */
 function verifMDP($indentifiant, $mdp) {
-    $mdpSha = hash("sha256",$mdp);
 
     $bd = getConnexion();
 

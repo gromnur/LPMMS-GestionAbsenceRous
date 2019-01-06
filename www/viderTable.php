@@ -2,7 +2,7 @@
 
 require('DAOFactory.php');
 
-razDBB();
+razBDD();
 
 
  ?>
