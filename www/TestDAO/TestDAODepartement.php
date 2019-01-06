@@ -2,7 +2,7 @@
 
 require('../DAOFactory.php');
 
-$libelleDep = "departementm4";
+$libelleDep = "departement";
 
 /*
  * Test création departement
