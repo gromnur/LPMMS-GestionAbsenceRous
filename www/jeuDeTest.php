@@ -66,11 +66,11 @@ $prof_2  = createProfesseur($pers_2);
 echo "Insertion prof terminé <br>";
 
 // création de cours
-$cours_1 = createCours($matiere_1, "TD01", $fil_1, $prof_1, $salle_1, "2018-12-22 10:00:00", "2018-12-22 11:00:00");
-$cours_2 = createCours($matiere_2, "TD02", $fil_1, $prof_2, $salle_2, "2018-12-22 10:00:00", "2018-12-22 11:00:00");
-$cours_3 = createCours($matiere_1, "TD01", $fil_2, $prof_2, $salle_2, "2018-12-22 11:00:00", "2018-12-22 12:00:00");
-$cours_4 = createCours($matiere_1, "TD02", $fil_2, $prof_1, $salle_1, "2018-12-22 11:00:00", "2018-12-22 12:00:00");
-$cours_5 = createCours($matiere_2, "CM01", $fil_2, $prof_2, $salle_1, "2018-12-22 14:00:00", "2018-12-22 16:00:00");
+$cours_1 = createCours($matiere_1, array("TD01"), array($fil_1), array($prof_1), array($salle_1), "2018-12-22 10:00:00", "2018-12-22 11:00:00");
+$cours_2 = createCours($matiere_2, array("TD02"), array($fil_1), array($prof_2), array($salle_2), "2018-12-22 10:00:00", "2018-12-22 11:00:00");
+$cours_3 = createCours($matiere_1, array("TD01"), array($fil_2), array($prof_2), array($salle_2), "2018-12-22 11:00:00", "2018-12-22 12:00:00");
+$cours_4 = createCours($matiere_1, array("TD02"), array($fil_2), array($prof_1), array($salle_1), "2018-12-22 11:00:00", "2018-12-22 12:00:00");
+$cours_5 = createCours($matiere_2, array("CM01"), array($fil_2), array($prof_2), array($salle_1), "2018-12-22 14:00:00", "2018-12-22 16:00:00");
 echo "code retours cours 1 : ".$cours_1."<br>";
 echo "code retours cours 2 : ".$cours_2."<br>";
 echo "code retours cours 3 : ".$cours_3."<br>";
