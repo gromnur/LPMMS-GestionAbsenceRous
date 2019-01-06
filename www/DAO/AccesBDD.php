@@ -37,10 +37,11 @@ function razBDD() {
     DELETE FROM etudiant WHERE 1;
     DELETE FROM professeur WHERE 1;
     DELETE FROM administratif WHERE 1;
+    DELETE FROM administrateur WHERE 1;
     DELETE FROM salle WHERE 1;
-    DELETE FROM personnel WHERE 1;
     DELETE FROM filiere WHERE 1;
-    DELETE FROM departement WHERE 1;";
+    DELETE FROM departement WHERE 1;
+    DELETE FROM personnel WHERE 1;";
     $stmt = $bd->prepare($rqt);
     // ajout param
     // execution requette

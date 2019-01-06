@@ -4,8 +4,10 @@ require('../DAOFactory.php');
 
 razBDD();
 
+
 // insertion des departement
 $dep_1 = createDepartement("informatique2");
+var_dump($dep_1);
 echo "Insertion departement terminé <br>";
 
 // création Filiere
