@@ -1,6 +1,6 @@
 <?php
 
-require('DAOFactory.php');
+require('../DAOFactory.php');
 
 razBDD();
 
