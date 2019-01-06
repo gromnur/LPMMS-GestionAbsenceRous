@@ -1,15 +1,22 @@
 <?php
 
 /**
- * Créé un cours. l'index $tab_libelle_groupe doit correspondre à l'index $tab_id_filiere
- * $tab_libelle_groupe et $tab_id_filiere doivent avoir le meme nombre de donné sinon erreur -2.
- * Renvoi id_cours si inserer, 0 si le cours est déja présent,
+ * Créé un cours. L'index $tab_libelle_groupe doit correspondre à l'index $tab_id_filiere
+ * @param  integer  $id_matiere         L'id de la matiere
+ * @param  array    $tab_libelle_groupe Un liste des différent groupe du cours
+ * @param  array    $tab_id_filiere     Un liste des différente filiere du cours
+ * @param  array    $tab_id_professeur  Un liste des différent professeur du cours
+ * @param  array    $tab_numero_salle   Un liste des différent salles du cours
+ * @param  DateTime $date_debut         La date de debut du cours
+ * @param  DateTime $date_fin           La date de fin du cours
+ * @return array                        Un liste contenant l'id du cours ou un code d'Erreur
+ * 0 si le cours est déja présent,
  * -1 si id_matiere n'existe pas,
- * -2 si le groupe d'étudiant n'existe pas,
- * -3 si le id_prefesseur n'existe ftp_pas,
- * -4 si le numero de salle n'éxiste ftp_pas,
- * -5 si l'datee de debut n'existe pas pas,
- * -6 si l'date de fin n'existe pas pas
+ * -2 si le groupe d'étudiant n'existe pas, ou que $tab_libelle_groupe et $tab_id_filiere n'est pas le meme nombre d'élement
+ * -3 si le id_prefesseur n'existe pas,
+ * -4 si le numero de salle n'éxiste pas,
+ * -5 si l'datee de debut n'existe pas,
+ * -6 si l'date de fin n'existe pas
  */
 function createCours($id_matiere, $tab_libelle_groupe, $tab_id_filiere, $tab_id_professeur, $tab_numero_salle, $date_debut, $date_fin) {
 
@@ -177,9 +184,11 @@ function createCours($id_matiere, $tab_libelle_groupe, $tab_id_filiere, $tab_id_
 
 }
 
-/*
+/**
  * Verifie si une datetime est correct
  * Format = '2018-01-04 23:55:59'
+ * @param  DateTime $date La date à vérifier
+ * @return boolean        True si créé false sinon
  */
 function isExistedate($date) {
     $format = 'Y-m-d H:i:s';
@@ -189,8 +198,16 @@ function isExistedate($date) {
     return $DateTime && $date == $DateTime->format($format);
 }
 
-/*
- * Return id_cours si present, 0 Sinon
+/**
+ * Verfie si un cour existe
+ * @param  integer $id_matiere      L'id de la matiere
+ * @param  string $libelle_groupe   Un libelle du groupe du cours
+ * @param  integer $id_filiere      Un id_filiere du cours
+ * @param  integer $id_professeur   Un id_professeur du cours
+ * @param  string $numero_salle     Un numero salles du cours
+ * @param  DateTime $date_debut     La date de debut du cours
+ * @param  DateTime $date_fin       La date de fin du cours
+ * @return integer                  l'id du cours
  */
 function coursExisteCours($id_matiere,$libelle_groupe, $id_filiere, $id_professeur,$numero_salle, $date_debut, $date_fin) {
     $bd = getConnexion();

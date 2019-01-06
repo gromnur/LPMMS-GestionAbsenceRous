@@ -1,10 +1,5 @@
 <?php
 
-
-/*
- * Créé un salle
- * Renvoi id_salle si inserer, 0 sinon
- */
 /**
  * Créé une salle
  * @param  string $numero_salle  Le numero de la salle
@@ -32,9 +27,6 @@ function createSalle($numero_salle) {
 
 }
 
-/*
- * Return true si present, false Sinon
- */
 /**
  * Verifie si le $numero_salle existe
  * @param  string $numero_salle Le numero de la salle
