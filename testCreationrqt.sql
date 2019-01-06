@@ -12,8 +12,6 @@ JOIN absence A ON A.id_cours = C.id_cours
 WHERE A.ine = "azertyuiop123";
 
 
-
-
 SELECT A.ine, E.nom, E.prenom, M.libelle, C.date_debut, C.date_fin, A.justifier
 FROM etudiant E
 JOIN absence A ON A.ine = E.ine
