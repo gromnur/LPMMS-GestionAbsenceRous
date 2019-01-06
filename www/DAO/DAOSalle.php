@@ -1,9 +1,9 @@
 <?php
 
-
-/*
- * Créé un salle
- * Renvoi id_salle si inserer, 0 sinon
+/**
+ * Créé une salle
+ * @param  string $numero_salle  Le numero de la salle
+ * @return integer               id_salle si inserer, 0 sinon
  */
 function createSalle($numero_salle) {
 
@@ -27,8 +27,10 @@ function createSalle($numero_salle) {
 
 }
 
-/*
- * Return true si present, false Sinon
+/**
+ * Verifie si le $numero_salle existe
+ * @param  string $numero_salle Le numero de la salle
+ * @return boolean              true si present, false Sinon
  */
 function numeroExisteSalle($numero_salle) {
 
@@ -49,5 +51,4 @@ function numeroExisteSalle($numero_salle) {
     } else {
         return true;
     }
-
 }

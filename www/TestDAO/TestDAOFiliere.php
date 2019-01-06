@@ -2,9 +2,11 @@
 
 require('../DAOFactory.php');
 
-$libelleFil = "filierehhef";
-$libelleFil2 = "filierefzefef";
-$libelleDep = "rhonejjd";
+razBDD();
+
+$libelleFil = "filiere";
+$libelleFil2 = "filiere2";
+$libelleDep = "departement";
 
 /*
  * Création departement
@@ -71,11 +73,12 @@ if ($id_fil4) {
 }
 
 /*
- * Test Select département
+ * Test Select filiere avec departement
  */
 echo "List des Filiere avec département : ";
 var_dump(selectAvecDepartementFiliere($id_dep));
 echo ("<br>");
 
+razBDD();
 
 ?>

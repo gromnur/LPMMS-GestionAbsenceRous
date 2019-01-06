@@ -3,9 +3,11 @@
 
 require('../DAOFactory.php');
 
-$identifiant = "michel.dupond6";
-$nom = "Michel4";
-$prenom = "Dupond4";
+razBDD();
+
+$identifiant = "michel.dupond";
+$nom = "Michel";
+$prenom = "Dupond";
 $mdp = hash('sha256',"lemdp");
 
 
@@ -41,7 +43,7 @@ if ($numpers3 != 0) {
 }
 
 /*
- * Test id_departement existe
+ * Test id_personnel existe
  */
 echo "Personnel numeropersonnel créé présent : ";
 $result = idExistePersonnel($numpers);
@@ -50,5 +52,7 @@ if ($result) {
 } else {
     echo "Non<br>";
 }
+
+razBDD();
 
 ?>

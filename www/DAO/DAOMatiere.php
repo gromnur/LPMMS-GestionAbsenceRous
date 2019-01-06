@@ -1,8 +1,9 @@
 <?php
 
-/*
+/**
  * Créé une matiere
- * Renvoi i si inserer, false sinon
+ * @param  string $libelle Le libelle de la matiere
+ * @return string          Le libelle
  */
 function createMatiere($libelle) {
 
@@ -26,9 +27,10 @@ function createMatiere($libelle) {
 
 }
 
-/*
+/**
  * Verifie si un libelle matiere existe
- * Return id_matiere si present, 0 Sinon
+ * @param  string $libelle Le libelle de la matiere
+ * @return integer          id_matiere si present, 0 Sinon
  */
 function libelleExisteMatiere($libelle) {
     // récupération accés base de données
@@ -50,9 +52,10 @@ function libelleExisteMatiere($libelle) {
     }
 }
 
-/*
- * Verifie si l'id_matiere existe
- * Return true si present, false Sinon
+/**
+ * Verifie si un $id_matiere existe
+ * @param  integer $id_matiere Le libelle de la matiere
+ * @return boolean             True si présent false sinon
  */
 function idExisteMatiere($id_matiere) {
     // récupération accés base de données
@@ -74,14 +77,16 @@ function idExisteMatiere($id_matiere) {
     }
 }
 
-/*
- * Renvoie la liste des matiere pour une certaine filiere
- * Return true si present, false Sinon
+
+/**
+ * Sélectionne les matiere d'une filiere
+ * @param  integer $id_filiere L'id de la filiere
+ * @return JSON                Un JSON contenant [libelle] pour chaque matiere
  */
 function selectMatiereWithFiliere($id_filiere) {
     // récupération accés base de données
     $bd = getConnexion();
-    $rqt = "SELECT M.libelle FROM matiere M JOIN cours C ON M.id_matiere = C.id_matiere JOIN filiere F ON F.id_filiere = C.id_filiere WHERE F.id_filiere = :$id_filiere;";
+    $rqt = "SELECT DISTINCT M.libelle FROM matiere M JOIN cours C ON M.id_matiere = C.id_matiere JOIN filiere F ON F.id_filiere = C.id_filiere WHERE F.id_filiere = :id_filiere";
     $stmt = $bd->prepare($rqt);
     // ajout param
     $stmt->bindParam(":id_filiere", $id_filiere);
