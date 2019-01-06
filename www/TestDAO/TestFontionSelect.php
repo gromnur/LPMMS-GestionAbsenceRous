@@ -7,13 +7,11 @@ razBDD();
 
 // insertion des departement
 $dep_1 = createDepartement("informatique2");
-var_dump($dep_1);
 echo "Insertion departement terminé <br>";
 
 // création Filiere
 $fil_1 = createFiliere("MMS",$dep_1);
 $fil_2 = createFiliere("INFO1",$dep_1);
-var_dump($fil_1);
 echo "Insertion filiere terminé <br>";
 
 // création Etudiant
@@ -79,11 +77,6 @@ $cours_2 = createCours($matiere_2, array("TD02"), array($fil_1), array($prof_2),
 $cours_3 = createCours($matiere_1, array("TD01"), array($fil_2), array($prof_2), array($salle_2), "2018-12-22 11:00:00", "2018-12-22 12:00:00");
 $cours_4 = createCours($matiere_1, array("TD02"), array($fil_2), array($prof_1), array($salle_1), "2018-12-22 11:00:00", "2018-12-22 12:00:00");
 $cours_5 = createCours($matiere_2, array("CM01"), array($fil_2), array($prof_2), array($salle_1), "2018-12-22 14:00:00", "2018-12-22 16:00:00");
-var_dump($cours_1);
-var_dump($cours_2);
-var_dump($cours_3);
-var_dump($cours_4);
-var_dump($cours_5);
 echo "Insertion cours terminé <br>";
 
 // création d'abscence
@@ -91,12 +84,48 @@ createAbsence($cours_1[0], $etud1);
 createAbsence($cours_5[0], $etud1);
 createAbsence($cours_3[0], $etud2);
 
-var_dump(updateAbsence($cours_3[0], $etud2,"1"));
+var_dump(updateAbsence($cours_1[0], $etud1,"1"));
 echo "Insertion absence terminé <br>";
 
-// testt affichage matiere
+// test selectMatiereWithFiliere
 echo "Affichage selectMatiereWithFiliere : <br>";
 selectMatiereWithFiliere($fil_1);
-echo "<br>";
+echo "<br><br>";
+
+// test select selectAvecGroupeEtudiantEtudiant
+echo "Affichage selectAvecGroupeEtudiantEtudiant : <br>";
+selectAvecGroupeEtudiantEtudiant("TD01", $fil_1);
+echo "<br><br>";
+
+// test select selectAvecFiliereGroupeEtudiant
+echo "Affichage selectAvecFiliereGroupeEtudiant : <br>";
+selectAvecFiliereGroupeEtudiant($fil_2);
+echo "<br><br>";
+
+// test select selectAvecDepartementFiliere
+echo "Affichage selectAvecDepartementFiliere : <br>";
+selectAvecDepartementFiliere($dep_1);
+echo "<br><br>";
+
+// test select selectFiliere
+echo "Affichage selectFiliere : <br>";
+print_r(selectFiliere());
+echo "<br><br>";
+
+// test select selectDepartement
+echo "Affichage selectDepartement : <br>";
+print_r(selectDepartement());
+echo "<br><br>";
+
+// test select selectAvecEtudiantAbsence
+echo "Affichage selectAvecEtudiantAbsence : etud2<br>";
+selectAvecEtudiantAbsence($etud2);
+echo "<br><br>";
+
+// test select selectWithGroupeEtudiantAbsence
+echo "Affichage selectWithGroupeEtudiantAbsence :<br>";
+selectWithGroupeEtudiantAbsence($fil_1, "TD01");
+echo "<br><br>";
+
 
  ?>

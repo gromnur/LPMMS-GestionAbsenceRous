@@ -153,7 +153,7 @@ function selectAvecEtudiantAbsence($ine) {
 function selectWithGroupeEtudiantAbsence($id_filiere, $libelle_groupe) {
     // récupération accés base de données
     $bd = getConnexion();
-    $rqt = "SELECT A.ine, E.nom, E.prenom, M.libelle, C.date_debut, C.date_fin, A.justifier FROM etudiant E JOIN absence A ON A.ine = E.ine JOIN cours C ON A.id_cours = C.id_cours JOIN matiere M ON C.id_matiere = M.id_matiere WHERE G.id_filiere = :id_filiere AND G.libelle_groupe = :libelle_groupe";
+    $rqt = "SELECT A.ine, E.nom, E.prenom, M.libelle, C.date_debut, C.date_fin, A.justifier FROM etudiant E JOIN absence A ON A.ine = E.ine JOIN cours C ON A.id_cours = C.id_cours JOIN matiere M ON C.id_matiere = M.id_matiere WHERE C.id_filiere = :id_filiere AND C.libelle_groupe = :libelle_groupe";
     $stmt = $bd->prepare($rqt);
     $stmt->bindParam(":id_filiere", $id_filiere);
     $stmt->bindParam(":libelle_groupe", $libelle_groupe);
