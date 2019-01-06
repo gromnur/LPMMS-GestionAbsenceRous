@@ -37,7 +37,7 @@ function createGroupeEtudiant($ine, $id_filiere, $libelle_groupe) {
 function selectAvecFiliereGroupeEtudiant($id_filiere) {
     // récupération accés base de données
     $bd = getConnexion();
-    $rqt = "SELECT DISTINCT libelle FROM groupe_etudiant WHERE id_filiere = :id_filiere";
+    $rqt = "SELECT DISTINCT libelle_groupe FROM groupe_etudiant WHERE id_filiere = :id_filiere";
     $stmt = $bd->prepare($rqt);
     $stmt->bindParam(":id_filiere", $id_filiere);
 
@@ -45,7 +45,7 @@ function selectAvecFiliereGroupeEtudiant($id_filiere) {
     // execution requette
     if ($stmt->execute()) {
         while ($ligne = $stmt->fetch()) {
-            $listResult[] = array("libelle"=>$ligne['libelle']);
+            $listResult[] = array("libelle_groupe"=>$ligne['libelle_groupe']);
         }
     }
     echo json_encode($listResult);
