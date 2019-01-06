@@ -18,7 +18,7 @@ function createPersonnel($identifiant, $mdp, $nom, $prenom, $choixCreaPerso = -1
         $numeropersonnel = identifiantExistePersonnel($identifiant);
         // Renvoie le numero personnel si rien n'est demander en plus
         if ($choixCreaPerso == -1) {
-            return identifiantExistePersonnel($identifiant);
+            return 0;
         }
 
         // Créé un administratif avec le $numeropersonnel
@@ -125,8 +125,7 @@ function idExistePersonnel($numeropersonnel) {
  * @return array                [$nom, $prenom, $choixCreaPerso]
  * $choixCreaPerso :  0 = administrateur, 1 = administratif, 2 = professeur
  */
-function verifMDP($indentifiant, $mdp) {
-
+function verifMDP($identifiant, $mdp) {
     $bd = getConnexion();
 
     // récupération nom prénom utilisateur
@@ -134,7 +133,7 @@ function verifMDP($indentifiant, $mdp) {
     $stmt = $bd->prepare($rqt);
     // ajout param
     $stmt->bindParam(":identifiant", $identifiant);
-    $stmt->bindParam(":mdp", $mdpSha);
+    $stmt->bindParam(":mdp", $mdp);
 
     // execution requette
     $stmt->execute();
@@ -142,7 +141,6 @@ function verifMDP($indentifiant, $mdp) {
     // init nulero prsonnel
     $numeropersonnel = -1;
 
-    $listReturn = array();
     // récupération du numero personnel
     while ($ligne = $stmt->fetch()) {
         $nom = $ligne["nom"];
@@ -151,19 +149,21 @@ function verifMDP($indentifiant, $mdp) {
     }
 
     // verif is administrateur
-    if (isAdministrateur($numeropersonnel) == true) {
+    if (isAdministrateur($numeropersonnel)) {
         return array($nom, $prenom, 0);
     }
 
     // verif is administratif
-    if (isAdministratif($numeropersonnel) == true) {
+    if (isAdministratif($numeropersonnel)) {
         return array($nom, $prenom, 1);
     }
 
     // verif is professeur
-    if (isProfesseur($numeropersonnel) == true) {
+    if (isProfesseur($numeropersonnel)) {
         return array($nom, $prenom, 2);
     }
+
+
 
 }
  ?>
