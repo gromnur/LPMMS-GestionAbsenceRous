@@ -27,18 +27,17 @@ function createGroupeEtudiant($ine, $id_filiere, $libelle_groupe) {
     $stmt->execute();
     // renvoi le libelle généré
     return array($libelle_groupe, $id_filiere);
-
 }
 
 /**
  * La liste des groupeEtudiant d'une filiere
  * @param  integer $id_filiere l'id de la filiere
- * @return JSON                Un Json de la liste des groupeetudiant [$id_groupe_departement, $libelle]
+ * @return JSON                Un Json de la liste des groupeetudiant [$libelle]
  */
 function selectAvecFiliereGroupeEtudiant($id_filiere) {
     // récupération accés base de données
     $bd = getConnexion();
-    $rqt = "SELECT libelle, id_filiere FROM groupe_etudiant WHERE id_filiere = :id_filiere";
+    $rqt = "SELECT DISTINCT libelle FROM groupe_etudiant WHERE id_filiere = :id_filiere";
     $stmt = $bd->prepare($rqt);
     $stmt->bindParam(":id_filiere", $id_filiere);
 
@@ -46,8 +45,7 @@ function selectAvecFiliereGroupeEtudiant($id_filiere) {
     // execution requette
     if ($stmt->execute()) {
         while ($ligne = $stmt->fetch()) {
-            $listResult[] = array("libelle"=>$ligne['libelle'],
-                                  "id_filiere"=>$ligne['id_filiere']);
+            $listResult[] = array("libelle"=>$ligne['libelle']);
         }
     }
     echo json_encode($listResult);
@@ -56,7 +54,7 @@ function selectAvecFiliereGroupeEtudiant($id_filiere) {
 /**
  * Verifie si le $libelle_groupe et le $id_filiere est déja dans la Table filiere.
  * @param  string  $libelle_groupe Le libelle du groupe
- * @param  integer  $id_filiere    L'id de la filiere
+ * @param  integer $id_filiere     L'id de la filiere
  * @return boolean                 True si present false sinon
  */
 function isExisteGroupeEtudiant($libelle_groupe, $id_filiere) {
@@ -84,12 +82,12 @@ function isExisteGroupeEtudiant($libelle_groupe, $id_filiere) {
  * Sélectionne les etudiant d'un groupe d'etudiant
  * @param  string $libelle_groupes Le libelle du groupe
  * @param  integer $id_filiere     L'id de la filiere
- * @return JSON                    Un JSON contenant [ine, nom, prenom]
+ * @return JSON                    Un JSON contenant [ine, nom, prenom] pour chaque etudiant
  */
 function selectAvecGroupeEtudiantEtudiant($libelle_groupe, $id_filiere) {
     // récupération accés base de données
     $bd = getConnexion();
-    $rqt = "SELECT ine, nom, prenom FROM groupe_etudiant G JOIN etuiant E ON G.ine = E.ine WHERE G.id_filiere = :id_filiere AND libelle_groupe = :libelle_groupe";
+    $rqt = "SELECT ine, nom, prenom FROM groupe_etudiant G JOIN etudiant E ON G.ine = E.ine WHERE G.id_filiere = :id_filiere AND G.libelle_groupe = :libelle_groupe";
     $stmt = $bd->prepare($rqt);
     // ajout param
     $stmt->bindParam(":libelle_groupe", $libelle_groupe);

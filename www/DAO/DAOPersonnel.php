@@ -17,7 +17,7 @@ function createPersonnel($identifiant, $mdp, $nom, $prenom, $choixCreaPerso = -1
 
         // Renvoie le numero personnel si rien n'est demander en plus
         if ($choixCreaPerso == -1) {
-            return $numeropersonnel;
+            return identifiantExistePersonnel($identifiant);
         }
 
         // Créé un administratif avec le $numeropersonnel

@@ -34,8 +34,8 @@ function createProfesseur($numeropersonnel) {
 
 /**
  * Verifie si le personnel est déja dans la Table professeur.
- * @param  [type]  $numeropersonnel Le numeropersonnel du personnel
- * @return boolean                  True si present, false sinon
+ * @param  integer  $numeropersonnel Le numeropersonnel du personnel
+ * @return boolean                   True si present, false sinon
  */
 function isProfesseur($numeropersonnel) {
     // récupération accés base de données

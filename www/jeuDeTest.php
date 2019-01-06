@@ -2,6 +2,8 @@
 
 require('DAOFactory.php');
 
+razBDD();
+
 // insertion des departement
 $dep_1 = createDepartement("informatique");
 echo "Insertion departement terminé <br>";

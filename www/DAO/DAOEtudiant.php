@@ -4,6 +4,13 @@
  * Créés des etudiant avec leur nom, prenom, idGroupe et ine
  * Return true si créé/existant, false si erreur
  */
+/**
+ * Créés des etudiant
+ * @param  string $ine    Numero ine de l'étudiant
+ * @param  string $nom    Nom de l'étudiant
+ * @param  string $prenom Prenom de l'étudiant
+ * @return string         Numero ine de l'étudiant
+ */
 function createEtudiant($ine, $nom, $prenom) {
 
     // verifier l'ine
@@ -30,6 +37,11 @@ function createEtudiant($ine, $nom, $prenom) {
 
 /*
  * Return true si present, false Sinon
+ */
+/**
+ * [ineExisteEtudiant description]
+ * @param  string $ine  Numero ine de l'étudiant
+ * @return boolean      true si present, false Sinon
  */
 function ineExisteEtudiant($ine) {
     // récupération accés base de données
