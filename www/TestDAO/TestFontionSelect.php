@@ -5,12 +5,13 @@ require('../DAOFactory.php');
 razBDD();
 
 // insertion des departement
-$dep_1 = createDepartement("informatique");
+$dep_1 = createDepartement("informatique2");
 echo "Insertion departement terminé <br>";
 
 // création Filiere
 $fil_1 = createFiliere("MMS",$dep_1);
 $fil_2 = createFiliere("INFO1",$dep_1);
+var_dump($fil_1);
 echo "Insertion filiere terminé <br>";
 
 // création Etudiant
@@ -48,7 +49,7 @@ echo "Insertion matiere terminé <br>";
 // création personne
 $pers_1 = createPersonnel("prof", hash("sha256","prof"), "prof", "prof");
 $pers_2 = createPersonnel("profinfo2", hash("sha256","profinfo2"), "profinfo2", "profinfo2");
-$pers_3 = createPersonnel("administratifinfo", hash("sha256","administratifinfo"), "administratifinfo","administratifinfo");
+$pers_3 = createPersonnel("adminif", hash("sha256","adminif"), "adminif","adminif");
 $pers_4 = createPersonnel("administratifinfo2", hash("sha256","administratifinfo2"), "administratifinfo2","administratifinfo2");
 $pers_5 = createPersonnel("admin", hash("sha256","admin"), "admin","admin", 0);
 echo "Insertion personnel terminé <br>";
@@ -69,6 +70,7 @@ echo "Insertion prof terminé <br>";
 $admin_1 = createAdministrateur($pers_5);
 echo "Insertion administrateur terminé <br>";
 
+
 // création de cours
 $cours_1 = createCours($matiere_1, array("TD01"), array($fil_1), array($prof_1), array($salle_1), "2018-12-22 10:00:00", "2018-12-22 11:00:00");
 $cours_2 = createCours($matiere_2, array("TD02"), array($fil_1), array($prof_2), array($salle_2), "2018-12-22 10:00:00", "2018-12-22 11:00:00");
@@ -80,6 +82,7 @@ var_dump($cours_2);
 var_dump($cours_3);
 var_dump($cours_4);
 var_dump($cours_5);
+echo "Insertion cours terminé <br>";
 
 // création d'abscence
 createAbsence($cours_1[0], $etud1);
@@ -88,5 +91,10 @@ createAbsence($cours_3[0], $etud2);
 
 var_dump(updateAbsence($cours_3[0], $etud2,"1"));
 echo "Insertion absence terminé <br>";
+
+// testt affichage matiere
+echo "Affichage selectMatiereWithFiliere : <br>";
+selectMatiereWithFiliere($fil_1);
+echo "<br>";
 
  ?>
