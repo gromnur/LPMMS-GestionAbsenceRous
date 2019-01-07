@@ -57,4 +57,37 @@ function isProfesseur($numeropersonnel) {
     }
 }
 
+/**
+ * Verifie si un professeur possede le nom et prenom donné
+ * @param  string $nom    Le nom du prefesseur
+ * @param  string $prenom Le prenom du professeur
+ * @return integer          Le numeropersonnel/id_professeur si present, 0 sinon
+ */
+function libelleExisteProfesseur($nom, $prenom) {
+    // récupération accés base de données
+    $bd = getConnexion();
+    $rqt = "SELECT numeropersonnel FROM personnel WHERE upper(nom) = :nom AND upper(prenom) = :prenom";
+    $stmt = $bd->prepare($rqt);
+    // ajout param
+    $stmt->bindParam(":nom", $nom);
+    $stmt->bindParam(":prenom", $prenom);
+    // execution requette
+
+    $listResult = array();
+
+    if ($stmt->execute()) {
+        while ($ligne = $stmt->fetch()) {
+            $listResult[] = $ligne['numeropersonnel'];
+        }
+    }
+
+    // verification si la personne est bie nun professeur
+    foreach ($listResult as $numeropersonnel) {
+        if (isProfesseur($numeropersonnel)) {
+            return $numeropersonnel;
+        }
+    }
+    return 0;
+}
+
  ?>

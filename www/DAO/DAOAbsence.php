@@ -171,6 +171,4 @@ function selectWithGroupeEtudiantAbsence($id_filiere, $libelle_groupe) {
     echo json_encode($listResult);
 }
 
-
-
 ?>
