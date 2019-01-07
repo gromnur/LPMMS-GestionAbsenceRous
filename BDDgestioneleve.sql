@@ -150,7 +150,7 @@ CREATE TABLE salle (
 -- Contraintes pour la table absence
 --
 ALTER TABLE absence
-  ADD CONSTRAINT fk_absence_cours FOREIGN KEY (id_cours) REFERENCES cours (id_cours),
+  ADD CONSTRAINT fk_absence_cours FOREIGN KEY (id_cours) REFERENCES cours (id_cours) ON DELETE CASCADE,
   ADD CONSTRAINT fk_absence_etudiant FOREIGN KEY (ine) REFERENCES etudiant (ine);
 
 --
