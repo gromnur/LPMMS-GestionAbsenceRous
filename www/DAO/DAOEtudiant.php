@@ -68,7 +68,7 @@ function selectWithCoursEtudiant($id_cours) {
     $bd = getConnexion();
     $rqt = "SELECT E.ine, E.nom, E.prenom FROM etudiant E JOIN groupe_etudiant G ON G.ine = E.ine JOIN cours C ON C.id_filiere = G.id_filiere AND G.libelle_groupe = C.libelle_groupe WHERE id_cours = :id_cours";
     $stmt = $bd->prepare($rqt);
-    $stmt->bindParam(":id_filiere", $id_cours);
+    $stmt->bindParam(":id_cours", $id_cours);
 
     $listResult = array();
     // execution requette

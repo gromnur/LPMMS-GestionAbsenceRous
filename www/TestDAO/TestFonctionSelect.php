@@ -133,7 +133,7 @@ echo "<br><br>";
 
 // test select selectWithCoursEtudiant
 echo "Affichage selectWithCoursEtudiant :<br>";
-selectWithCoursEtudiant($cours_1);
+selectWithCoursEtudiant($cours_3[0]);
 echo "<br><br>";
 
 
