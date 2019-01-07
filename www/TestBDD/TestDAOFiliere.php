@@ -72,13 +72,6 @@ if ($id_fil4) {
     echo "Non<br>";
 }
 
-/*
- * Test Select filiere avec departement
- */
-echo "List des Filiere avec département : ";
-var_dump(selectAvecDepartementFiliere($id_dep));
-echo ("<br>");
-
 razBDD();
 
 ?>

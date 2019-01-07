@@ -48,13 +48,6 @@ if ($id_dep4) {
     echo "Non<br>";
 }
 
-/*
- * Test Select département
- */
-echo "List des département : ";
-var_dump(selectDepartement());
-echo ("<br>");
-
 razBDD();
 
 ?>
