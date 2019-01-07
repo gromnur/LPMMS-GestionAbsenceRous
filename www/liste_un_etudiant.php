@@ -58,48 +58,22 @@ include 'SecureSession.php';
             </div>
         </div>
     </div>
-    <?php
-    /*
-     * Créé un departement
-     * Renvoi id_departement si inserer, 0 sinon
-     */
-
-    function letest() {
-        // Verifier si le libelle n'est pas present
-        // Creation d'un departement
-        // récupération accés base de données
-        $bd = getConnexion();
-
-        if (isset($_POST["test"])) {
-            $tableau = $_POST["test"];
-
-            foreach ($_POST['test'] as $libelle) {
-                $rqt = "INSERT INTO departement(libelle) VALUES (:libelle)";
-                $stmt = $bd->prepare($rqt);
-                // ajout param
-                $stmt->bindParam(":libelle", $libelle);
-                // execution requette
-                $stmt->execute();
-                // renvoi le libelle généré
-            }
-        }
-    }
-    ?>
+    
     <div class='blockTable'>
         <div class='scroll'>
-
             <table class='table table-striped' id="latable">
                 <thead>
                     <tr class='nomCol'>
                         <th id="matiere" class="sortTable">Matière</th>
+                        <th  class="sortTable">Date Début</th>
+                        <th  class="sortTable">Date Fin</th>
+                        <th class="sortTable">Justifié</th>
                         <!--ajout d'une colonne justification si administratif-->
                     </tr>
                 </thead>
-                <tbody id="tbody">
-                    <?php
-//                        for ($i = 1; $i <= 50; $i++) {
-                    ?>
-                    <tr>
+                <tbody id="tbodyAbsEtud">
+                   
+<!--                    <tr>
                         <td>azertyui</td>
                         <td>bqdfvr</td>
                         <td>Date</td>
@@ -148,7 +122,7 @@ include 'SecureSession.php';
                         <td>Matière</td>
                         <td> <input name="test[]" type="checkbox" value="<?php // echo $i         ?>" /></td>
                     </tr>
-                    <?php // }  ?>  
+                 -->
                 </tbody>
             </table>
         </div>

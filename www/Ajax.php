@@ -26,11 +26,19 @@ switch ($func) {
         break;
     case 'selectEtudByDate':
         $date = $_POST['param'];
-         ($date);
+        ($date);
+        break;
+    case 'selectAbsByEtud':
+        $abs = $_POST['param'];
+        selectAvecEtudiantAbsence($abs);
+        break;
+    case 'selectAbsByGrpFil':
+        $id_filiere = $_POST['paramFiliere'];
+        $id_grp = $_POST['paramGrp'];
+        selectWithGroupeEtudiantAbsence($id_filiere, $id_groupe);
         break;
     default:
         //function not found, error or something
         break;
 }
-
 ?>

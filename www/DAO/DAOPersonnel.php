@@ -1,15 +1,21 @@
 <?php
 
-/*
+/**
  * Ajoute un personnel dans la table personnel si celui-ci n'est pas present
- * Retourne le numeropersonnel du personnel ajouté, sinon 0
+ * @param  string  $identifiant    Identifiant de l'utilisateur du personnel
+ * @param  string  $mdp            Mot de passe du personnel
+ * @param  string  $nom            Nom du personnel
+ * @param  string  $prenom         Prenom du personnel
+ * @param  integer $choixCreaPerso Information sur le type de personnel que l'on
+ * souhaite créé par la suite: 0 = administratif , 1 = professeur
+ * @return integer                 Le numeropersonnel du personnel ajouté, sinon 0
  */
-
 function createPersonnel($identifiant, $mdp, $nom, $prenom, $choixCreaPerso = -1) {
 
     // verifier l'identifiant
 
     if (identifiantExistePersonnel($identifiant) != 0) {
+        $numeropersonnel = identifiantExistePersonnel($identifiant);
 
         // Renvoie le numero personnel si rien n'est demander en plus
         if ($choixCreaPerso == -1) {
@@ -61,10 +67,11 @@ function createPersonnel($identifiant, $mdp, $nom, $prenom, $choixCreaPerso = -1
     }
 }
 
-/*
- * Return 0 si indentifiant non present, sinon numeropersonnel
+/**
+ * Verifie si l'identifiant du personnel existe
+ * @param  integer $identifiant L'identifiant du personnel
+ * @return integer              0 si indentifiant non présent, sinon numeropersonnel
  */
-
 function identifiantExistePersonnel($identifiant) {
     // récupération accés base de données
     $bd = getConnexion();
@@ -85,10 +92,11 @@ function identifiantExistePersonnel($identifiant) {
     }
 }
 
-/*
- * Return true si present, false Sinon
+/**
+ * Verifie si le numero personnel existe
+ * @param  integer $numeropersonnel Le numeropersonnel du personnel
+ * @return boolean                  true si present, false sinon
  */
-
 function idExistePersonnel($numeropersonnel) {
     // récupération accés base de données
     $bd = getConnexion();
@@ -109,25 +117,26 @@ function idExistePersonnel($numeropersonnel) {
     }
 }
 
-/*
+/**
+ * Verifie la combinaison mot de passe identifian
  * Le mot de passe doit etre crypté avec le sha256
- * Return une liste contenant [$nom, $prenom, $numeropersonnel], null sinon
+ * @param  string $indentifiant L'identifiant du personnel
+ * @param  string $mdp          Le mot de passe du personnel
+ * @return array                [$nom, $prenom, $choixCreaPerso]
+ * $choixCreaPerso :  0 = administrateur, 1 = administratif, 2 = professeur
  */
-
 function verifMDP($identifiant, $mdp) {
-
-    $mdpSha = sha1($mdp);
 
     $bd = getConnexion();
 
     // récupération nom prénom utilisateur
     $rqt = "SELECT nom, prenom, numeropersonnel FROM personnel WHERE identifiant = :identifiant and mdp = :mdp";
     $stmt = $bd->prepare($rqt);
-// ajout param
+    // ajout param
     $stmt->bindParam(":identifiant", $identifiant);
-    $stmt->bindParam(":mdp", $mdpSha);
+    $stmt->bindParam(":mdp", $mdp);
 
-// execution requette
+    // execution requette
     $stmt->execute();
 
     // init nulero prsonnel

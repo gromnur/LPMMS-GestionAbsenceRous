@@ -4,7 +4,7 @@ include 'SecureSession.php';
 
 <div class="col-md-10 ">
     <div class="blockCombox">
-        <span class="titrePage">Liste des absences d'un étudiant</span>
+        <span class="titrePage">Liste des absences des étudiants</span>
 
         <div class="row selection">
 
@@ -46,7 +46,9 @@ include 'SecureSession.php';
                         <th id="nom" class="sortTable">Nom</th>
                         <th id="prenom" class="sortTable">Prénom</th>
                         <th id="matiere" class="sortTable">Matière</th>
-                        <th id="date" class="sortTable">Date</th>
+                        <th id="date" class="sortTable">Date début</th>
+                        <th id="dateFin" class="sortTable">Date fin</th>
+                        <th>Justifié</th>
                         <!--ajout d'une colonne justification si administratif-->
                     </tr>
                 </thead>

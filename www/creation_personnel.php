@@ -1,9 +1,9 @@
 <?php
-include 'SecureSession.php';
-
-if ($_SESSION['type'] == 2) {
-    header('Location: index.php');
-}
+//include 'SecureSession.php';
+//
+//if ($_SESSION['type'] == 2) {
+//    header('Location: index.php');
+//}
 ?>
 
 <div class="blockFormCrea">

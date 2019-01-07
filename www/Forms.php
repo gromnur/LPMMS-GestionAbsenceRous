@@ -52,11 +52,11 @@ if (isset($_POST['nomCreaPerso']) && isset($_POST['prenomCreaPerso']) && isset($
     // sinon le resultat prend la valeur retourner par la fonction createDepartement et on affiche succee
     // ou erreur
 
-    var_dump($nomCrea);
-    var_dump($prenomCrea);
-    var_dump($identifiantCrea);
-    var_dump($mdpCrea);
-    var_dump($choixCrea);
+//    var_dump($nomCrea);
+//    var_dump($prenomCrea);
+//    var_dump($identifiantCrea);
+//    var_dump($mdpCrea);
+//    var_dump($choixCrea);
     if ($nomCrea != "" && $prenomCrea != "" && $identifiantCrea != "" && $mdpCrea != "" && $choixCrea != "") {
         $resultat = createPersonnel($identifiantCrea, $mdpCreaSha, $nomCrea, $prenomCrea, $choixCrea);
     } else {

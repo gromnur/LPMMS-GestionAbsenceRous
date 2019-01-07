@@ -164,6 +164,85 @@ $('#dateCombox').change(function () {
         });
     }
 });
+//TABLE MATIERE en fonction de filiere
+// insertion dans combobox groupe des groupes correspondants a une filière choisie lors du changement de filiere
+$('#filiereCombox').change(function () {
+    var filiere = $("#filiereCombox").find("option:selected").val();  // retourne la value associée à l'option selectionnée
+    if (filiere != "null") {
+        // ajax fait appel a la fonction selectMatiereWithFiliere de la page ajax.php avec comme paramettre l'id de la filiere 
+        // dans data, func sert a savoir quelle fonction de la page ajax.php doit etre appelé
+        $.ajax({
+            type: 'POST',
+            dataType: "json",
+            url: "Ajax.php",
+            data: {func: 'selectMatiereByFiliere', param: filiere},
+            success: function (data) {
+//                creation d'une variable contenant les balises option du resultat de la requete obtenu et insertion dans le select voulu
+                var tbody = '';
+                for (var laDonnee in data) {
+                    tbody = tbody + '<tr><td>' + data[laDonnee]['libelle'] + '</td></tr>';
+                }
+                $('#tbodyMatiere').html(tbody);
+            }
+        });
+    }
+});
+//DATE en fonction de matiere
+// insertion dans combobox date des date correspondants a une matiere choisie lors du changement de matiere
+$('#etudiantCombox').change(function () {
+    var etudiant = $("#etudiantCombox").find("option:selected").val();  // retourne la value associée à l'option selectionnée
+    if (etudiant != "null") {
+        // ajax fait appel a la fonction selectMatiereWithFiliere de la page ajax.php avec comme paramettre l'id de la filiere 
+        // dans data, func sert a savoir quelle fonction de la page ajax.php doit etre appelé
+        $.ajax({
+            type: 'POST',
+            dataType: "json",
+            url: "Ajax.php",
+            data: {func: 'selectAbsByEtud', param: etudiant},
+            success: function (data) {
+//                creation d'une variable contenant les balises option du resultat de la requete obtenu et insertion dans le select voulu
+                var tbody = '';
+                for (var laDonnee in data) {
+                    var justifier = "oui";
+                    if (data[laDonnee]['justifier'] == 0) {
+                        justifier = "non";
+                    }
+                    tbody = tbody + '<tr><td>' + data[laDonnee]['libelle'] + '</td><td>' + data[laDonnee]['date_debut'] + '</td> <td>' + data[laDonnee]['date_fin'] + '</td><td>' + justifier + '</td></tr></td></tr>';
+                }
+                $('#tbodyAbsEtud').html(tbody);
+            }
+        });
+    }
+});
+//liste des absences en fonction de filiere et du groupe
+// insertion dans la table des absences correspondants a une filière et un grp choisi lors du changement du groupe
+$('#groupeCombox').change(function () {
+    var filiere = $("#filiereCombox").find("option:selected").val();  // retourne la value associée à l'option selectionnée
+    var groupe = $("#groupeCombox").find("option:selected").val();  // retourne la value associée à l'option selectionnée
+    if (groupe != "null") {
+        // ajax fait appel a la fonction selectAvecFiliereGroupeEtudiant de la page ajax.php avec comme paramettre l'id de la filiere 
+        // dans data, func sert a savoir quelle fonction de la page ajax.php doit etre appelé
+        $.ajax({
+            type: 'POST',
+            dataType: "json",
+            url: "Ajax.php",
+            data: {func: 'selectAbsByGrpFil', paramFiliere: filiere, paramGrp: groupe},
+            success: function (data) {
+//                creation d'une variable contenant les balises option du resultat de la requete obtenu et insertion dans le select voulu
+                var tbody = '';
+                for (var laDonnee in data) {
+                    var justifier = "oui";
+                    if (data[laDonnee]['justifier'] == 0) {
+                        justifier = "non";
+                    }
+                    tbody = tbody + '<tr><td>' + data[laDonnee]['nom'] + '</td><td>' + data[laDonnee]['prenom'] + '</td><td>' + data[laDonnee]['libelle'] +
+                            '</td><td>' + data[laDonnee]['date_debut'] + '</td><td>' + data[laDonnee]['date_fin'] + '</td><td>' + justifier + '</td></tr>';
+                }
+                $('#tbodyListeAbsences').html(tbody);
+            }
+        });
+    }
+});
 
 
 
@@ -216,7 +295,7 @@ $('#filiereCombox').change(function () {
 //                creation d'une variable contenant les balises option du resultat de la requete obtenu et insertion dans le select voulu
                 var lesOptions = '<option value="null">Choisir groupe</option>';
                 for (var laDonnee in data) {
-                    lesOptions = lesOptions + '<option value=' + data[laDonnee]['libelle'] + '>' + data[laDonnee]['libelle'] + '</option>';
+                    lesOptions = lesOptions + '<option value=' + data[laDonnee]['libelle_groupe'] + '>' + data[laDonnee]['libelle_groupe'] + '</option>';
                 }
                 $('#groupeCombox').html(lesOptions);
             }
@@ -246,29 +325,7 @@ $('#filiereCombox').change(function () {
         });
     }
 });
-//TABLE MATIERE en fonction de filiere
-// insertion dans combobox groupe des groupes correspondants a une filière choisie lors du changement de filiere
-$('#filiereCombox').change(function () {
-    var filiere = $("#filiereCombox").find("option:selected").val();  // retourne la value associée à l'option selectionnée
-    if (filiere != "null") {
-        // ajax fait appel a la fonction selectMatiereWithFiliere de la page ajax.php avec comme paramettre l'id de la filiere 
-        // dans data, func sert a savoir quelle fonction de la page ajax.php doit etre appelé
-        $.ajax({
-            type: 'POST',
-            dataType: "json",
-            url: "Ajax.php",
-            data: {func: 'selectMatiereByFiliere', param: filiere},
-            success: function (data) {
-//                creation d'une variable contenant les balises option du resultat de la requete obtenu et insertion dans le select voulu
-                var tbody = '';
-                for (var laDonnee in data) {
-                    tbody = tbody + '<tr><td>' + data[laDonnee]['libelle'] + '</td></tr>';
-                }
-                $('#tbodyMatiere').html(tbody);
-            }
-        });
-    }
-});
+
 
 //etudiant en fonction de filiere et du groupe
 // insertion dans combobox groupe des groupes correspondants a une filière choisie lors du changement de filiere
@@ -290,6 +347,30 @@ $('#groupeCombox').change(function () {
                     lesOptions = lesOptions + '<option value=' + data[laDonnee]['ine'] + '>' + data[laDonnee]['nom'] + " " + data[laDonnee]['prenom'] + '</option>';
                 }
                 $('#etudiantCombox').html(lesOptions);
+            }
+        });
+    }
+});
+
+//DATE en fonction de matiere
+// insertion dans combobox date des date correspondants a une matiere choisie lors du changement de matiere
+$('#matiereCombox').change(function () {
+    var matiere = $("#matiereCombox").find("option:selected").val();  // retourne la value associée à l'option selectionnée
+    if (matiere != "null") {
+        // ajax fait appel a la fonction selectMatiereWithFiliere de la page ajax.php avec comme paramettre l'id de la filiere 
+        // dans data, func sert a savoir quelle fonction de la page ajax.php doit etre appelé
+        $.ajax({
+            type: 'POST',
+            dataType: "json",
+            url: "Ajax.php",
+            data: {func: 'selectMatiereByFiliere', param: matiere},
+            success: function (data) {
+//                creation d'une variable contenant les balises option du resultat de la requete obtenu et insertion dans le select voulu
+                var lesOptions = '<option value="null">Choisir matière</option>';
+                for (var laDonnee in data) {
+                    lesOptions = lesOptions + '<option value=' + data[laDonnee]['id_matiere'] + '>' + data[laDonnee]['libelle'] + '</option>';
+                }
+                $('#matiereCombox').html(lesOptions);
             }
         });
     }

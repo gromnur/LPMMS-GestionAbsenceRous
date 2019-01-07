@@ -1,12 +1,14 @@
 <?php
 
-
-/*
+/**
  * Créé un professeur
- * Renvoi le numeropersonnel du professeur, 0 sinon
+ * @param  integer $numeropersonnel Le numeropersonnel du personnel
+ * @return integer                  Le numeropersonnel du professeur, 0 si la
+ * personne est deja professeur, -1 si le personnel n'existe pas.
  */
 function createProfesseur($numeropersonnel) {
-    // verifiaction presence professeur
+
+    // verification presence professeur
     if (isProfesseur($numeropersonnel)) {
         return 0;
     }
@@ -30,8 +32,10 @@ function createProfesseur($numeropersonnel) {
 
 }
 
-/*
- * Return true si le numeros personnel est present dans la table professeur, false sinon
+/**
+ * Verifie si le personnel est déja dans la Table professeur.
+ * @param  [type]  $numeropersonnel Le numeropersonnel du personnel
+ * @return boolean                  True si present, false sinon
  */
 function isProfesseur($numeropersonnel) {
     // récupération accés base de données
@@ -52,8 +56,5 @@ function isProfesseur($numeropersonnel) {
         return true;
     }
 }
-
-
-
 
  ?>

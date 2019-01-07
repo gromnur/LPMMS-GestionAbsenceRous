@@ -1,8 +1,9 @@
 <?php
 
-/*
+/**
  * Créé un departement
- * Renvoi id_departement si inserer, 0 sinon
+ * @param  integer $libelle Le libelle du département
+ * @return integer          id_departement si inserer, 0 sinon
  */
 
 function createDepartement($libelle) {
@@ -26,8 +27,9 @@ function createDepartement($libelle) {
     return libelleExisteDepartement($libelle);
 }
 
-/*
- * Return la liste des departements [$id_departement, $libelle]
+/**
+ * Renvoi un tableau de la liste des département
+ * @return array la liste des departements [$id_departement, $libelle]
  */
 
 function selectDepartement() {
@@ -47,8 +49,10 @@ function selectDepartement() {
     return $listResult;
 }
 
-/*
- * Return id_departement si present, 0 Sinon
+/**
+ * Verifie si le libelle est déja dans la Table departement.
+ * @param  string $libelle  le libelle du département
+ * @return integer          id_departement si present, 0 Sinon
  */
 
 function libelleExisteDepartement($libelle) {
@@ -71,8 +75,10 @@ function libelleExisteDepartement($libelle) {
     }
 }
 
-/*
- * Return true si present, false Sinon
+/**
+ * Verifie si le $id_departement est déja dans la Table departement.
+ * @param  integer $id_departement L'id du département
+ * @return boolean                 true si present, false Sinon
  */
 
 function idExisteDepartement($id_departement) {

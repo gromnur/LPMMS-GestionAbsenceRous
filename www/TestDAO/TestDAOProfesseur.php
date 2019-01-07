@@ -3,9 +3,10 @@
 
 require('../DAOFactory.php');
 
-$identifiant = "insertion.prof3";
-$nom = "insertion3";
-$prenom = "prof3";
+razBDD();
+$identifiant = "insertion.prof";
+$nom = "insertion";
+$prenom = "prof";
 $mdp = hash('sha256',"le prof");
 
 
@@ -49,5 +50,7 @@ if (isProfesseur($id_prof)) {
 } else {
     echo "Non<br>";
 }
+
+razBDD();
 
 ?>

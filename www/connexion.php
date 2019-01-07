@@ -21,7 +21,8 @@ include 'DAOFactory.php';
 
             $id = htmlspecialchars($_POST['identifiantCo']);
             $mdp = htmlspecialchars($_POST['mdpCo']);
-            $result = verifMDP($id, $mdp);
+            $mdpSha = sha1($mdp);
+            $result = verifMDP($id, $mdpSha);
             if (count($result) != 3) {
                 echo '<span class="erreurCo">Identifiant ou Mot de passe incorrect</span>';
             } else {
