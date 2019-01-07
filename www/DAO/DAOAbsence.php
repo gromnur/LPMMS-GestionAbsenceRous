@@ -140,9 +140,6 @@ function selectAvecEtudiantAbsence($ine) {
     echo json_encode($listResult);
 }
 
-/*
- * Return la liste des absence [id_cours, id_matiere, date_debut, date_fin]
- */
 /**
  * Renvoie la liste des absence d'un groupe d'étudiant en JSON
  * @param  integer $id_filiere     id de la filiere
@@ -173,5 +170,38 @@ function selectWithGroupeEtudiantAbsence($id_filiere, $libelle_groupe) {
     }
     echo json_encode($listResult);
 }
+
+/**
+ * Renvoie la liste des absence d'un groupe d'étudiant en JSON
+ * @param  integer $id_filiere     id de la filiere
+ * @param  string  $libelle_groupe libelle du groupe
+ * @return JSON                    Un JSON contenant la liste des absence
+ *  [ine, nom, prenom, libelle, date_debut, date_fin, justifier]
+ */
+function selectWithGroupeEtudiantAndMatiereAbsence($id_filiere, $libelle_groupe, $id_matiere) {
+    // récupération accés base de données
+    $bd = getConnexion();
+    $rqt = "SELECT A.ine, E.nom, E.prenom, M.libelle, C.date_debut, C.date_fin, A.justifier FROM etudiant E JOIN absence A ON A.ine = E.ine JOIN cours C ON A.id_cours = C.id_cours JOIN matiere M ON C.id_matiere = M.id_matiere WHERE C.id_filiere = :id_filiere AND C.libelle_groupe = :libelle_groupe";
+    $stmt = $bd->prepare($rqt);
+    $stmt->bindParam(":id_filiere", $id_filiere);
+    $stmt->bindParam(":libelle_groupe", $libelle_groupe);
+
+    $listResult = array();
+    // execution requette
+    if ($stmt->execute()) {
+        while ($ligne = $stmt->fetch()) {
+            $listResult[] = array("ine"=>$ligne['ine'],
+                                  "nom"=>$ligne['nom'],
+                                  "prenom"=>$ligne['prenom'],
+                                  "libelle"=>$ligne['libelle'],
+                                  "date_debut"=>$ligne['date_debut'],
+                                  "date_fin"=>$ligne['date_fin'],
+                                  "justifier"=>$ligne['justifier']);
+        }
+    }
+    echo json_encode($listResult);
+}
+
+
 
 ?>

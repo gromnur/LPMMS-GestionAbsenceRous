@@ -86,7 +86,7 @@ function idExisteMatiere($id_matiere) {
 function selectMatiereWithFiliere($id_filiere) {
     // récupération accés base de données
     $bd = getConnexion();
-    $rqt = "SELECT DISTINCT M.libelle FROM matiere M JOIN cours C ON M.id_matiere = C.id_matiere JOIN filiere F ON F.id_filiere = C.id_filiere WHERE F.id_filiere = :id_filiere";
+    $rqt = "SELECT DISTINCT M.libelle, M.id_matiere FROM matiere M JOIN cours C ON M.id_matiere = C.id_matiere JOIN filiere F ON F.id_filiere = C.id_filiere WHERE F.id_filiere = :id_filiere";
     $stmt = $bd->prepare($rqt);
     // ajout param
     $stmt->bindParam(":id_filiere", $id_filiere);
