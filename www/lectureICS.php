@@ -2,6 +2,7 @@
 // TODO modifier pour inserer directement dans la table.
 
 require 'DAOFactory.php';
+include 'Objets/Cour.php';
 //include 'DataManagement.php';
 
 //On initialize la timezone

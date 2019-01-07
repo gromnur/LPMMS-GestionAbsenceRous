@@ -2,9 +2,26 @@
 
 require('../DAOFactory.php');
 
-$libelleGrEtud = "4efz44";
-$libelleFil = "FFF14z14f45";
-$libelleDep = "aors1441zf34215";
+razBDD();
+
+$libelleGrEtud = "TD01";
+$libelleFil = "info";
+$libelleDep = "departement";
+$ine = "azertyuiop001";
+$nom = "nom";
+$prenom = "prenom";
+
+/*
+ * Création etudiant
+ */
+echo "Insertion nouvelle etudiant : ";
+$id_etudiant = createEtudiant($ine, $nom, $prenom);
+if (strlen($id_etudiant) > 2 ) {
+    echo "reussi, ine = ".$id_etudiant."<br>";
+} else {
+    echo "échoué code retours = ".$id_etudiant." <br>";
+}
+
 
 /*
  * Création departement
@@ -32,16 +49,18 @@ if ($id_fil > 0) {
  * Test création groupe_etudiant
  */
 echo "Insertion nouveau groupe_etudiant : ";
-$id_gr_etud = createGroupeEtudiant($id_fil, $libelleGrEtud);
+$id_gr_etud = createGroupeEtudiant($id_etudiant, $id_fil, $libelleGrEtud);
+var_dump($id_gr_etud);
 if (count($id_gr_etud) == 2 ) {
-    echo "reussi, id_filiere = ".$id_gr_etud["id_filiere"].", libelle = ".$id_gr_etud["libelle"]."<br>";
+    echo "reussi, id_filiere = ".$id_gr_etud[0].", libelle = ".$id_gr_etud[1]."<br>";
 } else {
     echo "échoué <br>";
 }
 
 // réinsertion groupe_etudiant
 echo "Insertion même groupe_etudiant : ";
-$id_gr_etud2 = createGroupeEtudiant($id_fil, $libelleGrEtud);
+$id_gr_etud2 = createGroupeEtudiant($id_etudiant, $id_fil, $libelleGrEtud);
+var_dump($id_gr_etud2);
 if (count($id_gr_etud2) == 0 ) {
     echo "groupe non créé, tableau vide retourné<br>";
 } else {
@@ -66,5 +85,10 @@ echo "List des GroupeEtudiant avec id_filiere : ";
 var_dump(selectAvecFiliereGroupeEtudiant($id_fil));
 echo ("<br>");
 
+/*
+ * Test select
+ */
+
+razBDD();
 
 ?>

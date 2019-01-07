@@ -1,14 +1,15 @@
 <?php
 
-
 require('../DAOFactory.php');
 
-$identifiant = "jinsertion.admin";
-$nom = "adminjif";
-$prenom = "adjminif";
-$mdp = hash('sha256',"le adminif");
-$libelleDep = "deparjtementggg";
-$libelleFil = "qljio";
+razBDD();
+
+$identifiant = "adminif.adminif";
+$nom = "adminif";
+$prenom = "adminif";
+$mdp = hash('sha256',"adminif");
+$libelleDep = "departement";
+$libelleFil = "QLIO";
 
 
 /*
@@ -104,5 +105,7 @@ if (isFiliereUniqueAdministratif($id_fil)) {
 } else {
     echo "Non filiere déja presente dans la table<br>";
 }
+
+razBDD();
 
 ?>

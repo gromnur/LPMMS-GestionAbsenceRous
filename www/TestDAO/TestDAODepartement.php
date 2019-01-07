@@ -2,7 +2,9 @@
 
 require('../DAOFactory.php');
 
-$libelleDep = "departementm4";
+razBDD();
+
+$libelleDep = "departement";
 
 /*
  * Test création departement
@@ -53,5 +55,6 @@ echo "List des département : ";
 var_dump(selectDepartement());
 echo ("<br>");
 
+razBDD();
 
 ?>

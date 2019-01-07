@@ -1,8 +1,9 @@
 <?php
 
-/*
+/**
  * Créé un administratif a partir d'un numero personnel
- * Renvoie le numeropersonnel de l'administratif, 0 sinon
+ * @param  integer $numeropersonnel  Le numeropersonnel du personnel
+ * @return integer                  Le numeropersonnel de l'administratif, 0 sinon
  */
 function createAdministratif($numeropersonnel) {
 
@@ -25,9 +26,12 @@ function createAdministratif($numeropersonnel) {
 
 }
 
-/*
- * Met à jour un administratif pourqu'il devienne chef de filiere
- * Renvoi $id_administratif si succé, renvoi 0 si l'aministrateur n'existe pas, -1 si la filiere n'existe pas
+
+/**
+ * Met à jour un administratif pourqu'il devienne chef de filiere ou lui enlever
+ * @param  integer $id_administratif Le numerospersonnel de l'administratif
+ * @param  integer $id_filiere       L'id de la filiere
+ * @return integer                  Renvoi $id_administratif si succé, renvoi 0 si l'aministrateur n'existe pas, -1 si la filiere n'existe pas
  * -2 si la filiere n'est pas unique dans la table.
  */
 function updateResponsableAdministratif($id_administratif, $id_filiere) {
@@ -60,8 +64,10 @@ function updateResponsableAdministratif($id_administratif, $id_filiere) {
 
 }
 
-/*
- * Return true si le numeros personnel est present dans la tableadministratif, false sinon
+/**
+ * Verifie si le personnel est déja dans la Table administratif.
+ * @param  integer  $id_administratif Le numeropersonnel de l'administratif
+ * @return boolean                    True si présent false sinon
  */
 function isAdministratif($id_administratif) {
 
@@ -84,8 +90,10 @@ function isAdministratif($id_administratif) {
     }
 }
 
-/*
- * Return true si le nombre de filiere est < 1
+/**
+ * Vérifie si il n'y a pas déja un chef de filiere
+ * @param  integer  $id_filiere L'id de la filiere
+ * @return boolean              true si il n'y a personne, false sinon
  */
 function isFiliereUniqueAdministratif($id_filiere) {
 

@@ -1,8 +1,8 @@
 <?php
 
-/*
+/**
  * Permet de se connecter à la BDD. Via un user, mdp et BDD.
- * Return : Object PDO de d'accé a la BDD
+ * @return PDO Object PDO de d'accé a la BDD
  */
 function getConnexion() {
 
@@ -22,30 +22,30 @@ function getConnexion() {
     }
 }
 
-/*
- * Recupere le numeros d'identifiant pour le prochain cours
+/**
+ * Vide la base de donné
+ * @return [type] [description]
  */
-function getNextCours() {
+function razBDD() {
+
     // récupération accés base de données
     $bd = getConnexion();
-    $rqt = "INSERT INTO sequance";
+    $rqt = "DELETE FROM absence WHERE 1;
+    DELETE FROM cours WHERE 1;
+    DELETE FROM matiere WHERE 1;
+    DELETE FROM groupe_etudiant WHERE 1;
+    DELETE FROM etudiant WHERE 1;
+    DELETE FROM professeur WHERE 1;
+    DELETE FROM administratif WHERE 1;
+    DELETE FROM administrateur WHERE 1;
+    DELETE FROM salle WHERE 1;
+    DELETE FROM filiere WHERE 1;
+    DELETE FROM departement WHERE 1;
+    DELETE FROM personnel WHERE 1;";
     $stmt = $bd->prepare($rqt);
+    // ajout param
     // execution requette
     $stmt->execute();
-
-    $rqt = "SELECT sequance FROM sequance";
-    $stmt = $bd->prepare($rqt);
-    // execution requette
-    $stmt->execute();
-
-    // récupération resultat
-    $listResult = $stmt->fetchAll();
-
-    if (count($listResult) == 0) {
-        return 0;
-    } else {
-        return $listResult[0]["id_departement"];
-    }
 }
 
  ?>
