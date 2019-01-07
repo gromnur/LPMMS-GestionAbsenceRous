@@ -51,7 +51,6 @@ if (isset($_POST['nomCreaPerso']) && isset($_POST['prenomCreaPerso']) && isset($
     //si le nom est vide on affecte 0 a la variable $resultat pour afficher une erreur dans la page
     // sinon le resultat prend la valeur retourner par la fonction createDepartement et on affiche succee
     // ou erreur
-
 //    var_dump($nomCrea);
 //    var_dump($prenomCrea);
 //    var_dump($identifiantCrea);
@@ -79,14 +78,19 @@ if (isset($_POST['nomCreaPerso']) && isset($_POST['prenomCreaPerso']) && isset($
  */
 if (isset($_POST["absences"])) {
     $tableau = $_POST["absences"];
-
-    foreach ($tableau as $libelle) {
-        $rqt = "INSERT INTO departement(libelle) VALUES (:libelle)";
-        $stmt = $bd->prepare($rqt);
-        // ajout param
-        $stmt->bindParam(":libelle", $libelle);
-        // execution requette
-        $stmt->execute();
-        // renvoi le libelle généré
+    $id_cours = $_POST['id_cours'];
+    foreach ($tableau as $ine) {
+        createAbsence($id_cours, $ine);
     }
+}
+
+/**
+ * suppression cours d'une filiere
+ */
+if (isset($_POST['deptFil']) && isset($_POST['dateMinDelete']) && isset($_POST['dateMaxDelete'])) {
+    $fil = $_POST['deptFil'];
+    $dateMin = $_POST['dateMinDelete'];
+    $dateMax = $_POST['dateMaxDelete'];
+    var_dump($dateMax);
+//    deleteByDateCours($fil, $dateMin, $dateMax);
 }

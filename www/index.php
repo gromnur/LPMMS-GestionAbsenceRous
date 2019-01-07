@@ -65,6 +65,9 @@ include 'DAOFactory.php';
                     if ($_GET['include'] == "absences") {
                         include 'liste_absences.php';
                     }
+                    if ($_GET['include'] == "suppressionFiliere") {
+                        include 'suppression_filiere.php';
+                    }
                 }
                 ?>
             </div>
@@ -82,8 +85,6 @@ include 'DAOFactory.php';
             <li class="liste">Absence : 
                 <ul>
                     <li><a href="index.php?include=absenceEtudiant">Absence Étudiant</a></li>
-                    <li>absence 2</li>
-                    <li>absence 3</li>
                 </ul>
             </li>
             <?php
@@ -95,6 +96,14 @@ include 'DAOFactory.php';
                         <li><a href="index.php?include=filiere">Créer filière</a></li>
                         <li><a href="index.php?include=dept">Créer Département</a></li>
                         <li><a href="index.php?include=personnel">Créer Personnel</a></li>
+                    </ul>
+                </li>
+                <HR width="120%">
+                <li class="liste">Importation
+                    <ul>
+                        <li><a href="">Importer Élève (csv)</a></li>
+                        <li><a href="">Importer plannings</a></li> 
+                        <li><a href="index.php?include=suppressionFiliere">Suppression filière</a></li>
                     </ul>
                 </li>
                 <?php

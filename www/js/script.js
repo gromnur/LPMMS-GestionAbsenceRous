@@ -156,8 +156,8 @@ $('#dateComboxAbs').change(function () {
 //                creation d'une variable contenant les balises option du resultat de la requete obtenu et insertion dans le select voulu
                 var tbody = '';
                 for (var laDonnee in data) {
-                    tbody = tbody + '<tr><td>' + data[laDonnee]['nom'] + '</td> <td>' + data[laDonnee]['prenom'] + '</td><td>'
-                            + data[laDonnee]['groupe'] + '</td><td> <input name="absences[]" type="checkbox" value="' + data[laDonnee]['ine'] + '" /></td></tr>';
+                    tbody = tbody + '<tr><td>' + data[laDonnee]['nom'] + '</td> <td>' + data[laDonnee]['prenom'] + '</td><td> <input name="absences[]" type="checkbox" value="' + data[laDonnee]['ine'] + '" />' +
+                            '<input name="id_cours" value="' + date + '" type="hidden"/></td></tr>';
                 }
                 $('#tbodyListeEtudiantsAbs').html(tbody);
             }
@@ -228,7 +228,7 @@ $('#groupeComboxListeAbs').change(function () {
         $.ajax({
             type: 'POST',
             dataType: "json",
-            url: "test.php",
+            url: "Ajax.php",
             data: {func: 'selectAbsByGrpFil', paramFil: filiere, paramGrp: groupe},
             success: function (data) {
 //                creation d'une variable contenant les balises option du resultat de la requete obtenu et insertion dans le select voulu
@@ -238,7 +238,7 @@ $('#groupeComboxListeAbs').change(function () {
                     if (data[laDonnee]['justifier'] == 0) {
                         justifier = "non";
                     }
-                    tbody = tbody + '<tr><td>' + data[laDonnee]['libelle'] + '</td><td>' + data[laDonnee]['date_debut'] + '</td> <td>' + data[laDonnee]['date_fin'] + '</td><td>' + justifier + '</td></tr></td></tr>';
+                    tbody = tbody + '<tr><td>' + data[laDonnee]['ine'] + '</td><td>' + data[laDonnee]['nom'] + '</td><td>' + data[laDonnee]['prenom'] + '</td><td>' + data[laDonnee]['libelle'] + '</td><td>' + data[laDonnee]['date_debut'] + '</td> <td>' + data[laDonnee]['date_fin'] + '</td><td>' + justifier + '</td></tr></td></tr>';
                 }
                 $('#tbodyListeAbsences').html(tbody);
             }
@@ -492,6 +492,9 @@ $('#matiereComboxAbs').change(function () {
  *  gestion formulaire de connexion
  */
 
+//si la variable formCo n'est pas initialisé alors c'est qu'on est pas dans la page
+//ou il y a le formulaire et si on ne renseigne pas tous les champs alors on annule l'envoi
+//du formulaire et on affiche une alert
 var formCo = document.getElementById('formCo');
 if (formCo != null) {
     formCo.addEventListener('submit', function (e) {
@@ -538,7 +541,8 @@ $('#comboxDeptCreaPerso').change(function () {
 
 
 
-
+//affichage des combobox de choix de departement et de filiere
+//si la combobox de choix de personnel est sur administrateur
 $('#selectCrea').change(function () {
     var type = $("#selectCrea").find("option:selected").val();
     if (type == 0) {
@@ -550,7 +554,9 @@ $('#selectCrea').change(function () {
     }
 })
 
-
+//si la variable formCo n'est pas initialisé alors c'est qu'on est pas dans la page
+//ou il y a le formulaire et si on ne renseigne pas tous les champs alors on annule l'envoi
+//du formulaire et on affiche une alert
 var formCrea = document.getElementById('formCreaPerso');
 if (formCrea != null) {
     formCrea.addEventListener('submit', function (e) {
@@ -563,6 +569,14 @@ if (formCrea != null) {
             alert("Veuillez renseigner tout les champs");
             e.preventDefault();
         }
+    });
+}
+
+var formDelet = document.getElementById('formDeleteFil');
+if (formDelet != null) {
+    formDelet.addEventListener('submit', function (e) {
+        var date = document.getElementById("date");
+//        e.preventDefault();
     });
 }
 

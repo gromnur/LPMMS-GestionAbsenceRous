@@ -43,6 +43,7 @@ include 'SecureSession.php';
             <table class='table table-striped' id="latable">
                 <thead>
                     <tr class='nomCol'>
+                        <th id="ine" class="sortTable">INE</th>
                         <th id="nom" class="sortTable">Nom</th>
                         <th id="prenom" class="sortTable">Prénom</th>
                         <th id="matiere" class="sortTable">Matière</th>
