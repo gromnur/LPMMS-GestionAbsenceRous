@@ -133,7 +133,7 @@ $('#groupeCombox').change(function () {
 //                creation d'une variable contenant les balises option du resultat de la requete obtenu et insertion dans le select voulu
                 var tbody = '';
                 for (var laDonnee in data) {
-                    tbody = tbody + '<tr><td>' + data[laDonnee]['nom'] + '</td><td>' + data[laDonnee]['prenom'] + '</td><td>' + data[laDonnee]['prenom'] + '</td></tr>';
+                    tbody = tbody + '<tr><td>' + data[laDonnee]['ine'] + '</td><td>' + data[laDonnee]['nom'] + '</td><td>' + data[laDonnee]['prenom'] + '</td></tr>';
                 }
                 $('#tbodyListeEtudiants').html(tbody);
             }
