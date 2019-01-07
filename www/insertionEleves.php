@@ -2,8 +2,11 @@
 
 require 'DAOFactory.php';
 
+/**
+ * Insere des eleves a partir d'un fichier CSV
+ * @param  string $csv Chemin vers le fichier CSV
+ */
 function insertionElevesFromCSV($csv) {
-
 	$row = 1;
 	if (($handle = fopen($csv, "r")) !== FALSE) {
 		while (($eleves = fgetcsv($handle, 0, ";")) !== FALSE) {
