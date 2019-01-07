@@ -29,28 +29,28 @@ function createCours($id_matiere, $tab_libelle_groupe, $tab_id_filiere, $tab_id_
     //verifier que les variable sont bien des tableaux
     if (!is_array($tab_libelle_groupe) || $count_tab_libelle_groupe < 1) {
         // si pas tableau code erreur lié
-        return -2;
+        return array(-2);
     }
 
     if (!is_array($tab_id_filiere) || $count_tab_id_filiere < 1) {
         // si pas tableau code erreur lié
-        return -2;
+        return array(-2);
     }
 
     if (!is_array($tab_id_professeur) || $count_tab_id_professeur < 1) {
         // si pas tableau code erreur lié
-        return -3;
+        return array(-3);
     }
 
     if (!is_array($tab_numero_salle) || $count_tab_numero_salle < 1) {
         // si pas tableau code erreur lié
-        return -4;
+        return array(-4);
     }
 
     // Mise a niveau des tableaux
     // $tab_libelle_groupe et $tab_id_filiere doivent avoir le meme nombre de donné sinon erreur -2
     if ($count_tab_libelle_groupe != $count_tab_id_filiere) {
-        return -2;
+        return array(-2);
     }
 
     // Recupération du max des count de chaque tableau
@@ -87,17 +87,17 @@ function createCours($id_matiere, $tab_libelle_groupe, $tab_id_filiere, $tab_id_
 
     // Verifier si $id_matiere existe.
     if (!idExisteMatiere($id_matiere)) {
-        return -1;
+        return array(-1);
     }
 
     // Verifier si $date_debut valide
     if (!isExistedate($date_debut)) {
-        return -5;
+        return array(-5);
     }
 
     // Verifier si $date_fin valide
     if (!isExistedate($date_fin)) {
-        return -6;
+        return array(-6);
     }
 
     // liste des resultat
@@ -245,11 +245,15 @@ function coursExisteCours($id_matiere,$libelle_groupe, $id_filiere, $id_professe
     }
 }
 
-
+/**
+ * Suprime un cours appartenant à une filiere et comris dans un intervalle de date.
+ * @param  [type] $id_filiere L'id de la filiere
+ * @param  [type] $date_debut Date debut intervalle
+ * @param  [type] $date_fin   Date fin intervalle, les cours à cette date ne seron pas supprimé
+ */
 function deleteByDateCours($id_filiere, $date_debut, $date_fin) {
     $bd = getConnexion();
 
-    //SELECT id_cours FROM cours WHERE id_matiere=39 AND id_filiere=40 AND libelle_groupe='TD01' AND id_professeur=97 AND numero_salle="A300" AND date_debut='2018-12-22 10:00:00' AND date_fin='2018-12-22 12:00:00'
     $rqt = "DELETE FROM cours WHERE id_filiere = :id_filiere AND date_debut BETWEEN :date_deb_sup AND :date_fin_sup";
 
     $stmt = $bd->prepare($rqt);
@@ -265,11 +269,6 @@ function deleteByDateCours($id_filiere, $date_debut, $date_fin) {
     // récupération resultat
     $listResult = $stmt->fetchAll();
 
-    if (count($listResult) == 0) {
-        return 0;
-    } else {
-        return $listResult[0]["id_cours"];
-    }
 }
 
 /**
@@ -299,7 +298,5 @@ function selectWithGroupeEtudiantMatiereCours($id_filiere, $libelle_groupe, $id_
     }
     echo json_encode($listResult);
 }
-
-// TODO voir planning des cours de la semaine.
 
 ?>
