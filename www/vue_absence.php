@@ -29,7 +29,7 @@ include 'SecureSession.php';
             </div>
             <div class="col-xs-4">
                 <label>Groupe : </label><br>
-                <select id="groupeCombox">
+                <select id="groupeComboxAbs">
                     <option value="null">Choisir groupe</option>
 
                 </select>
@@ -37,14 +37,14 @@ include 'SecureSession.php';
             <br>
             <div class="col-xs-6">
                 <label>Matière : </label><br>
-                <select id="matiereCombox">
+                <select id="matiereComboxAbs">
                     <option value="null">Choisir matière</option>
 
                 </select>
             </div>
             <div class="col-xs-6">
                 <label>Date/Heure : </label><br>
-                <select id="dateCombox">
+                <select id="dateComboxAbs">
                     <option value='null'>Choisir date</option>
                 </select>
             </div>
@@ -84,7 +84,7 @@ include 'SecureSession.php';
                             <th>Absent</th>
                         </tr>
                     </thead>
-                    <tbody id="tbodyListeEtudiants">
+                    <tbody id="tbodyListeEtudiantsAbs">
                         <tr>
                             <td>azertyui</td>
                             <td>bqdfvr</td>

@@ -23,10 +23,16 @@ switch ($func) {
         $id_filiere = $_POST['param'];
         selectMatiereWithFiliere($id_filiere);
         break;
-//    case 'selectEtudByDate':
-//        $date = $_POST['param'];
-//        ($date);
-//        break;
+    case 'selectDateByMatiereFilGrp':
+        $id_matiere = $_POST['paramMatiere'];
+        $id_filiere = $_POST['paramFil'];
+        $libelle_groupe = $_POST['paramGrp'];
+        selectWithGroupeEtudiantMatiereCours($id_filiere, $libelle_groupe, $id_matiere);
+        break;
+    case 'selectEtudByDate':
+        $date = $_POST['param'];
+        ($date);
+        break;
     case 'selectAbsByEtud':
         $abs = $_POST['param'];
         selectAvecEtudiantAbsence($abs);
@@ -36,7 +42,7 @@ switch ($func) {
         $id_grp = $_POST['paramGrp'];
 //        var_dump($id_filiere);
 //        var_dump($id_grp);
-        selectWithGroupeEtudiantAbsence(8, "TD01");
+        selectWithGroupeEtudiantAbsence($id_filiere, $id_grp);
         break;
     default:
         //function not found, error or something

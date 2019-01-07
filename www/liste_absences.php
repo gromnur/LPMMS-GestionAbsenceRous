@@ -24,14 +24,14 @@ include 'SecureSession.php';
             </div>
             <div class="col-xs-4">
                 <label>Filière : </label><br>
-                <select id="filiereCombox">
+                <select id="filiereComboxListeAbs">
                     <option value="null">Choisir filière</option>
 
                 </select>
             </div>
             <div class="col-xs-4">
                 <label>Groupe : </label><br>
-                <select id="groupeComboxAbs">
+                <select id="groupeComboxListeAbs">
                     <option value="null">Choisir groupe</option>
 
                 </select>

@@ -245,6 +245,65 @@ function coursExisteCours($id_matiere,$libelle_groupe, $id_filiere, $id_professe
     }
 }
 
+
+function deleteByDateCours($id_filiere, $date_debut, $date_fin) {
+    $bd = getConnexion();
+
+    //SELECT id_cours FROM cours WHERE id_matiere=39 AND id_filiere=40 AND libelle_groupe='TD01' AND id_professeur=97 AND numero_salle="A300" AND date_debut='2018-12-22 10:00:00' AND date_fin='2018-12-22 12:00:00'
+    $rqt = "DELETE FROM cours WHERE id_filiere = :id_filiere AND date_debut BETWEEN :date_deb_sup AND : date_fin_sup";
+
+    $stmt = $bd->prepare($rqt);
+
+    // ajout param
+    $stmt->bindParam(":id_matiere", $id_matiere);
+    $stmt->bindParam(":id_filiere", $id_filiere);
+    $stmt->bindParam(":libelle_groupe", $libelle_groupe);
+    $stmt->bindParam(":id_professeur", $id_professeur);
+    $stmt->bindParam(":numero_salle", $numero_salle);
+    $stmt->bindParam(":date_debut", $date_debut);
+    $stmt->bindParam(":date_fin", $date_fin);
+
+    // execution requette
+    $stmt->execute();
+
+    // récupération resultat
+    $listResult = $stmt->fetchAll();
+
+    if (count($listResult) == 0) {
+        return 0;
+    } else {
+        return $listResult[0]["id_cours"];
+    }
+}
+
+/**
+ * Renvoie la liste des absence d'un groupe d'étudiant en JSON
+ * @param  integer $id_filiere     id de la filiere
+ * @param  string  $libelle_groupe libelle du groupe
+ * @return JSON                    Un JSON contenant la liste des absence
+ *  [ine, nom, prenom, libelle, date_debut, date_fin, justifier]
+ */
+function selectWithGroupeEtudiantMatiereCours($id_filiere, $libelle_groupe, $id_matiere) {
+    // récupération accés base de données
+    $bd = getConnexion();
+    $rqt = "SELECT C.id_cours, C.date_debut FROM cours C JOIN matiere M ON C.id_matiere = M.id_matiere WHERE C.id_filiere = :id_filiere AND C.libelle_groupe = :libelle_groupe AND C.id_matiere = :id_matiere ";
+    $stmt = $bd->prepare($rqt);
+    $stmt->bindParam(":id_filiere", $id_filiere);
+    $stmt->bindParam(":libelle_groupe", $libelle_groupe);
+    $stmt->bindParam(":id_matiere", $id_matiere);
+
+    $listResult = array();
+    // execution requette
+    if ($stmt->execute()) {
+        while ($ligne = $stmt->fetch()) {
+            $listResult[] = array(
+                "id_cours"=>$ligne['id_cours'],
+                "date_debut"=>$ligne['date_debut']);
+        }
+    }
+    echo json_encode($listResult);
+}
+
 // TODO voir planning des cours de la semaine.
 
 ?>
