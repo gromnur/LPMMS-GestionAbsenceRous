@@ -2,8 +2,6 @@
 
 require 'DAOFactory.php';
 
-insertionElevesFromCSV("Eleve.csv");
-
 /**
  * Insere des eleves à partir d'un fichier CSV
  * @param  string $csv Chemin vers le fichier CSV
