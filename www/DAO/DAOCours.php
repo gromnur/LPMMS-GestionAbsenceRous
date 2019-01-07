@@ -280,6 +280,7 @@ function deleteByDateCours($id_filiere, $date_debut, $date_fin) {
  * Renvoie la liste des absence d'un groupe d'étudiant en JSON
  * @param  integer $id_filiere     id de la filiere
  * @param  string  $libelle_groupe libelle du groupe
+ * @param  string  $libelle_groupe libelle du groupe
  * @return JSON                    Un JSON contenant la liste des absence
  *  [ine, nom, prenom, libelle, date_debut, date_fin, justifier]
  */
