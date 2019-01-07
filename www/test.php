@@ -143,3 +143,34 @@ require('DAO/AccesBDD.php');
 //
 //createDepartement($nomCreaDept);
 
+function selectWithGroupeEtudiantAbsence($id_filiere, $libelle_groupe) {
+    // récupération accés base de données
+    $bd = getConnexion();
+    $rqt = "SELECT A.ine, E.nom, E.prenom, M.libelle, C.date_debut, C.date_fin, A.justifier FROM etudiant E JOIN absence A ON A.ine = E.ine JOIN cours C ON A.id_cours = C.id_cours JOIN matiere M ON C.id_matiere = M.id_matiere WHERE C.id_filiere = :id_filiere AND C.libelle_groupe = :libelle_groupe";
+    $stmt = $bd->prepare($rqt);
+    $stmt->bindParam(":id_filiere", $id_filiere);
+    $stmt->bindParam(":libelle_groupe", $libelle_groupe);
+
+    $listResult = array();
+    // execution requette
+    if ($stmt->execute()) {
+        while ($ligne = $stmt->fetch()) {
+            $listResult[] = array("ine" => $ligne['ine'],
+                "nom" => $ligne['nom'],
+                "prenom" => $ligne['prenom'],
+                "libelle" => $ligne['libelle'],
+                "date_debut" => $ligne['date_debut'],
+                "date_fin" => $ligne['date_fin'],
+                "justifier" => $ligne['justifier']);
+        }
+    }
+    echo json_encode($listResult);
+}
+
+//$id_filiere = $_POST['paramFiliere'];
+//$id_grp = $_POST['paramGrp'];
+//        var_dump($id_filiere);
+//        var_dump($id_grp);
+$te = selectWithGroupeEtudiantAbsence(8, "TD01");
+
+echo json_decode($te);

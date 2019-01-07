@@ -7,7 +7,7 @@ include 'SecureSession.php';
         <span class="titrePage">Gestion des absences des étudiants</span>
 
         <div class="row selection">
-            <div class="col-xs-3">
+            <div class="col-xs-4">
                 <label>Departement : </label><br>
                 <select id="deptCombox">
                     <option value='null'>Choisir département</option>
@@ -20,21 +20,29 @@ include 'SecureSession.php';
                     ?>
                 </select>
             </div>
-            <div class="col-xs-3">
+            <div class="col-xs-4">
                 <label>Filière : </label><br>
                 <select id="filiereCombox">
                     <option value="null">Choisir filière</option>
 
                 </select>
             </div>
-            <div class="col-xs-3">
+            <div class="col-xs-4">
+                <label>Groupe : </label><br>
+                <select id="groupeCombox">
+                    <option value="null">Choisir groupe</option>
+
+                </select>
+            </div>
+            <br>
+            <div class="col-xs-6">
                 <label>Matière : </label><br>
                 <select id="matiereCombox">
                     <option value="null">Choisir matière</option>
 
                 </select>
             </div>
-            <div class="col-xs-3">
+            <div class="col-xs-6">
                 <label>Date/Heure : </label><br>
                 <select id="dateCombox">
                     <option value='null'>Choisir date</option>

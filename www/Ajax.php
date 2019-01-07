@@ -5,7 +5,6 @@ require('DAOFactory.php');
 //le switch sert de "routeur" et appelle la fonction demandé par l'appel ajax 
 //en fonction du parametre passer en POST 'func'
 $func = $_POST['func'];
-
 switch ($func) {
     case 'selectFiliereByDept':
         $id = $_POST['param'];
@@ -24,10 +23,10 @@ switch ($func) {
         $id_filiere = $_POST['param'];
         selectMatiereWithFiliere($id_filiere);
         break;
-    case 'selectEtudByDate':
-        $date = $_POST['param'];
-        ($date);
-        break;
+//    case 'selectEtudByDate':
+//        $date = $_POST['param'];
+//        ($date);
+//        break;
     case 'selectAbsByEtud':
         $abs = $_POST['param'];
         selectAvecEtudiantAbsence($abs);
@@ -35,7 +34,9 @@ switch ($func) {
     case 'selectAbsByGrpFil':
         $id_filiere = $_POST['paramFiliere'];
         $id_grp = $_POST['paramGrp'];
-        selectWithGroupeEtudiantAbsence($id_filiere, $id_groupe);
+//        var_dump($id_filiere);
+//        var_dump($id_grp);
+        selectWithGroupeEtudiantAbsence(8, "TD01");
         break;
     default:
         //function not found, error or something

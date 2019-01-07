@@ -31,7 +31,7 @@ include 'SecureSession.php';
             </div>
             <div class="col-xs-4">
                 <label>Groupe : </label><br>
-                <select id="groupeCombox">
+                <select id="groupeComboxAbs">
                     <option value="null">Choisir groupe</option>
 
                 </select>

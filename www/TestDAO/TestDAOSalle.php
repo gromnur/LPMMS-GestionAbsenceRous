@@ -4,6 +4,7 @@ require('../DAOFactory.php');
 
 $libelleSalle = "A37";
 
+razBDD();
 /*
  * Test création salle
  */
@@ -18,7 +19,7 @@ if (strlen($id_salle) > 1) {
 // réinsertion salle
 echo "Insertion même salle : ";
 $id_salle2 = createSalle($libelleSalle);
-if (strlen($id_salle2) > 1) {
+if ($id_salle2 == 0) {
     echo "non inserer, id_salle retrourné = ".$id_salle2."<br>";
 } else {
     echo "erreur <br>";
@@ -35,5 +36,6 @@ if ($id_salle4) {
     echo "Non<br>";
 }
 
+razBDD();
 
 ?>

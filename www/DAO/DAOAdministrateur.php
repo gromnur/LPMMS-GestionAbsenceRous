@@ -1,15 +1,15 @@
 <?php
 
 /**
- * Créé un professeur
+ * Créé un administrateur
  * @param  integer $numeropersonnel Le numeropersonnel du personnel
- * @return integer                  Le numeropersonnel du professeur, 0 si la
- * personne est deja professeur, -1 si le personnel n'existe pas.
+ * @return integer                  Le numeropersonnel du administrateur, 0 si la
+ * personne est deja administrateur, -1 si le personnel n'existe pas.
  */
-function createProfesseur($numeropersonnel) {
+function createAdministrateur($numeropersonnel) {
 
-    // verification presence professeur
-    if (isProfesseur($numeropersonnel)) {
+    // verification presence administrateur
+    if (isAdministrateur($numeropersonnel)) {
         return 0;
     }
 
@@ -18,10 +18,10 @@ function createProfesseur($numeropersonnel) {
         return -1;
     }
 
-    // Creation d'un professeur
+    // Creation d'un administrateur
     // récupération accés base de données
     $bd = getConnexion();
-    $rqt = "INSERT INTO professeur(id_professeur) VALUES (:numeropersonnel)";
+    $rqt = "INSERT INTO administrateur(id_administrateur) VALUES (:numeropersonnel)";
     $stmt = $bd->prepare($rqt);
     // ajout param
     $stmt->bindParam(":numeropersonnel", $numeropersonnel);
@@ -33,14 +33,14 @@ function createProfesseur($numeropersonnel) {
 }
 
 /**
- * Verifie si le personnel est déja dans la Table professeur.
+ * Verifie si le personnel est déja dans la Table administrateur.
  * @param  integer  $numeropersonnel Le numeropersonnel du personnel
  * @return boolean                   True si present, false sinon
  */
-function isProfesseur($numeropersonnel) {
+function isAdministrateur($numeropersonnel) {
     // récupération accés base de données
     $bd = getConnexion();
-    $rqt = "SELECT id_professeur FROM professeur WHERE id_professeur = :numeropersonnel";
+    $rqt = "SELECT id_administrateur FROM administrateur WHERE id_administrateur = :numeropersonnel";
     $stmt = $bd->prepare($rqt);
     // ajout param
     $stmt->bindParam(":numeropersonnel", $numeropersonnel);

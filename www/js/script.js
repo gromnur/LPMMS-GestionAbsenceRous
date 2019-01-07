@@ -133,7 +133,7 @@ $('#groupeCombox').change(function () {
 //                creation d'une variable contenant les balises option du resultat de la requete obtenu et insertion dans le select voulu
                 var tbody = '';
                 for (var laDonnee in data) {
-                    tbody = tbody + '<tr><td>' + data[laDonnee]['ine'] + '</td><td>' + data[laDonnee]['nom'] + '</td><td>' + data[laDonnee]['prenom'] + '</td></tr>';
+                    tbody = tbody + '<tr><td>' + data[laDonnee]['nom'] + '</td><td>' + data[laDonnee]['prenom'] + '</td><td>' + data[laDonnee]['prenom'] + '</td></tr>';
                 }
                 $('#tbodyListeEtudiants').html(tbody);
             }
@@ -214,19 +214,22 @@ $('#etudiantCombox').change(function () {
         });
     }
 });
-//liste des absences en fonction de filiere et du groupe
-// insertion dans la table des absences correspondants a une filière et un grp choisi lors du changement du groupe
-$('#groupeCombox').change(function () {
+
+
+
+//DATE en fonction de matiere
+// insertion dans combobox date des date correspondants a une matiere choisie lors du changement de matiere
+$('#groupeComboxAbs').change(function () {
     var filiere = $("#filiereCombox").find("option:selected").val();  // retourne la value associée à l'option selectionnée
     var groupe = $("#groupeCombox").find("option:selected").val();  // retourne la value associée à l'option selectionnée
     if (groupe != "null") {
-        // ajax fait appel a la fonction selectAvecFiliereGroupeEtudiant de la page ajax.php avec comme paramettre l'id de la filiere 
+        // ajax fait appel a la fonction selectMatiereWithFiliere de la page ajax.php avec comme paramettre l'id de la filiere 
         // dans data, func sert a savoir quelle fonction de la page ajax.php doit etre appelé
         $.ajax({
             type: 'POST',
             dataType: "json",
-            url: "Ajax.php",
-            data: {func: 'selectAbsByGrpFil', paramFiliere: filiere, paramGrp: groupe},
+            url: "test.php",
+            data: {func: 'selectAbsByGrpFil', paramFil: filiere, paramGrp: groupe},
             success: function (data) {
 //                creation d'une variable contenant les balises option du resultat de la requete obtenu et insertion dans le select voulu
                 var tbody = '';
@@ -235,14 +238,46 @@ $('#groupeCombox').change(function () {
                     if (data[laDonnee]['justifier'] == 0) {
                         justifier = "non";
                     }
-                    tbody = tbody + '<tr><td>' + data[laDonnee]['nom'] + '</td><td>' + data[laDonnee]['prenom'] + '</td><td>' + data[laDonnee]['libelle'] +
-                            '</td><td>' + data[laDonnee]['date_debut'] + '</td><td>' + data[laDonnee]['date_fin'] + '</td><td>' + justifier + '</td></tr>';
+                    tbody = tbody + '<tr><td>' + data[laDonnee]['libelle'] + '</td><td>' + data[laDonnee]['date_debut'] + '</td> <td>' + data[laDonnee]['date_fin'] + '</td><td>' + justifier + '</td></tr></td></tr>';
                 }
                 $('#tbodyListeAbsences').html(tbody);
             }
         });
     }
 });
+
+
+
+
+//liste des absences en fonction de filiere et du groupe
+// insertion dans la table des absences correspondants a une filière et un grp choisi lors du changement du groupe
+//$('#groupeCombox').change(function () {
+//    var filiere = $("#filiereCombox").find("option:selected").val();  // retourne la value associée à l'option selectionnée
+//    var groupe = $("#groupeCombox").find("option:selected").val();  // retourne la value associée à l'option selectionnée
+//    if (groupe != "null") {
+//        // ajax fait appel a la fonction selectAvecFiliereGroupeEtudiant de la page ajax.php avec comme paramettre l'id de la filiere 
+//        // dans data, func sert a savoir quelle fonction de la page ajax.php doit etre appelé
+//        $.ajax({
+//            type: 'POST',
+//            dataType: "json",
+//            url: "Ajax.php",
+//            data: {func: 'selectAbsByGrpFil'},
+//            success: function (data) {
+//                var tbody = '';
+//                alert("e");
+//                for (var laDonnee in data) {
+//                    var justifier = "oui";
+//                    if (data[laDonnee]['justifier'] == 0) {
+//                        justifier = "non";
+//                    }
+//                    tbody = tbody + '<tr><td>' + data[laDonnee]['nom'] + '</td><td>' + data[laDonnee]['prenom'] + '</td><td>' + data[laDonnee]['libelle'] +
+//                            '</td><td>' + data[laDonnee]['date_debut'] + '</td><td>' + data[laDonnee]['date_fin'] + '</td><td>' + justifier + '</td></tr>';
+//                }
+//                $('#tbodyListeAbsences').html(tbody);
+//            }
+//        });
+//    }
+//});
 
 
 
@@ -370,7 +405,7 @@ $('#matiereCombox').change(function () {
                 for (var laDonnee in data) {
                     lesOptions = lesOptions + '<option value=' + data[laDonnee]['id_matiere'] + '>' + data[laDonnee]['libelle'] + '</option>';
                 }
-                $('#matiereCombox').html(lesOptions);
+                $('#').html(lesOptions);
             }
         });
     }

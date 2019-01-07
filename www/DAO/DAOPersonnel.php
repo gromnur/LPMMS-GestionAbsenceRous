@@ -17,9 +17,10 @@ function createPersonnel($identifiant, $mdp, $nom, $prenom, $choixCreaPerso = -1
     if (identifiantExistePersonnel($identifiant) != 0) {
         $numeropersonnel = identifiantExistePersonnel($identifiant);
 
+        $numeropersonnel = identifiantExistePersonnel($identifiant);
         // Renvoie le numero personnel si rien n'est demander en plus
         if ($choixCreaPerso == -1) {
-            return $numeropersonnel;
+            return 0;
         }
 
         // Créé un administratif avec le $numeropersonnel
@@ -142,7 +143,6 @@ function verifMDP($identifiant, $mdp) {
     // init nulero prsonnel
     $numeropersonnel = -1;
 
-    $listReturn = array();
     // récupération du numero personnel
     while ($ligne = $stmt->fetch()) {
         var_dump($ligne);
@@ -151,14 +151,17 @@ function verifMDP($identifiant, $mdp) {
         $numeropersonnel = $ligne["numeropersonnel"];
     }
     // verif is administrateur
-    // TODO DAO administrateur
+    if (isAdministrateur($numeropersonnel)) {
+        return array($nom, $prenom, 0);
+    }
+
     // verif is administratif
-    if (isAdministratif($numeropersonnel) == true) {
+    if (isAdministratif($numeropersonnel)) {
         return array($nom, $prenom, 1);
     }
 
     // verif is professeur
-    if (isProfesseur($numeropersonnel) == true) {
+    if (isProfesseur($numeropersonnel)) {
         return array($nom, $prenom, 2);
     }
 }

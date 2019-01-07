@@ -46,7 +46,7 @@ if (isset($_POST['nomCreaPerso']) && isset($_POST['prenomCreaPerso']) && isset($
     $mdpCrea = htmlspecialchars($_POST['mdpCreaPerso']);
     $choixCrea = htmlspecialchars($_POST['choixCreaPerso']);
     //encryptage du mdp
-    $mdpCreaSha = sha1($mdpCrea);
+    $mdpCreaSha = hash("sha256", $mdpCrea);
 
     //si le nom est vide on affecte 0 a la variable $resultat pour afficher une erreur dans la page
     // sinon le resultat prend la valeur retourner par la fonction createDepartement et on affiche succee
