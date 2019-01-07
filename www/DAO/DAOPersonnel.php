@@ -145,7 +145,6 @@ function verifMDP($identifiant, $mdp) {
 
     // récupération du numero personnel
     while ($ligne = $stmt->fetch()) {
-        var_dump($ligne);
         $nom = $ligne["nom"];
         $prenom = $ligne["prenom"];
         $numeropersonnel = $ligne["numeropersonnel"];

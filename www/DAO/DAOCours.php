@@ -241,14 +241,15 @@ function deleteByDateCours($id_filiere, $date_debut, $date_fin) {
     $bd = getConnexion();
 
     //SELECT id_cours FROM cours WHERE id_matiere=39 AND id_filiere=40 AND libelle_groupe='TD01' AND id_professeur=97 AND numero_salle="A300" AND date_debut='2018-12-22 10:00:00' AND date_fin='2018-12-22 12:00:00'
-    $rqt = "DELETE FROM cours WHERE id_filiere = :id_filiere AND date_debut BETWEEN :date_debut AND :date_fin";
 
+    $rqt = "DELETE FROM cours WHERE id_filiere = :id_filiere AND date_debut BETWEEN :date_deb_sup AND :date_fin_sup";
     $stmt = $bd->prepare($rqt);
 
     // ajout param
     $stmt->bindParam(":id_filiere", $id_filiere);
-    $stmt->bindParam(":date_debut", $date_debut);
-    $stmt->bindParam(":date_fin", $date_fin);
+
+    $stmt->bindParam(":date_deb_sup", $date_debut);
+    $stmt->bindParam(":date_fin_sup", $date_fin);
 
     // execution requette
     $stmt->execute();

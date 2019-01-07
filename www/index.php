@@ -68,6 +68,9 @@ include 'DAOFactory.php';
                     if ($_GET['include'] == "suppressionFiliere") {
                         include 'suppression_filiere.php';
                     }
+                    if ($_GET['include'] == "insertionEleve") {
+                        include 'insertion_eleve.php';
+                    }
                 }
                 ?>
             </div>
@@ -101,7 +104,7 @@ include 'DAOFactory.php';
                 <HR width="120%">
                 <li class="liste">Importation
                     <ul>
-                        <li><a href="">Importer Élève (csv)</a></li>
+                        <li><a href="index.php?include=insertionEleve">Importer Élève (csv)</a></li>
                         <li><a href="">Importer plannings</a></li> 
                         <li><a href="index.php?include=suppressionFiliere">Suppression filière</a></li>
                     </ul>
