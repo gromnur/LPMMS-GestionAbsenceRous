@@ -287,7 +287,7 @@ function deleteByDateCours($id_filiere, $date_debut, $date_fin) {
 function selectWithGroupeEtudiantMatiereCours($id_filiere, $libelle_groupe, $id_matiere) {
     // récupération accés base de données
     $bd = getConnexion();
-    $rqt = "SELECT C.id_cours, C.date_debut FROM cours C JOIN matiere M ON C.id_matiere = M.id_matiere WHERE C.id_filiere = :id_filiere AND C.libelle_groupe = :libelle_groupe AND id_matiere = :id_matiere ";
+    $rqt = "SELECT C.id_cours, C.date_debut FROM cours C JOIN matiere M ON C.id_matiere = M.id_matiere WHERE C.id_filiere = :id_filiere AND C.libelle_groupe = :libelle_groupe AND C.id_matiere = :id_matiere ";
     $stmt = $bd->prepare($rqt);
     $stmt->bindParam(":id_filiere", $id_filiere);
     $stmt->bindParam(":libelle_groupe", $libelle_groupe);

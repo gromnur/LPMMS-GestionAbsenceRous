@@ -4,7 +4,6 @@ require('../DAOFactory.php');
 
 razBDD();
 
-
 // insertion des departement
 $dep_1 = createDepartement("informatique2");
 echo "Insertion departement terminé <br>";
@@ -125,6 +124,11 @@ echo "<br><br>";
 // test select selectWithGroupeEtudiantAbsence
 echo "Affichage selectWithGroupeEtudiantAbsence :<br>";
 selectWithGroupeEtudiantAbsence($fil_1, "TD01");
+echo "<br><br>";
+
+// test select selectWithGroupeEtudiantMatiereCours
+echo "Affichage selectWithGroupeEtudiantMatiereCours :<br>";
+selectWithGroupeEtudiantMatiereCours($fil_1, "TD01", $matiere_1);
 echo "<br><br>";
 
 
