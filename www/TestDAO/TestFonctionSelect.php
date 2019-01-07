@@ -131,5 +131,10 @@ echo "Affichage selectWithGroupeEtudiantMatiereCours :<br>";
 selectWithGroupeEtudiantMatiereCours($fil_1, "TD01", $matiere_1);
 echo "<br><br>";
 
+// test select selectWithCoursEtudiant
+echo "Affichage selectWithCoursEtudiant :<br>";
+selectWithCoursEtudiant($cours_1);
+echo "<br><br>";
+
 
  ?>
