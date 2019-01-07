@@ -280,9 +280,9 @@ function deleteByDateCours($id_filiere, $date_debut, $date_fin) {
  * Renvoie la liste des absence d'un groupe d'étudiant en JSON
  * @param  integer $id_filiere     id de la filiere
  * @param  string  $libelle_groupe libelle du groupe
- * @param  string  $libelle_groupe libelle du groupe
- * @return JSON                    Un JSON contenant la liste des absence
- *  [ine, nom, prenom, libelle, date_debut, date_fin, justifier]
+ * @param  string  $id_matiere     id de la matiere
+ * @return JSON                    Un JSON contenant la liste des cours et leur
+ * heur de debut [id_cours, date_debut]
  */
 function selectWithGroupeEtudiantMatiereCours($id_filiere, $libelle_groupe, $id_matiere) {
     // récupération accés base de données
@@ -297,7 +297,8 @@ function selectWithGroupeEtudiantMatiereCours($id_filiere, $libelle_groupe, $id_
     // execution requette
     if ($stmt->execute()) {
         while ($ligne = $stmt->fetch()) {
-            $listResult[] = array("date_debut"=>$ligne['date_debut']);
+            $listResult[] = array("id_cours"=>$ligne['id_cours'],
+                                  "date_debut"=>$ligne['date_debut']);
         }
     }
     echo json_encode($listResult);
