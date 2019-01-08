@@ -155,3 +155,7 @@ function insertionElevesFromCSV($csv) {
 if (isset($_POST['file'])) {
     insertionElevesFromCSV($_POST['file']);
 }
+
+if (isset($_FILES["fileICS"]["tmp_name"])) {
+    icsExtractor($_FILES["fileICS"]["tmp_name"]);
+}

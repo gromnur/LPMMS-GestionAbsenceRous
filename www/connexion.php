@@ -29,10 +29,10 @@ include 'DAOFactory.php';
                 $_SESSION['nom'] = $result[0];
                 $_SESSION['prenom'] = $result[1];
                 $_SESSION['type'] = $result[2];
-                header('Location: http://127.0.0.1/index.php');
+                header('Location: index.php');
             }
         }
-        ?>   
+        ?>
         <div class="blockConnexion">
             <div class="divBackground">
                 <span>CONNEXION</span>
@@ -41,7 +41,7 @@ include 'DAOFactory.php';
                     <br>
                     <input type="text" name="identifiantCo" id='idCo'/>
                     <br>
-                    <label>Mot de passe</label>        
+                    <label>Mot de passe</label>
                     <br>
                     <input type="password" name="mdpCo" id='mdpCo' />
                     <br>

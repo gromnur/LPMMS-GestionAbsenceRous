@@ -81,7 +81,7 @@ include 'DAOFactory.php';
             </div>
         </div>
         <ul class="menu">
-            <li class="liste">Liste : 
+            <li class="liste">Liste :
                 <ul>
                     <li><a href="index.php?include=matiere">Matières</a></li>
                     <li><a href="index.php?include=listeAbsEtud">Absence d'un étudiant</a></li>
@@ -90,7 +90,7 @@ include 'DAOFactory.php';
                 </ul>
             </li>
             <HR width="120%">
-            <li class="liste">Absence : 
+            <li class="liste">Absence :
                 <ul>
                     <li><a href="index.php?include=absenceEtudiant">Absence Étudiant</a></li>
                 </ul>
@@ -99,7 +99,7 @@ include 'DAOFactory.php';
             if ($type != 2) {
                 ?>
                 <HR width="120%">
-                <li class="liste">Créer 
+                <li class="liste">Créer
                     <ul>
                         <li><a href="index.php?include=filiere">Créer filière</a></li>
                         <li><a href="index.php?include=dept">Créer Département</a></li>
@@ -110,7 +110,7 @@ include 'DAOFactory.php';
                 <li class="liste">Importation
                     <ul>
                         <li><a href="index.php?include=insertionEleve">Importer Élève (csv)</a></li>
-                        <li><a href="index.php?include=insertionPlan">Importer plannings</a></li> 
+                        <li><a href="index.php?include=insertionPlan">Importer plannings</a></li>
                         <li><a href="index.php?include=suppressionFiliere">Suppression filière</a></li>
                     </ul>
                 </li>
