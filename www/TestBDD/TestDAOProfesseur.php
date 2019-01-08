@@ -4,8 +4,9 @@
 require('../DAOFactory.php');
 
 razBDD();
+
 $identifiant = "insertion.prof";
-$nom = "insertion";
+$nom = "prof";
 $prenom = "prof";
 $mdp = hash('sha256',"le prof");
 
@@ -49,6 +50,28 @@ if (isProfesseur($id_prof)) {
     echo "Oui, id_professeur = ".$id_prof."<br>";
 } else {
     echo "Non<br>";
+}
+
+/*
+ * Test libelle prof existe
+ */
+echo "Professeur libelle : ";
+$numprof = libelleExisteProfesseur("PROF", "PROF");
+if ($numprof != 0) {
+    echo "Oui, la personne est bien un prof id_prof : $numprof <br>";
+} else {
+    echo "Erreur<br>";
+}
+
+/*
+ * Test libelle prof existe
+ */
+echo "Professeur libelle : ";
+$numprof = libelleExisteProfesseur("ADMIN", "ADMIN");
+if ($numprof == 0) {
+    echo "Oui, la personne n'est pas un prof ou n'existe pas : $numprof <br>";
+} else {
+    echo "Erreur<br>";
 }
 
 razBDD();

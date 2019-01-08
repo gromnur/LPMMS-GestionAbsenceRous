@@ -40,9 +40,12 @@ switch ($func) {
     case 'selectAbsByGrpFil':
         $id_matiere = $_POST['paramGrp'];
         $id_filiere = $_POST['paramFil'];
-//        var_dump($id_filiere);
-//        var_dump($id_grp);
         selectWithGroupeEtudiantAbsence($id_filiere, $id_matiere);
+        break;
+    case 'selectAbsByEtudMatiere':
+        $id_matiere = $_POST['paramMat'];
+        $ine = $_POST['paramEtud'];
+        selectAvecEtudiantMatiereAbsence($ine, $id_matiere);
         break;
     default:
         //function not found, error or something

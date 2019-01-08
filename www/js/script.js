@@ -79,7 +79,7 @@ jQuery.fn.sortElements = (function () {
 })();
 
 var table = $('#latable');
-$('#nom, #prenom, #matiere, #ine')
+$('#nom, #prenom, #matiere, #ine, #date')
         .wrapInner('<span title="sort this column"/>')
         .each(function () {
 
@@ -157,7 +157,7 @@ $('#dateComboxAbs').change(function () {
                 var tbody = '';
                 for (var laDonnee in data) {
                     tbody = tbody + '<tr><td>' + data[laDonnee]['nom'] + '</td> <td>' + data[laDonnee]['prenom'] + '</td><td> <input name="absences[]" type="checkbox" value="' + data[laDonnee]['ine'] + '" />' +
-                            '<input name="id_cours" value="' + date + '" type="hidden"/></td></tr>';
+                            '<input name="id_cours" value="' + date + '" type="hidden"/></td>' + '<td> <input name="justifie[]" type="checkbox" value="1" /></td></tr>';
                 }
                 $('#tbodyListeEtudiantsAbs').html(tbody);
             }
@@ -187,18 +187,65 @@ $('#filiereCombox').change(function () {
         });
     }
 });
-//DATE en fonction de matiere
-// insertion dans combobox date des date correspondants a une matiere choisie lors du changement de matiere
+//absences d'un etudiant en fonction de son ine + ajout dans combox des matiere et date
 $('#etudiantCombox').change(function () {
     var etudiant = $("#etudiantCombox").find("option:selected").val();  // retourne la value associée à l'option selectionnée
+    var filiere = $("#filiereCombox").find("option:selected").val();  // retourne la value associée à l'option selectionnée
     if (etudiant != "null") {
-        // ajax fait appel a la fonction selectMatiereWithFiliere de la page ajax.php avec comme paramettre l'id de la filiere 
+        // ajax fait appel a la fonction selectMatiereWithFiliere de la page ajax.php avec comme paramettre l'ine de l'etudiant
         // dans data, func sert a savoir quelle fonction de la page ajax.php doit etre appelé
         $.ajax({
             type: 'POST',
             dataType: "json",
             url: "Ajax.php",
             data: {func: 'selectAbsByEtud', param: etudiant},
+            success: function (data) {
+//                creation d'une variable contenant les balises option du resultat de la requete obtenu et insertion dans le select voulu
+                var tbody = '';
+                var heure = '<option value="null">Choisir date</option>';
+                for (var laDonnee in data) {
+                    var justifier = "oui";
+                    if (data[laDonnee]['justifier'] == 0) {
+                        justifier = "non";
+                    }
+                    tbody = tbody + '<tr><td>' + data[laDonnee]['libelle'] + '</td><td>' + data[laDonnee]['date_debut'] + '</td> <td>' + data[laDonnee]['date_fin'] + '</td><td>' + justifier + '</td></tr></td></tr>';
+                    heure = heure + '<option value=' + data[laDonnee]['date_debut'] + '>' + data[laDonnee]['date_debut'] + '</option>';
+                }
+                $('#tbodyAbsEtud').html(tbody);
+                $('#dateCombox').html(heure);
+            }
+        });
+        $.ajax({
+            type: 'POST',
+            dataType: "json",
+            url: "Ajax.php",
+            data: {func: 'selectMatiereByFiliere', param: filiere},
+            success: function (data) {
+//                creation d'une variable contenant les balises option du resultat de la requete obtenu et insertion dans le select voulu
+                var matiere = '<option value="null">Choisir matière</option>';
+                for (var laDonnee in data) {
+                    matiere = matiere + '<option value=' + data[laDonnee]['id_matiere'] + '>' + data[laDonnee]['libelle'] + '</option>';
+                }
+                $('#matiereCombox').html(matiere);
+            }
+        });
+    }
+});
+
+
+//filtre de la table au dessus, qui permet d'afficher les absences d'un etudiant,
+//en fonction de la matiere
+$('#matiereCombox').change(function () {
+    var matiere = $("#matiereCombox").find("option:selected").val();  // retourne la value associée à l'option selectionnée
+    var etudiant = $("#etudiantCombox").find("option:selected").val();  // retourne la value associée à l'option selectionnée
+    if (matiere != "null") {
+        // ajax fait appel a la fonction selectMatiereWithFiliere de la page ajax.php avec comme paramettre l'id de la filiere 
+        // dans data, func sert a savoir quelle fonction de la page ajax.php doit etre appelé
+        $.ajax({
+            type: 'POST',
+            dataType: "json",
+            url: "Ajax.php",
+            data: {func: 'selectAbsByEtudMatiere', paramMat: matiere, paramEtud: etudiant},
             success: function (data) {
 //                creation d'une variable contenant les balises option du resultat de la requete obtenu et insertion dans le select voulu
                 var tbody = '';
@@ -212,10 +259,28 @@ $('#etudiantCombox').change(function () {
                 $('#tbodyAbsEtud').html(tbody);
             }
         });
+    }else{
+         $.ajax({
+            type: 'POST',
+            dataType: "json",
+            url: "Ajax.php",
+            data: {func: 'selectAbsByEtud', param: etudiant},
+            success: function (data) {
+//                creation d'une variable contenant les balises option du resultat de la requete obtenu et insertion dans le select voulu
+                var tbody = '';
+                var heure = '';
+                for (var laDonnee in data) {
+                    var justifier = "oui";
+                    if (data[laDonnee]['justifier'] == 0) {
+                        justifier = "non";
+                    }
+                    tbody = tbody + '<tr><td>' + data[laDonnee]['libelle'] + '</td><td>' + data[laDonnee]['date_debut'] + '</td> <td>' + data[laDonnee]['date_fin'] + '</td><td>' + justifier + '</td></tr></td></tr>';
+                }
+                $('#tbodyAbsEtud').html(tbody);
+            }
+        });
     }
 });
-
-
 
 //liste des absences en fonction de filiere et du groupe
 // insertion dans la table des absences correspondants a une filière et un grp choisi lors du changement du groupe
@@ -245,41 +310,6 @@ $('#groupeComboxListeAbs').change(function () {
         });
     }
 });
-
-
-
-
-//liste des absences en fonction de filiere et du groupe
-// insertion dans la table des absences correspondants a une filière et un grp choisi lors du changement du groupe
-//$('#groupeCombox').change(function () {
-//    var filiere = $("#filiereCombox").find("option:selected").val();  // retourne la value associée à l'option selectionnée
-//    var groupe = $("#groupeCombox").find("option:selected").val();  // retourne la value associée à l'option selectionnée
-//    if (groupe != "null") {
-//        // ajax fait appel a la fonction selectAvecFiliereGroupeEtudiant de la page ajax.php avec comme paramettre l'id de la filiere 
-//        // dans data, func sert a savoir quelle fonction de la page ajax.php doit etre appelé
-//        $.ajax({
-//            type: 'POST',
-//            dataType: "json",
-//            url: "Ajax.php",
-//            data: {func: 'selectAbsByGrpFil'},
-//            success: function (data) {
-//                var tbody = '';
-//                alert("e");
-//                for (var laDonnee in data) {
-//                    var justifier = "oui";
-//                    if (data[laDonnee]['justifier'] == 0) {
-//                        justifier = "non";
-//                    }
-//                    tbody = tbody + '<tr><td>' + data[laDonnee]['nom'] + '</td><td>' + data[laDonnee]['prenom'] + '</td><td>' + data[laDonnee]['libelle'] +
-//                            '</td><td>' + data[laDonnee]['date_debut'] + '</td><td>' + data[laDonnee]['date_fin'] + '</td><td>' + justifier + '</td></tr>';
-//                }
-//                $('#tbodyListeAbsences').html(tbody);
-//            }
-//        });
-//    }
-//});
-
-
 
 
 /**

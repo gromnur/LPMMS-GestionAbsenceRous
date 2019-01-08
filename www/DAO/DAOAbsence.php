@@ -30,14 +30,13 @@ function createAbsence($id_cours, $ine) {
 /**
  * supprime une abscence
  * @param  integer $id_cours l'id du cours
- * @param  string  $ine      [description]
- * @return array             liste vide , sinon [$id_cours, $ine]
+ * @param  string  $ine      Numero ine de l'étudiant
  */
 function deleteAbsence($id_cours, $ine) {
 
     // Verifier presence du id_cours/ine
-    if (count(isExisteAbsence($id_cours, $ine)) != 0) {
-        return array();
+    if (count(isExisteAbsence($id_cours, $ine)) == 0) {
+        return;
     }
 
     // Creation d'une abxence
@@ -50,14 +49,13 @@ function deleteAbsence($id_cours, $ine) {
     $stmt->bindParam(":ine", $ine);
     // execution requette
     $stmt->execute();
-    // renvoi un array vide car le libelle n'existe plus
-    return isExisteAbsence($id_cours, $ine);
+
 }
 
 /**
  * Verifie que l'absence existe
  * @param  integer  $id_cours id du cours
- * @param  string   $ine      numero ine de l'etudant
+ * @param  string   $ine      numero ine de l'étudant
  * @return array              [$id_cours, $ine] si present, sinon une liste vide
  */
 function isExisteAbsence($id_cours, $ine) {
@@ -136,6 +134,32 @@ function selectAvecEtudiantAbsence($ine) {
     }
     echo json_encode($listResult);
 }
+/**
+ * Renvoie la liste des absence d'un étudiant en JSON
+ * @param  string $ine Numero ine de l'étudiant
+ * @param  int $matiere id de la matiere
+ * @return JSON        Un JSON des absence d'un étudiant [id_cours, id_matiere, date_debut, date_fin]
+ */
+function selectAvecEtudiantMatiereAbsence($ine, $matiere) {
+    // récupération accés base de données
+    $bd = getConnexion();
+    $rqt = "SELECT M.libelle, C.date_debut, C.date_fin, A.justifier FROM absence A JOIN cours C ON A.id_cours = C.id_cours JOIN matiere M ON C.id_matiere = M.id_matiere WHERE A.ine = :ine AND M.id_matiere = :matiere";
+    $stmt = $bd->prepare($rqt);
+    $stmt->bindParam(":ine", $ine);
+    $stmt->bindParam(":matiere", $matiere);
+
+    $listResult = array();
+    // execution requette
+    if ($stmt->execute()) {
+        while ($ligne = $stmt->fetch()) {
+            $listResult[] = array("libelle" => $ligne['libelle'],
+                "date_debut" => $ligne['date_debut'],
+                "date_fin" => $ligne['date_fin'],
+                "justifier" => $ligne['justifier']);
+        }
+    }
+    echo json_encode($listResult);
+}
 
 
 /**
@@ -168,7 +192,5 @@ function selectWithGroupeEtudiantAbsence($id_filiere, $libelle_groupe) {
     }
     echo json_encode($listResult);
 }
-
-
 
 ?>

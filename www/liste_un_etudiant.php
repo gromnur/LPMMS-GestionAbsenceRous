@@ -65,64 +65,15 @@ include 'SecureSession.php';
                 <thead>
                     <tr class='nomCol'>
                         <th id="matiere" class="sortTable">Matière</th>
-                        <th  class="sortTable">Date Début</th>
-                        <th  class="sortTable">Date Fin</th>
-                        <th class="sortTable">Justifié</th>
+                        <th id="date" class="sortTable">Date Début</th>
+                        <th>Date Fin</th>
+                        <th>Justifié</th>
                         <!--ajout d'une colonne justification si administratif-->
                     </tr>
                 </thead>
                 <tbody id="tbodyAbsEtud">
                    
-<!--                    <tr>
-                        <td>azertyui</td>
-                        <td>bqdfvr</td>
-                        <td>Date</td>
-                        <td>Matière</td>
-                        <td> <input name="test[]" type="checkbox" value="<?php // echo $i         ?>" /></td>
-                    </tr>
-                    <tr>
-                        <td>qsdgerv</td>
-                        <td>prébtrsnom</td>
-                        <td>Date</td>
-                        <td>Matière</td>
-                        <td> <input name="test[]" type="checkbox" value="<?php // echo $i         ?>" /></td>
-                    </tr>
-                    <tr>
-                        <td>plizvnn</td>
-                        <td>shycne</td>
-                        <td>Date</td>
-                        <td>Matière</td>
-                        <td> <input name="test[]" type="checkbox" value="<?php // echo $i         ?>" /></td>
-                    </tr>
-                    <tr>
-                        <td>lebontest</td>
-                        <td>testlebon</td>
-                        <td>Date</td>
-                        <td>Matière</td>
-                        <td> <input name="test[]" type="checkbox" value="<?php // echo $i         ?>" /></td>
-                    </tr>
-                    <tr>
-                        <td>ohelsef</td>
-                        <td>prénom</td>
-                        <td>Date</td>
-                        <td>Matière</td>
-                        <td> <input name="test[]" type="checkbox" value="<?php // echo $i         ?>" /></td>
-                    </tr>
-                    <tr>
-                        <td>nom</td>
-                        <td>pqbzycw</td>
-                        <td>Date</td>
-                        <td>Matière</td>
-                        <td> <input name="test[]" type="checkbox" value="<?php // echo $i         ?>" /></td>
-                    </tr>
-                    <tr>
-                        <td>wxzfvb</td>
-                        <td>sahh</td>
-                        <td>Date</td>
-                        <td>Matière</td>
-                        <td> <input name="test[]" type="checkbox" value="<?php // echo $i         ?>" /></td>
-                    </tr>
-                 -->
+
                 </tbody>
             </table>
         </div>

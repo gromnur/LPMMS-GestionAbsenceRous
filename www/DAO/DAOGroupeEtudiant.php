@@ -16,8 +16,13 @@ function createGroupeEtudiant($ine, $id_filiere, $libelle_groupe) {
         return array();
     }
 
-// Creation d'un groupe étudiant
-// récupération accés base de données
+
+    if (isExisteGroupeEtudiant($libelle_groupe, $id_filiere)) {
+        return array();
+    }
+
+    // Creation d'un groupe étudiant
+    // récupération accés base de données
     $bd = getConnexion();
     $rqt = "INSERT INTO groupe_etudiant(ine,id_filiere,libelle_groupe) VALUES (:ine,:id_filiere,:libelle_groupe)";
     $stmt = $bd->prepare($rqt);

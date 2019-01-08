@@ -79,20 +79,37 @@ if (isset($_POST['nomCreaPerso']) && isset($_POST['prenomCreaPerso']) && isset($
 if (isset($_POST["absences"])) {
     $tableau = $_POST["absences"];
     $id_cours = $_POST['id_cours'];
+//    $resultat = array();
     foreach ($tableau as $ine) {
-        createAbsence($id_cours, $ine);
+        $resultat = createAbsence($id_cours, $ine);
+    }
+}
+/**
+ * justification absences etudiants
+ */
+if (isset($_POST['justifie']) && isset($_POST["absences"])) {
+    $justifieTab = $_POST["justifie"];
+    $absent = $_POST["absences"];
+    $id_cours = $_POST['id_cours'];
+
+    foreach ($absent as $ine) {
+        $array[] = $ine;
+    }
+    $index = 0;
+    foreach ($justifieTab as $justifie) {
+        updateAbsence($id_cours, $array[$index], $justifie);
+        $index = $index + 1;
     }
 }
 
 /**
  * suppression cours d'une filiere
  */
-if (isset($_POST['deptFil']) && isset($_POST['dateMinDelete']) && isset($_POST['dateMaxDelete'])) {
-    $fil = $_POST['deptFil'];
+if (isset($_POST['filDelete']) && isset($_POST['dateMinDelete']) && isset($_POST['dateMaxDelete'])) {
+    $fil = $_POST['filDelete'];
     $dateMin = $_POST['dateMinDelete'];
     $dateMax = $_POST['dateMaxDelete'];
-    var_dump($dateMax);
-//    deleteByDateCours($fil, $dateMin, $dateMax);
+    deleteByDateCours($fil, $dateMin, $dateMax);
 }
 
 /**

@@ -51,6 +51,7 @@ include 'SecureSession.php';
         </div>
     </div>
     <?php
+
     function letest() {
         // Verifier si le libelle n'est pas present
         // Creation d'un departement
@@ -81,10 +82,15 @@ include 'SecureSession.php';
                             <th id="nom" class="sortTable">Nom</th>
                             <th id="prenom" class="sortTable">Prénom</th>
                             <th>Absent</th>
+                            <?php
+                            if ($type != 2) {
+                                echo '<th>Justifié</th>';
+                            }
+                            ?>
                         </tr>
                     </thead>
                     <tbody id="tbodyListeEtudiantsAbs">
-                  
+
                     </tbody>
 <!--                     <tr>
                             <td>wxzfvb</td>
@@ -97,6 +103,20 @@ include 'SecureSession.php';
             </form>
         </div>
     </div>
+    <?php
+    if (isset($resultat)) {
+        if ($resultat == null) {
+            ?>
+            <span class="errorCrea">Échec de la création</span>
+            <?php
+        } else {
+            ?>
+            <span class="successCrea">Création réussi</span>
+
+            <?php
+        }
+    }
+    ?>
 </div>
 
 

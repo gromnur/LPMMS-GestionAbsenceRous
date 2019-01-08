@@ -1,6 +1,6 @@
 <?php
 
-require 'DAOFactory.php';
+require_once 'DAOFactory.php';
 
 /**
  * Insere des eleves à partir d'un fichier CSV

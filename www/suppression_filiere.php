@@ -33,37 +33,12 @@ include 'SecureSession.php';
                 <br>
                 <br>
                 <br>
-
                 <label>De</label>&nbsp;&nbsp;&nbsp;&nbsp; <input name="dateMinDelete" id="date" type="date" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <label>à</label>&nbsp;&nbsp;&nbsp;&nbsp;  <input name="dateMaxDelete" type="date" />
                 <input type="submit" value="Supprimer" class="btn valid"/>
             </form>
         </div>
-
-
     </div>
-
-    <!--    <div class='blockTable'>
-            <div class='scroll'>
-                <table class='table table-striped' id="latable">
-                    <thead>
-                        <tr class='nomCol'>
-                            <th id="ine" class="sortTable">INE</th>
-                            <th id="nom" class="sortTable">Nom</th>
-                            <th id="prenom" class="sortTable">Prénom</th>
-                            <th id="matiere" class="sortTable">Matière</th>
-                            <th id="date" class="sortTable">Date début</th>
-                            <th id="dateFin" class="sortTable">Date fin</th>
-                            <th>Justifié</th>
-                            ajout d'une colonne justification si administratif
-                        </tr>
-                    </thead>
-                    <tbody id="tbodyListeAbsences">
-    
-                    </tbody>
-                </table>
-            </div>
-        </div>-->
 </div>
 
 

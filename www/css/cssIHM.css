@@ -15,9 +15,10 @@ nav{
 
 .blockConnexion{
     text-align:center;
-    margin-top:50px;
+    margin-top:8%;
     font-size: 20px;
 }
+
 .divBackground{
     width: 40%;
     margin: auto;
@@ -63,7 +64,7 @@ nav{
 .erreurCo{
     position: absolute;
     left: 41%;
-    top: 4%;
+    top: 8%;
     font-size: 17px;
     color: #df1e1e;
 }
@@ -119,12 +120,10 @@ nav{
 }
 
 .liste {
-    /*padding-top: 5px;*/
     font-size:20px;
 }
 
 .liste ul{
-    /*padding-top: 3px;*/
     padding-left: 20px;
     list-style: initial;
     font-size:15px;
@@ -146,6 +145,22 @@ HR{
 .valid:hover{
     color: white !important;
     border-radius:10px;
+}
+.test{
+    position: absolute;
+    right: -20%;
+    border-bottom: 2px solid red;
+    width: 150px;
+    animation: play 2s forwards;
+}
+
+@keyframes play{
+    from{
+        right: -20%; 
+    }
+    to{
+        right: 100%;
+    }
 }
 
 .blockCombox{

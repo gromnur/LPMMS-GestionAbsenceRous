@@ -14,7 +14,7 @@ include 'DAOFactory.php';
         <link href="css/cssIHM.css" rel="stylesheet" type="text/css"/>
         <link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-
+        <link rel="icon" type="image/png" href="logo.jpg" />
     </head>
     <body>
         <!-- debut nav bar  -->
@@ -71,6 +71,11 @@ include 'DAOFactory.php';
                     if ($_GET['include'] == "insertionEleve") {
                         include 'insertion_eleve.php';
                     }
+                    if ($_GET['include'] == "insertionPlan") {
+                        include 'insertion_planning.php';
+                    }
+                }else{
+                    include 'accueil.php';
                 }
                 ?>
             </div>
@@ -105,7 +110,7 @@ include 'DAOFactory.php';
                 <li class="liste">Importation
                     <ul>
                         <li><a href="index.php?include=insertionEleve">Importer Élève (csv)</a></li>
-                        <li><a href="">Importer plannings</a></li> 
+                        <li><a href="index.php?include=insertionPlan">Importer plannings</a></li> 
                         <li><a href="index.php?include=suppressionFiliere">Suppression filière</a></li>
                     </ul>
                 </li>

@@ -31,33 +31,6 @@ include 'SecureSession.php';
             </div>
         </div>
     </div>
-    <?php
-    /*
-     * Créé un departement
-     * Renvoi id_departement si inserer, 0 sinon
-     */
-
-    function letest() {
-        // Verifier si le libelle n'est pas present
-        // Creation d'un departement
-        // récupération accés base de données
-        $bd = getConnexion();
-
-        if (isset($_POST["test"])) {
-            $tableau = $_POST["test"];
-
-            foreach ($_POST['test'] as $libelle) {
-                $rqt = "INSERT INTO departement(libelle) VALUES (:libelle)";
-                $stmt = $bd->prepare($rqt);
-                // ajout param
-                $stmt->bindParam(":libelle", $libelle);
-                // execution requette
-                $stmt->execute();
-                // renvoi le libelle généré
-            }
-        }
-    }
-    ?>
     <div class='blockTable'>
         <div class='scroll'>
 
