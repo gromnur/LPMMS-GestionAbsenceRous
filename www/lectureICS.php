@@ -156,35 +156,42 @@
 			foreach ($salles as $salle) {
 				createSalle($salle);
 			}
-			/*$coursCree = createCours($matiere, $groupes, $filieres, $id_profs, $salles, $dateDebut, $dateFin);
+			$coursCree = createCours($matiere, $groupes, $filieres, $id_profs, $salles, $dateDebut, $dateFin);
 			if ($coursCree < 0) {
 				throw new Exception($coursCree);
-			}*/
+			}
 
+			/*echo 'matiere<br/>';
 			echo var_dump($matiere);
+			echo 'groupes<br/>';
 			echo var_dump($groupes);
+			echo 'filieres<br/>';
 			echo var_dump($filieres);
+			echo 'id_profs<br/>';
 			echo var_dump($id_profs);
+			echo 'salles<br/>';
 			echo var_dump($salles);
+			echo 'dateDebut<br/>';
 			echo var_dump($dateDebut);
-			echo var_dump($dateFin);
+			echo 'dateFin<br/>';
+			echo var_dump($dateFin);*/
 		}
 
 	}
 
 ?>
-<html>
+<!--<html>
 <head>
 <meta charset="utf-8" />
 <title>ICS Extractor</title>
 </head>
 <body>
-<?php
+<?php/*
 	icsExtractor("ICS/CarrieresJuridiques.ics");
 	icsExtractor("ICS/GEA.ics");
 	icsExtractor("ICS/INFOCOM.ics");
 	icsExtractor("ICS/Informatique.ics");
 	icsExtractor("ICS/QLIO.ics");
-?>
+*/?>
 </body>
-</html>
+</html>-->
