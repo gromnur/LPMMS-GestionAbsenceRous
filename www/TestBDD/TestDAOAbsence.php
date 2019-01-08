@@ -73,5 +73,43 @@ if (count($abs_3) != 0) {
     echo "échoué <br>";
 }
 
+// vérification modification absence
+echo "Verification AVANT modification absence : ";
+selectAvecEtudiantAbsence($etud1);
+echo "<br>";
+
+// mise a jour de l'Absence
+echo "Mise à jour dela justification absence : ";
+$abs_4 = updateAbsence($cours_1[0], $etud1, "1");
+if ($abs_4) {
+    echo "Absence présente mise a jour <br>";
+} else {
+    echo "échoué <br>";
+}
+
+// vérification modification absence
+echo "Verification APRES modification absence : ";
+selectAvecEtudiantAbsence($etud1);
+echo "<br>";
+
+// supression absence
+echo "Supression absence <br>";
+deleteAbsence($cours_1[0], $etud1);
+
+
+// vérification modification absence
+echo "Verification supression absence : ";
+$abs_6 = isExisteAbsence($cours_1[0], $etud1);
+if (count($abs_6) == 0) {
+    echo "Absence suprimé ";
+    print_r($abs_6);
+    echo "<br>";
+} else {
+    echo "échoué <br>";
+}
+
+
+
+
 razBDD();
  ?>

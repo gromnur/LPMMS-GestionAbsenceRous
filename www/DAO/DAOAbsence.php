@@ -31,14 +31,13 @@ function createAbsence($id_cours, $ine) {
 /**
  * supprime une abscence
  * @param  integer $id_cours l'id du cours
- * @param  string  $ine      [description]
- * @return array             liste vide , sinon [$id_cours, $ine]
+ * @param  string  $ine      Numero ine de l'étudiant
  */
 function deleteAbsence($id_cours, $ine) {
 
     // Verifier presence du id_cours/ine
-    if (count(isExisteAbsence($id_cours, $ine)) != 0) {
-        return array();
+    if (count(isExisteAbsence($id_cours, $ine)) == 0) {
+        return;
     }
 
     // Creation d'une abxence
@@ -51,15 +50,13 @@ function deleteAbsence($id_cours, $ine) {
     $stmt->bindParam(":ine", $ine);
     // execution requette
     $stmt->execute();
-    // renvoi un array vide car le libelle n'existe plus
-    return isExisteAbsence($id_cours, $ine);
 
 }
 
 /**
  * Verifie que l'absence existe
  * @param  integer  $id_cours id du cours
- * @param  string   $ine      numero ine de l'etudant
+ * @param  string   $ine      numero ine de l'étudant
  * @return array              [$id_cours, $ine] si present, sinon une liste vide
  */
 function isExisteAbsence($id_cours, $ine) {
