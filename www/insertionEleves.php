@@ -1,14 +1,15 @@
 <?php
 
-require 'DAOFactory.php';
+require_once 'DAOFactory.php';
 
 /**
- * Insere des eleves a partir d'un fichier CSV
+ * Insere des eleves à partir d'un fichier CSV
  * @param  string $csv Chemin vers le fichier CSV
  */
 function insertionElevesFromCSV($csv) {
 	$row = 1;
 	if (($handle = fopen($csv, "r")) !== FALSE) {
+        // parcours le fichier
 		while (($eleves = fgetcsv($handle, 0, ";")) !== FALSE) {
 			$num = count($eleves);
 			$ine = $eleves[0];
@@ -23,11 +24,13 @@ function insertionElevesFromCSV($csv) {
 				}
 			}
 
+            // créé un etudiant
 			createEtudiant($ine, $nom, $prenom);
 
 			foreach($groupes as $groupe) {
 				$id_filiere = libelleExisteFiliere($filiere);
 				if ($id_filiere != 0) {
+                    // créé le groupe étudiant si possible
 					createGroupeEtudiant($ine, $id_filiere, $groupe);
 				} else {
 					throw new Exception("L'etudiant $ine n'a pas pu être créé : la filière $filiere n'existe pas");

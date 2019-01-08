@@ -14,6 +14,10 @@ function createGroupeEtudiant($ine, $id_filiere, $libelle_groupe) {
         return array();
     }
 
+    if(isExisteGroupeEtudiant($libelle_groupe, $id_filiere)) {
+        return array();
+    }
+
     // Creation d'un groupe étudiant
     // récupération accés base de données
     $bd = getConnexion();
