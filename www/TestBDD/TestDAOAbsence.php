@@ -48,7 +48,7 @@ echo "Insertion cours terminé <br>";
 echo "Insertion nouvelle absence : ";
 $abs_1 = createAbsence($cours_1[0], $etud1);
 if (count($abs_1) != 0) {
-    echo "Insetion absence reussi";
+    echo "Insetion absence reussi<br>";
 } else {
     echo "échoué <br>";
 }
@@ -56,15 +56,15 @@ if (count($abs_1) != 0) {
 // réinsertion absence
 echo "Insertion meme absence : ";
 $abs_2 = createAbsence($cours_1[0], $etud1);
-if (count($abs_2) != 0) {
-    echo "Non Insetion absence reussi";
+if (count($abs_2) == 0) {
+    echo "Non Insetion absence reussi <br>";
 } else {
     echo "échoué <br>";
 }
 
 // vérification presence absence
 echo "Verification absence : ";
-$abs_3 = isExisteAbsence($cours_1[0], $ine);
+$abs_3 = isExisteAbsence($cours_1[0], $etud1);
 if (count($abs_3) != 0) {
     echo "Absence présente : ";
     print_r($abs_3);
