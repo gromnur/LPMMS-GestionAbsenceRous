@@ -176,6 +176,12 @@
 			foreach ($salles as $salle) {
 				createSalle($salle);
 			}
+			
+			// Création du cours
+			$coursCree = createCours($matiere, $groupes, $filieres, $id_profs, $salles, $dateDebut, $dateFin);
+			if ($coursCree < 0) {
+				throw new Exception($coursCree);
+			}
 		}
 	}
 ?>
